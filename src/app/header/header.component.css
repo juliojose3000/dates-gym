@@ -1,0 +1,29 @@
+.image-flex-img{
+    height: 70px;
+    width: 70px;
+    margin-left: 20px;
+    margin-top: 20px;
+    float: left;
+}
+
+.header{
+    /*background-color: black;*/
+    width: 100%;
+    height: 150px;
+}
+
+p{
+    color: white;
+    margin-top: 45px;
+    font-family: "Berlin Sans FB Demi Bold";
+    font-size: 30px;
+    font-weight: bold;
+    float: left;
+}
+
+.container{
+    width: 750px;
+    float: left;
+    /*background-color: blue;*/
+    margin-left: 5px;
+}
