@@ -5,28 +5,3 @@ body{
     background-image: url(../assets/img/gym-wallpaper.jpg);
   }
   
-.button{
-  text-align: center;
-  width: 300px;
-  height: 100px;
-  background-color: rgba(231, 137, 0, 0.8);
-  color: white;
-  font-size: 28px;
-  border: none;
-  border-radius: 10px;
-  margin: 0 auto;
-  display: block;
-}
-
-.button:hover {
-  background-color: rgba(255, 154, 2, 0.8);
-  cursor: pointer;
-}
-
-.divButton{
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: absolute;
-  top: 45%;
-}
