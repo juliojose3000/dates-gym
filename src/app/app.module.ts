@@ -10,12 +10,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { ReserveComponent } from './reserve/reserve.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ReserveComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
