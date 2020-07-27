@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { MatTableModule } from '@angular/material/table'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReserveService } from './service/reserve.service';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -31,7 +34,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     ReserveComponent,
     HomeComponent,
-    PopupComponent
+    PopupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,10 +46,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDialogModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule
 
   ],
-  providers: [],
+  providers: [ReserveService],
   bootstrap: [AppComponent],
   entryComponents: [
     PopupComponent

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Inject} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ReserveService } from '../service/reserve.service';
 
 @Component({
   selector: 'popup-component',
@@ -19,7 +20,9 @@ export class PopupComponent implements OnInit {
 
     constructor(
             public dialogRef: MatDialogRef<PopupComponent>,
-            @Inject(MAT_DIALOG_DATA) public data: any) { }
+            @Inject(MAT_DIALOG_DATA) public data: any,
+            private reserveService: ReserveService) 
+        {  }
 
     ngOnInit(): void {
 
@@ -36,7 +39,9 @@ export class PopupComponent implements OnInit {
     }
     
     submit(){
-        
+
+        this.reserveService.getSchedule(this.date, this.startHour);
+
     }
     
 
