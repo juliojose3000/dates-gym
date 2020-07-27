@@ -1,1 +1,28 @@
-<p>reserve works!</p>
+<div class="mainDiv">
+
+    <table>
+
+        <tr class="headers">
+            <th>Horario:</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+        </tr>
+
+
+        <tbody>
+            <tr *ngFor="let column of arrayShiefts[0]; let in = index">
+              <td class="headers">{{arrayShiefts[0][in].startHour}} - {{arrayShiefts[0][in].endHour}}</td>
+              <td class="cell">Campos disponibles: {{arrayShiefts[0][in].availableSpace}}</td>
+              <td class="cell">Campos disponibles: {{arrayShiefts[1][in].availableSpace}}</td>
+              <td class="cell">Campos disponibles: {{arrayShiefts[2][in].availableSpace}}</td>
+              <td class="cell">Campos disponibles: {{arrayShiefts[3][in].availableSpace}}</td>
+              <td class="cell">Campos disponibles: {{arrayShiefts[4][in].availableSpace}}</td>
+            </tr>
+          </tbody>
+
+    </table>
+
+</div>
