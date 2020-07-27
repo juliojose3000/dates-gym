@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <p>¿{{message}}?</p>
+  <p>Fecha: {{date}}</p>
+  <p>Desde las: {{startHour}} Hasta las: {{endHour}}</p>
+</div>
+<div mat-dialog-actions>
+    <button class="button" mat-raised-button type="submit" [mat-dialog-close]="true" color="primary" (click)="submit()" >Corfirmar</button>
+    <button class="button" mat-button [mat-dialog-close]="false">Cancelar</button>
+</div>

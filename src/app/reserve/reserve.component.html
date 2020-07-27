@@ -13,15 +13,15 @@
 
 
         <tbody>
-            <tr *ngFor="let column of arrayShiefts[0]; let in = index">
-              <td class="headers">{{arrayShiefts[0][in].startHour}} - {{arrayShiefts[0][in].endHour}}</td>
-              <td class="cell">Campos disponibles: {{arrayShiefts[0][in].availableSpace}}</td>
-              <td class="cell">Campos disponibles: {{arrayShiefts[1][in].availableSpace}}</td>
-              <td class="cell">Campos disponibles: {{arrayShiefts[2][in].availableSpace}}</td>
-              <td class="cell">Campos disponibles: {{arrayShiefts[3][in].availableSpace}}</td>
-              <td class="cell">Campos disponibles: {{arrayShiefts[4][in].availableSpace}}</td>
-            </tr>
-          </tbody>
+          <tr *ngFor="let column of arrayShiefts[0]; let in = index">
+            <td class="headers">{{arrayShiefts[0][in].startHour}} - {{arrayShiefts[0][in].endHour}}</td>
+            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[0][in].availableSpace}}</td>
+            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[1][in].availableSpace}}</td>
+            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[2][in].availableSpace}}</td>
+            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[3][in].availableSpace}}</td>
+            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[4][in].availableSpace}}</td>
+          </tr>
+        </tbody>
 
     </table>
 
