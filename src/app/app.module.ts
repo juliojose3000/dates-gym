@@ -5,13 +5,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReserveComponent } from './reserve/reserve.component';
+import { HomeComponent } from './home/home.component';
+import { PopupComponent } from './popup/popup.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { ReserveComponent } from './reserve/reserve.component';
-import { HomeComponent } from './home/home.component';
+import { MatTableModule } from '@angular/material/table'
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -19,16 +30,25 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     FooterComponent,
     ReserveComponent,
-    HomeComponent
+    HomeComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    PopupComponent
+  ]
 })
 export class AppModule { }
