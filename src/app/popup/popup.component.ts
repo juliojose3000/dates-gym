@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {Inject} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ReserveService } from '../service/reserve.service';
+import { User } from '../model/user.model';
+import { Reservation } from '../model/reservation.model';
 
 @Component({
   selector: 'popup-component',
@@ -13,13 +16,21 @@ export class PopupComponent implements OnInit {
 
     title: string;
     message: string;
-    date: string;
+    date: Date;
     startHour: string;
     endHour: string;
 
+    user: User;
+    reservation: Reservation;
+
     constructor(
-            public dialogRef: MatDialogRef<PopupComponent>,
-            @Inject(MAT_DIALOG_DATA) public data: any) { }
+        public dialogRef: MatDialogRef<PopupComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private reserveService: ReserveService) {
+
+        
+
+    }
 
     ngOnInit(): void {
 
@@ -36,7 +47,18 @@ export class PopupComponent implements OnInit {
     }
     
     submit(){
-        
+         
+        this.user = new User(2, "","","","",false);
+        this.reservation = new Reservation(this.user, this.date, this.startHour);
+
+        var response = this.reserveService.make(this.reservation);
+
+        if(response){
+            console.log("Se ha reservado la cita con éxito");
+        }else{
+            console.log("Ocurrió un problema. Inténtelo más tarde");
+        }
+
     }
     
 
