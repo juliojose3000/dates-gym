@@ -19,8 +19,9 @@ import { MatTableModule } from '@angular/material/table'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ScheduleService } from './service/schedule.service';
 import { ReserveService } from './service/reserve.service';
+import { LoginComponent } from './login/login.component';
+import { ScheduleService } from './service/schedule.service';
 
 
 
@@ -34,7 +35,8 @@ import { ReserveService } from './service/reserve.service';
     FooterComponent,
     ReserveComponent,
     HomeComponent,
-    PopupComponent
+    PopupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
