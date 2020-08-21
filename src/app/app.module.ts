@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReserveService } from './service/reserve.service';
 import { LoginComponent } from './login/login.component';
+import { ScheduleService } from './service/schedule.service';
 
 
 
@@ -50,7 +51,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule
 
   ],
-  providers: [ReserveService],
+  providers: [ReserveService, ScheduleService],
   bootstrap: [AppComponent],
   entryComponents: [
     PopupComponent
