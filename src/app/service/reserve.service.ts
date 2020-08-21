@@ -4,12 +4,12 @@ import { RequestOptions, Headers, Response, URLSearchParams } from '@angular/htt
 import { Observable } from 'rxjs';
 import { Schedule } from '../model/schedule.model';
 import { Reservation } from '../model/reservation.model';
-
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ReserveService {
 
-  private url = 'http://localhost:8086/gymcachi/reservation';
+  private url = `${environment.localEnviroment}/reservation`;
 
   constructor(private http: HttpClient) {
   }

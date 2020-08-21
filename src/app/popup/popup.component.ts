@@ -53,6 +53,7 @@ export class PopupComponent implements OnInit {
 
         var response = this.reserveService.make(this.reservation);
 
+        //TODO show a popup
         if(response){
             console.log("Se ha reservado la cita con éxito");
         }else{
