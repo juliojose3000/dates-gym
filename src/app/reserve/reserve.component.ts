@@ -4,6 +4,7 @@ import { Schedule } from '../model/schedule.model';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
+import { ScheduleService } from '../service/schedule.service';
 
 @Component({
   selector: 'app-reserve',
@@ -65,21 +66,18 @@ export class ReserveComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private router: Router) 
+    private router: Router,
+    private scheduleservice: ScheduleService) 
   {
 
     this.arrayShiefts = new Array<Shift[]>();
 
-    this.arrayShiefts.push(this.shiftsMonday);
-    this.arrayShiefts.push(this.shiftsTuesday);
-    this.arrayShiefts.push(this.shiftsWednesday);
-    this.arrayShiefts.push(this.shiftsThursday);
-    this.arrayShiefts.push(this.shiftsFriday);
+    this.scheduleservice.getSchedule().subscribe((data: any)=>{
+      console.log(data);
+      this.schedule = data;
+      this.arrayShiefts = data.shifts;
+    });
 
-    this.date1 = new Date();
-    this.date2 = new Date();
-
-    this.schedule = new Schedule(this.arrayShiefts, 55, this.date1, this.date2)
   }
 
   ngOnInit(): void {
