@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../service/user.service';
 import * as $ from "jquery";
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,16 @@ import * as $ from "jquery";
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  public name: string;
+  public lastname: string;
+  public phone: string;
+  public email:string;
+  public username: string;
+  public password: string;
+
+  private user: User;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -45,5 +56,23 @@ export class LoginComponent implements OnInit {
     });
 
   }
+
+
+  login(){
+
+    console.log("login");
+
+  }
+
+  register(){
+
+    this.user = new User(0, this.name, this.lastname, this.phone, this.email, this.username, this.password, false);
+
+    console.log(this.user);
+
+    this.userService.make(this.user);
+
+  }
+
 
 }

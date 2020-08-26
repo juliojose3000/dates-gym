@@ -7,7 +7,7 @@ import { User } from '../model/user.model';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class ReserveService {
+export class UserService {
 
   private url = `${environment.localEnviroment}/user`;
 

@@ -5,6 +5,8 @@ export class User{
     lastname: string;
     phoneNumber: string;
     email: string;
+    username: string;
+    password: string;
     isAdmin: boolean;
 
     constructor(
@@ -13,6 +15,8 @@ export class User{
         lastname: string,
         phoneNumber: string,
         email: string,
+        username: string,
+        password: string,
         isAdmin: boolean)
     {
         this.id = id;
@@ -20,6 +24,8 @@ export class User{
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.username = username;
+        this.password = password;
         this.isAdmin = isAdmin;
     }
 
