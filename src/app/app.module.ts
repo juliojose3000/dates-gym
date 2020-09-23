@@ -25,6 +25,7 @@ import { ScheduleService } from './service/schedule.service';
 import { UserService } from './service/user.service';
 
 import { FormsModule } from '@angular/forms';
+import { NewloginComponent } from './newlogin/newlogin.component';
 
 
 
@@ -37,7 +38,8 @@ import { FormsModule } from '@angular/forms';
     ReserveComponent,
     HomeComponent,
     PopupComponent,
-    LoginComponent
+    LoginComponent,
+    NewloginComponent
   ],
   imports: [
     BrowserModule,
