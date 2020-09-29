@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  localEnviroment: 'http://localhost:8086/gymcachi'
+  localEnviroment: 'http://localhost:8086/gymcachi',
+  quickpass: true,
+  email: 'juliojose3000',
+  password: '123'
 };
 
 /*

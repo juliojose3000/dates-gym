@@ -20,14 +20,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReserveService } from './service/reserve.service';
-import { LoginComponent } from './login/login.component';
 import { ScheduleService } from './service/schedule.service';
 import { UserService } from './service/user.service';
 
 import { FormsModule } from '@angular/forms';
-import { NewloginComponent } from './newlogin/newlogin.component';
-
-
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './service/authentication.service'
 
 
 @NgModule({
@@ -38,8 +36,7 @@ import { NewloginComponent } from './newlogin/newlogin.component';
     ReserveComponent,
     HomeComponent,
     PopupComponent,
-    LoginComponent,
-    NewloginComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +51,7 @@ import { NewloginComponent } from './newlogin/newlogin.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ScheduleService, ReserveService, UserService],
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [
     PopupComponent

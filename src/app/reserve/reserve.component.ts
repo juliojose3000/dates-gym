@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
 import { ScheduleService } from '../service/schedule.service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-reserve',
@@ -19,8 +20,10 @@ export class ReserveComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private scheduleService: ScheduleService) 
+    private scheduleService: ScheduleService,
+    auten:AuthenticationService) 
   {
+
 
     this.scheduleService.get().subscribe((data: any)=>{
       console.log(data);

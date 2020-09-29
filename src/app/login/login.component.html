@@ -1,60 +1,60 @@
-<!-- Form-->
-<div class="form">
-    <div class="form-toggle"></div>
-    <div class="form-panel one">
-      <div class="form-header">
-        <h1>Inicio de sesión</h1>
-      </div>
-      <div class="form-content">
-        <form>
-          <div class="form-group">
-            <input id="username" type="text" name="username" required="required" placeholder="Nombre de Usuario"/>
-          </div>
-          <div class="form-group">
-            <input id="password" type="password" name="password" required="required" placeholder="Contraseña"/>
-          </div>
-          <div class="form-group">
-            <label class="form-remember">
-              <input type="checkbox"/>Recordarme
-            </label><a class="form-recovery" href="#">Olvidaste tu constraseña?</a>
-          </div>
-          <div class="form-group">
-            <button type="button" (click)="login()">Iniciar sesión</button>
-          </div>
-        </form>
-      </div>
+<div class="logindiv">
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Crear nueva cuenta</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>O usa tu correo para registrarte</span>
+                <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />
+                <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
+                <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
+                <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" />
+                <button (click)="signUp()">Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Iniciar sesión</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>O usa tu cuenta</span>
+                <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
+                <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <button (click)="login()">Iniciar sesión</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Bienvenido de nuevo!</h1>
+                    <p>Si ya tienes una cuenta, inicia sesión para disfrutar de nuestros servicios</p>
+                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hola, amante del fitness</h1>
+                    <p>Si aún no tienes una cuenta con nosotros, que esperas para registrarte y cumplir todas tus metas!</p>
+                    <button class="ghost" id="signUp">Registrarse</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-panel two">
-      <div class="form-header">
-        <h1>Formulario de registro</h1>
-      </div>
-      <div class="form-content">
-        <form>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="name" name="name" required="required" placeholder="Nombre"/>
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="lastname" name="lastname" required="required" placeholder="Apellidos"/>
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="phone" name="phone" required="required" placeholder="Teléfono"/>
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="email" name="email" required="required" placeholder="correo electrónico"/>
-          </div>
-          <div class="form-group">
-            <input type="text" [(ngModel)]="username" name="username" required="required" placeholder="Nombre de usuario"/>
-          </div>
-          <div class="form-group">
-            <input type="password" [(ngModel)]="password" name="password" required="required" placeholder="Ingrese una contraseña"/>
-          </div>
-          <div class="form-group">
-            <input type="password" required="required" name="rpass" placeholder="Ingrese nuevamente la contraseña"/>
-          </div>
-          <div class="form-group">
-            <button type="button" (click)="register()">Registrar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+
+    <footer>
+        <p>
+            Created with <i class="fa fa-heart"></i> by
+            <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+            - Read how I created this and how you can join the challenge
+            <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+        </p>
+    </footer>
+
+</div>

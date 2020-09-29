@@ -12,7 +12,7 @@ export class ScheduleService {
 
   constructor(private http: HttpClient) {
   }
-
+  
   get(){
     return this.http.get<Schedule>(this.url+'/get');
   }

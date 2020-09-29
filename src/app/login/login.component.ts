@@ -1,7 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
-import * as $ from "jquery";
+import { Authentication } from '../model/authentication.model';
 import { User } from '../model/user.model';
+import { UserService } from '../service/user.service';
+import { Token } from '../model/token.model'
+import { AuthenticationService } from '../service/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -18,61 +22,68 @@ export class LoginComponent implements OnInit {
   public password: string;
 
   private user: User;
+  private auth: Authentication;
+  private token: Token;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
 
-    this.loginJS();
+    if(environment.quickpass){
+      this.email = environment.email;
+      this.password = environment.password;
+    }
 
+    this.codigojs();
   }
 
-  loginJS(){
+  codigojs(){
 
-    $(document).ready(function() {
-      var panelOne = $('.form-panel.two').height(),
-        panelTwo = $('.form-panel.two')[0].scrollHeight;
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
     
-      $('.form-panel.two').not('.form-panel.two.active').on('click', function(e) {
-        e.preventDefault();
+    signUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
+    });
     
-        $('.form-toggle').addClass('visible');
-        $('.form-panel.one').addClass('hidden');
-        $('.form-panel.two').addClass('active');
-        $('.form').animate({
-          'height': panelTwo
-        }, 200);
-      });
-    
-      $('.form-toggle').on('click', function(e) {
-        e.preventDefault();
-        $(this).removeClass('visible');
-        $('.form-panel.one').removeClass('hidden');
-        $('.form-panel.two').removeClass('active');
-        $('.form').animate({
-          'height': panelOne
-        }, 200);
-      });
+    signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
     });
 
   }
 
-
-  login(){
-
+  /*login(){
     console.log("login");
+    console.log("email: "+this.email);
+    console.log("password: "+this.password);
 
-  }
+    this.auth = new Authentication("juliojose3000","123");
 
-  register(){
+    console.log(this.auth);
+
+    this.loginService.authenticate(this.auth).subscribe((data: any) => { this.token = data });
+
+    console.log("La respuesta del server: "+this.token);
+
+  }*/
+
+  login() {
+    this.auth = new Authentication(this.email, this.password);
+    this.authService.authenticate(this.auth).subscribe((data: Token) => {
+      this.token = data;
+      console.log(this.token);
+    });
+  } // login
+
+  signUp(){
 
     this.user = new User(0, this.name, this.lastname, this.phone, this.email, this.username, this.password, false);
 
     console.log(this.user);
 
-    this.userService.make(this.user);
+    //this.userService.make(this.user);
 
   }
-
 
 }
