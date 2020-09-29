@@ -2,16 +2,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Authentication } from '../model/authentication.model';
 import { User } from '../model/user.model';
-import { LoginService } from '../service/login.service';
 import { UserService } from '../service/user.service';
 import { Token } from '../model/token.model'
+import { AuthenticationService } from '../service/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-newlogin',
-  templateUrl: './newlogin.component.html',
-  styleUrls: ['./newlogin.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class NewloginComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   public name: string;
   public lastname: string;
@@ -24,9 +25,15 @@ export class NewloginComponent implements OnInit {
   private auth: Authentication;
   private token: Token;
 
-  constructor(private userService: UserService, private loginService: LoginService) { }
+  constructor(private userService: UserService, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+
+    if(environment.quickpass){
+      this.email = environment.email;
+      this.password = environment.password;
+    }
+
     this.codigojs();
   }
 
@@ -46,7 +53,7 @@ export class NewloginComponent implements OnInit {
 
   }
 
-  login(){
+  /*login(){
     console.log("login");
     console.log("email: "+this.email);
     console.log("password: "+this.password);
@@ -59,7 +66,15 @@ export class NewloginComponent implements OnInit {
 
     console.log("La respuesta del server: "+this.token);
 
-  }
+  }*/
+
+  login() {
+    this.auth = new Authentication(this.email, this.password);
+    this.authService.authenticate(this.auth).subscribe((data: Token) => {
+      this.token = data;
+      console.log(this.token);
+    });
+  } // login
 
   signUp(){
 

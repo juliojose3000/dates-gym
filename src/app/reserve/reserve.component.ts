@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
 import { ScheduleService } from '../service/schedule.service';
-import { AuthenticationService } from '../service/account-service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-reserve',

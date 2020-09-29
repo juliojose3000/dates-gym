@@ -22,9 +22,7 @@ export class AuthenticationService {
   }
 
   authenticate(authentication: Authentication){
-
-    return this.http.post<any>(`${environment.localEnviroment}/authenticate`, authentication)
-    ;
+    return this.http.post<any>(`${environment.localEnviroment}/authenticate`, authentication);
   }
 
 }

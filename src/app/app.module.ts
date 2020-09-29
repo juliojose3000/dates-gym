@@ -24,11 +24,8 @@ import { ScheduleService } from './service/schedule.service';
 import { UserService } from './service/user.service';
 
 import { FormsModule } from '@angular/forms';
-import { NewloginComponent } from './newlogin/newlogin.component';
-
-import { AuthModule } from './auth/auth.module';
-import { AuthenticationService } from './service/account-service'
-import { LoginService } from './service/login.service';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './service/authentication.service'
 
 
 @NgModule({
@@ -39,7 +36,7 @@ import { LoginService } from './service/login.service';
     ReserveComponent,
     HomeComponent,
     PopupComponent,
-    NewloginComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +49,9 @@ import { LoginService } from './service/login.service';
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule,
-    FormsModule,
-    AuthModule,
+    FormsModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, LoginService],
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [
     PopupComponent
