@@ -1,6 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
+import { Authentication } from '../model/authentication.model';
 import { User } from '../model/user.model';
+import { LoginService } from '../service/login.service';
 import { UserService } from '../service/user.service';
+import { Token } from '../model/token.model'
 
 @Component({
   selector: 'app-newlogin',
@@ -17,8 +21,10 @@ export class NewloginComponent implements OnInit {
   public password: string;
 
   private user: User;
+  private auth: Authentication;
+  private token: Token;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.codigojs();
@@ -44,6 +50,15 @@ export class NewloginComponent implements OnInit {
     console.log("login");
     console.log("email: "+this.email);
     console.log("password: "+this.password);
+
+    this.auth = new Authentication("juliojose3000","123");
+
+    console.log(this.auth);
+
+    this.loginService.authenticate(this.auth).subscribe((data: any) => { this.token = data });
+
+    console.log("La respuesta del server: "+this.token);
+
   }
 
   signUp(){

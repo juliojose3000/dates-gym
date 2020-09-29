@@ -1,0 +1,36 @@
+  
+  
+  
+  mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  .signin-content {
+    padding: 60px 1rem;
+    position: fixed; /* or absolute */
+    top: 20%;
+    left: 40%;
+  }
+  
+  .full-width-input {
+    width: 100%;
+  }
+  :host {
+    text-align: center;
+    display: block;
+    margin-top: 30%; 
+  }
+  
+  form {
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  .actions {
+    text-align: center;
+  }
