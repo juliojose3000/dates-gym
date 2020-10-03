@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   localEnviroment: 'http://localhost:8086/gymcachi',
   quickpass: true,
-  email: 'juliojose3000',
+  email: 'juliojose3000@gmail.com',
   password: '123'
 };
 

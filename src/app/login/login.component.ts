@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth = new Authentication(this.email, this.password);
+    console.log(this.auth);
     this.authService.authenticate(this.auth).subscribe((data: Token) => {
       this.token = data;
       console.log(this.token);
