@@ -25,7 +25,7 @@ export class ReserveComponent implements OnInit {
   {
 
 
-    this.scheduleService.get().subscribe((data: any)=>{
+    this.scheduleService.get(localStorage.getItem('token')).subscribe((data: any)=>{
       console.log(data);
       this.schedule = data;
       this.arrayShiefts = this.schedule.shifts;

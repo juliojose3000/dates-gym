@@ -14,8 +14,12 @@ export class ReserveService {
   constructor(private http: HttpClient) {
   }
 
-  make(reservation: Reservation){
-    return this.http.post(this.url+'/make', reservation).toPromise().then();
+  make(reservation: Reservation, headers){
+    let header = new HttpHeaders().set(
+      "Authorization",
+      headers
+    );
+    return this.http.post(this.url+'/make', reservation, {headers:header}).toPromise().then();
   }
 
 }

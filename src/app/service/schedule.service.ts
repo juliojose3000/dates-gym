@@ -10,11 +10,18 @@ export class ScheduleService {
 
   private url = `${environment.localEnviroment}/schedule`;
 
+  private TAG = "Schedule.service.ts"
+
   constructor(private http: HttpClient) {
   }
   
-  get(){
-    return this.http.get<Schedule>(this.url+'/get');
+  get(headers){
+    let header = new HttpHeaders().set(
+      "Authorization",
+      headers
+    );
+    console.log(this.TAG + " - El token es: " + headers)
+    return this.http.get<Schedule>(this.url+'/get', {headers:header});
   }
 
 }

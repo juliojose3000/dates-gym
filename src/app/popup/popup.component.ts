@@ -51,7 +51,7 @@ export class PopupComponent implements OnInit {
         this.user = new User(2, "","","","","","",false);
         this.reservation = new Reservation(this.user, this.date, this.startHour);
 
-        var response = this.reserveService.make(this.reservation);
+        var response = this.reserveService.make(this.reservation, localStorage.getItem('token'));
 
         //TODO show a popup
         if(response){
