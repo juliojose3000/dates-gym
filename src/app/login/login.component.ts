@@ -53,20 +53,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  /*login(){
-    console.log("login");
-    console.log("email: "+this.email);
-    console.log("password: "+this.password);
-
-    this.auth = new Authentication("juliojose3000","123");
-
-    console.log(this.auth);
-
-    this.loginService.authenticate(this.auth).subscribe((data: any) => { this.token = data });
-
-    console.log("La respuesta del server: "+this.token);
-
-  }*/
 
   login() {
     this.auth = new Authentication(this.email, this.password);
@@ -74,6 +60,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.auth).subscribe((data: Token) => {
       this.token = data;
       console.log(this.token);
+      localStorage.setItem("token", this.token.token)
     });
   } // login
 
@@ -82,8 +69,6 @@ export class LoginComponent implements OnInit {
     this.user = new User(0, this.name, this.lastname, this.phone, this.email, this.username, this.password, false);
 
     console.log(this.user);
-
-    //this.userService.make(this.user);
 
   }
 
