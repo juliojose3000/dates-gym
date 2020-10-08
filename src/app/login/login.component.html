@@ -28,6 +28,7 @@
                 <span>O usa tu cuenta</span>
                 <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
                 <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
+                <p id="invalid_credentials">Usuario o contraseña incorrectos</p>
                 <a href="#">¿Olvidaste tu contraseña?</a>
                 <button (click)="login()">Iniciar sesión</button>
             </form>

@@ -10,6 +10,10 @@ export const environment = {
   password: '123'
 };
 
+export const errors = {
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS'
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -48,7 +48,7 @@ export class PopupComponent implements OnInit {
     
     submit(){
          
-        this.user = new User(2, "","","","","","",false);
+        this.user = new User(-1, "", "", localStorage.getItem('email'), "");
         this.reservation = new Reservation(this.user, this.date, this.startHour);
 
         var response = this.reserveService.make(this.reservation, localStorage.getItem('token'));
