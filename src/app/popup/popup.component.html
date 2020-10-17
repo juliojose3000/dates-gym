@@ -1,8 +1,8 @@
 <h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content>
   <p>¿{{message}}?</p>
-  <p>Fecha: {{date}}</p>
-  <p>Desde las: {{startHour}} Hasta las: {{endHour}}</p>
+  <p>Fecha: {{dateToShow}}</p>
+  <p>Desde las: {{formatAMPM(startHour)}} Hasta las: {{formatAMPM(endHour)}}</p>
 </div>
 <div mat-dialog-actions>
     <button class="button" mat-raised-button type="submit" [mat-dialog-close]="true" color="primary" (click)="submit()" >Corfirmar</button>
