@@ -26,6 +26,7 @@ import { UserService } from './service/user.service';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './service/authentication.service'
+import { MessageComponent } from './message/message.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AuthenticationService } from './service/authentication.service'
     ReserveComponent,
     HomeComponent,
     PopupComponent,
+    MessageComponent,
     LoginComponent
   ],
   imports: [
@@ -54,7 +56,7 @@ import { AuthenticationService } from './service/authentication.service'
   providers: [ScheduleService, ReserveService, UserService, AuthenticationService],
   bootstrap: [AppComponent],
   entryComponents: [
-    PopupComponent
+    PopupComponent, MessageComponent
   ]
 })
 export class AppModule { }

@@ -15,11 +15,11 @@
         <tbody>
           <tr *ngFor="let column of arrayShiefts[0]; let in = index">
             <td class="headers">{{formatAMPM(arrayShiefts[0][in].startHour)}} - {{formatAMPM(arrayShiefts[0][in].endHour)}}</td>
-            <td class="cell" (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[0][in].availableSpace}}</td>
-            <td class="cell" (click)="openDialog(arrayShiefts[1][in].date, arrayShiefts[1][in].startHour, arrayShiefts[1][in].endHour)">Campos disponibles: {{arrayShiefts[1][in].availableSpace}}</td>
-            <td class="cell" (click)="openDialog(arrayShiefts[2][in].date, arrayShiefts[2][in].startHour, arrayShiefts[2][in].endHour)">Campos disponibles: {{arrayShiefts[2][in].availableSpace}}</td>
-            <td class="cell" (click)="openDialog(arrayShiefts[3][in].date, arrayShiefts[3][in].startHour, arrayShiefts[3][in].endHour)">Campos disponibles: {{arrayShiefts[3][in].availableSpace}}</td>
-            <td class="cell" (click)="openDialog(arrayShiefts[4][in].date, arrayShiefts[4][in].startHour, arrayShiefts[4][in].endHour)">Campos disponibles: {{arrayShiefts[4][in].availableSpace}}</td>
+            <td class="cell" id='{{arrayShiefts[0][in].date+"_"+arrayShiefts[0][in].startHour}}' (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)">Campos disponibles: {{arrayShiefts[0][in].availableSpace}}</td>
+            <td class="cell" id='{{arrayShiefts[1][in].date+"_"+arrayShiefts[1][in].startHour}}' (click)="openDialog(arrayShiefts[1][in].date, arrayShiefts[1][in].startHour, arrayShiefts[1][in].endHour)">Campos disponibles: {{arrayShiefts[1][in].availableSpace}}</td>
+            <td class="cell" id='{{arrayShiefts[2][in].date+"_"+arrayShiefts[2][in].startHour}}' (click)="openDialog(arrayShiefts[2][in].date, arrayShiefts[2][in].startHour, arrayShiefts[2][in].endHour)">Campos disponibles: {{arrayShiefts[2][in].availableSpace}}</td>
+            <td class="cell" id='{{arrayShiefts[3][in].date+"_"+arrayShiefts[3][in].startHour}}' (click)="openDialog(arrayShiefts[3][in].date, arrayShiefts[3][in].startHour, arrayShiefts[3][in].endHour)">Campos disponibles: {{arrayShiefts[3][in].availableSpace}}</td>
+            <td class="cell" id='{{arrayShiefts[4][in].date+"_"+arrayShiefts[4][in].startHour}}' (click)="openDialog(arrayShiefts[4][in].date, arrayShiefts[4][in].startHour, arrayShiefts[4][in].endHour)">Campos disponibles: {{arrayShiefts[4][in].availableSpace}}</td>
           </tr>
         </tbody>
 

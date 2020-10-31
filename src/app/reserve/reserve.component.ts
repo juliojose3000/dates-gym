@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
 import { ScheduleService } from '../service/schedule.service';
 import { AuthenticationService } from '../service/authentication.service';
+import { MessageComponent } from '../message/message.component';
 
 @Component({
   selector: 'app-reserve',
@@ -16,6 +17,11 @@ export class ReserveComponent implements OnInit {
 
   schedule: Schedule;
   arrayShiefts: Array<Shift[]>; 
+  response: boolean;
+  message: string;
+  title: string;
+  date: string;
+  startHour: string;
 
   constructor(
     public dialog: MatDialog,
@@ -37,8 +43,13 @@ export class ReserveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Cuando hago click en un espacio
   openDialog(date: string, startHour: string, endHour: string){
 
+    this.date = date;
+    this.startHour = startHour;
+
+    //Habro un modal
     const dialogRef = this.dialog.open(PopupComponent, {
       data: {
         title: "Reservar",
@@ -49,9 +60,35 @@ export class ReserveComponent implements OnInit {
       }
     });
 
+    //Cuando cierro el modal
     dialogRef.afterClosed().subscribe(result => {
-      var response = result.response;
-      console.log("Se obtuvo como response: "+response);
+      this.response = result.response;
+      console.log("Se obtuvo como response: "+this.response);
+
+      //Reservación exitosa
+      if(this.response){
+        this.title = "Éxito";
+        this.message = "Su cita se ha reservado con éxito";
+        const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
+        var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
+        var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
+        availableSpace = availableSpace-1;//resto 1 a la cantidad de campos disponibles del espacio. Ej: 4
+        space.innerHTML = "Campos disponibles: "+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 4
+      
+      //Fallo en la reservación
+      }else{
+        this.title = "Error"
+        this.message = result.message;
+      }
+
+      //Muestro el resultado: Fallo o Éxito
+      this.dialog.open(MessageComponent, {
+        data: {
+          title: this.title,
+          message: this.message
+        }
+      });
+
     });
 
   }
@@ -67,5 +104,10 @@ export class ReserveComponent implements OnInit {
     return strTime;
   }
   
+
+  substractOneSpace(){
+    const signUpButton = document.getElementById(this.date+", "+this.startHour);
+  }
+
 
 }

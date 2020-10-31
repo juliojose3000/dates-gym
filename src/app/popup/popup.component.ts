@@ -61,10 +61,9 @@ export class PopupComponent implements OnInit {
 
             if(this.mResponse.successful){
                 this.response = true;
-                console.log("Se ha reservado la cita con éxito");
             }else{
                 this.response = false;
-                console.log("Ocurrió un problema. Inténtelo más tarde");
+                this.message = this.mResponse.message;
             }
 
             this.closeDialog();
@@ -118,8 +117,13 @@ export class PopupComponent implements OnInit {
       
     closeDialog(){
         this.dialogRef.close({ 
-            response: this.response
+            response: this.response,
+            message: this.message
         });
+    }
+
+    cancel(){
+        this.dialogRef.close();
     }
     
 
