@@ -19,7 +19,7 @@ export class ReserveService {
       "Authorization",
       headers
     );
-    return this.http.post(this.url+'/make', reservation, {headers:header}).toPromise().then();
+    return this.http.post(this.url+'/make', reservation, {headers:header});
   }
 
 }

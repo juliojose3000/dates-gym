@@ -6,6 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ReserveService } from '../service/reserve.service';
 import { User } from '../model/user.model';
 import { Reservation } from '../model/reservation.model';
+import { MyResponse } from '../model/myresponse.model';
 
 @Component({
   selector: 'popup-component',
@@ -25,14 +26,12 @@ export class PopupComponent implements OnInit {
     response: boolean;
 
     dateToShow: string;
+    mResponse: MyResponse;
 
     constructor(
         public dialogRef: MatDialogRef<PopupComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private reserveService: ReserveService) {
-
-        
-
     }
 
     ngOnInit(): void {
@@ -55,20 +54,23 @@ export class PopupComponent implements OnInit {
         this.user = new User(-1, "", "", localStorage.getItem('email'), "");
         this.reservation = new Reservation(this.user, this.date, this.startHour);
 
-        let responsex: Promise<boolean>= <Promise<boolean>> this.reserveService.make(this.reservation, localStorage.getItem('token'));
+        //let responsex: Promise<MyResponse> = <Promise<MyResponse>> this.reserveService.make(this.reservation, localStorage.getItem('token'));
 
-        //TODO show a popup
-        if(responsex){
-            this.response = true;
-            console.log("Se ha reservado la cita con éxito");
-        }else{
-            this.response = false;
-            console.log("Ocurrió un problema. Inténtelo más tarde");
-        }
+        this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
+            this.mResponse = data;
 
-        this.dialogRef.close({ 
-            response: this.response,
+            if(this.mResponse.successful){
+                this.response = true;
+                console.log("Se ha reservado la cita con éxito");
+            }else{
+                this.response = false;
+                console.log("Ocurrió un problema. Inténtelo más tarde");
+            }
+
+            this.closeDialog();
+
         });
+
 
     }
 
@@ -98,15 +100,8 @@ export class PopupComponent implements OnInit {
         };
 
         var dayName = daysName[this.date.toString().split(" ", 1)[0]];
-
         var monthName = monthsName[this.date.toString().split(" ", 2)[1]];
-
         this.dateToShow = dayName+', '+this.date.getDate()+' de '+monthName+' del '+this.date.getFullYear();
-
-        console.log(this.dateToShow);
-
-        console.log(this.formatAMPM(this.startHour));
-
         this.formatAMPM(this.startHour);
 
     }
@@ -121,7 +116,11 @@ export class PopupComponent implements OnInit {
         return strTime;
     }
       
-      
+    closeDialog(){
+        this.dialogRef.close({ 
+            response: this.response
+        });
+    }
     
 
 }
