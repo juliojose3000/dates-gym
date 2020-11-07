@@ -35,6 +35,18 @@ export class ReserveComponent implements OnInit {
       console.log(data);
       this.schedule = data;
       this.arrayShiefts = this.schedule.shifts;
+
+      this.arrayShiefts.forEach(function (shifts) {
+        shifts.forEach(function(shift){
+          shift.clients.forEach(function(client){
+            if(String(client.id) == localStorage.getItem('userId')){
+              console.log("Este espacio está reservado por mí");
+              shift.cssClass = "cell_reserved"; 
+            }
+          });
+        });
+      });
+
     });
 
 
@@ -74,7 +86,8 @@ export class ReserveComponent implements OnInit {
         var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
         availableSpace = availableSpace-1;//resto 1 a la cantidad de campos disponibles del espacio. Ej: 4
         space.innerHTML = "Campos disponibles: "+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 4
-      
+        space.style.backgroundColor = "rgba(230, 164, 34, 0.8)"; 
+
       //Fallo en la reservación
       }else{
         this.title = "Error"

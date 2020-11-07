@@ -9,6 +9,7 @@ export class Shift{
     reservedSpace: number;
     availableSpace: number;
     clients: User[];
+    cssClass: string;
 
     constructor(
         date: string,

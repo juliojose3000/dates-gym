@@ -7,6 +7,7 @@ import { Token } from '../model/token.model'
 import { AuthenticationService } from '../service/authentication.service';
 import { environment, errors } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { MyResponse } from '../model/myresponse.model';
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,11 @@ export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
 
-  private user: User;
   private auth: Authentication;
   private token: Token;
+
+  private mResponse: MyResponse;
+  private user: User;
 
   constructor(
     private userService: UserService, 
@@ -63,18 +66,22 @@ export class LoginComponent implements OnInit {
     console.log(this.auth);
     const pInvalidCredentials = document.getElementById('invalid_credentials');
     this.authService.authenticate(this.auth).subscribe(
-      (data: Token) => {
-        this.token = data;
-        console.log(this.token);
-        if(errors.INVALID_CREDENTIALS==this.token.token){
-          console.log("Credenciales incorrectos");
-          pInvalidCredentials.style.visibility = "visible";
-        }
-        else{
-          localStorage.setItem("token","Bearer "+this.token.token);
-          localStorage.setItem("email", this.email);
+      (data: MyResponse) => {
+        this.mResponse = data;
+        console.log(this.mResponse);
+
+        if(this.mResponse.successful){
+          this.user = this.mResponse.data as User;
+          localStorage.setItem("token", this.mResponse.token);
+          localStorage.setItem("email", this.user.email);
+          localStorage.setItem("userId", ""+this.user.id);
           this.router.navigate(['home']);
           pInvalidCredentials.style.visibility = "hidden";
+        }
+
+        else{
+          console.log("Credenciales incorrectos");
+          pInvalidCredentials.style.visibility = "visible";
         }
       },
       (error) => {//Error callback

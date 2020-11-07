@@ -24,6 +24,15 @@ td{
     background-color: rgba(54, 43, 5, 0.6);
 }
 
+.cell_reserved{
+    font-size: 100%;
+    background-color: rgba(230, 164, 34, 0.8);
+}
+
+.cell_reserved:hover{
+    cursor: pointer;
+}
+
 .cell:hover{
     background-color: rgba(182, 144, 21, 0.6);
     cursor: pointer;
