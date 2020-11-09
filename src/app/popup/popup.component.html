@@ -2,9 +2,9 @@
 <div mat-dialog-content>
   <p>¿{{message}}?</p>
   <p>Fecha: {{dateToShow}}</p>
-  <p>Desde las: {{formatAMPM(startHour)}} Hasta las: {{formatAMPM(endHour)}}</p>
+  <p>Desde las: {{formatAMPM(startHour)}} hasta las: {{formatAMPM(endHour)}}</p>
 </div>
 <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="submit()">Reservar</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
+    <button id="buttonLeft" mat-raised-button color="primary" (click)="submit()">{{buttonLeftText}}</button>
+    <button id="buttonRight" mat-raised-button (click)="dimissDialog()">{{buttonRightText}}</button>
 </div>

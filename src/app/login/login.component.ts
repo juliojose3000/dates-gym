@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
         if(this.mResponse.successful){
           this.user = this.mResponse.data as User;
-          localStorage.setItem("token", this.mResponse.token);
+          localStorage.setItem("token", "Bearer "+this.mResponse.token);
           localStorage.setItem("email", this.user.email);
           localStorage.setItem("userId", ""+this.user.id);
           this.router.navigate(['home']);

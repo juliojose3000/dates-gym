@@ -28,6 +28,10 @@ export class PopupComponent implements OnInit {
     dateToShow: string;
     mResponse: MyResponse;
 
+    buttonLeftText: string;
+    buttonRightText: string;
+    method:string;
+
     constructor(
         public dialogRef: MatDialogRef<PopupComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,6 +45,9 @@ export class PopupComponent implements OnInit {
         this.date = new Date(this.data.date);
         this.startHour = this.data.startHour;
         this.endHour = this.data.endHour;
+        this.buttonLeftText = this.data.buttonLeftText;
+        this.buttonRightText = this.data.buttonRightText;
+        this.method = this.data.method;
         this.dateFormat();
 
     }
@@ -51,6 +58,15 @@ export class PopupComponent implements OnInit {
     
     submit(){
          
+        if(this.method=="reservate")
+            this.reservate();
+        else if(this.method=="cancel")
+            this.cancelReservation();
+
+    }
+
+    reservate(){
+
         this.user = new User(-1, "", "", localStorage.getItem('email'), "");
         this.reservation = new Reservation(this.user, this.date, this.startHour);
 
@@ -69,7 +85,26 @@ export class PopupComponent implements OnInit {
             this.closeDialog();
 
         });
+    }
 
+    cancelReservation(){
+
+        this.user = new User(-1, "", "", localStorage.getItem('email'), "");
+        this.reservation = new Reservation(this.user, this.date, this.startHour);
+
+        this.reserveService.cancel(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
+            this.mResponse = data;
+
+            if(this.mResponse.successful){
+                this.response = true;
+            }else{
+                this.response = false;
+                this.message = this.mResponse.message;
+            }
+
+            this.closeDialog();
+
+        });
 
     }
 
@@ -122,7 +157,7 @@ export class PopupComponent implements OnInit {
         });
     }
 
-    cancel(){
+    dimissDialog(){
         this.dialogRef.close();
     }
     

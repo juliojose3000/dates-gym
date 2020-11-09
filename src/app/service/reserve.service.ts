@@ -22,4 +22,15 @@ export class ReserveService {
     return this.http.post(this.url+'/make', reservation, {headers:header});
   }
 
+
+  cancel(reservation: Reservation, headers){
+    let header = new HttpHeaders().set(
+      "Authorization",
+      headers
+    );
+    return this.http.post(this.url+'/cancel', reservation, {headers:header});
+  }
+
+
+
 }
