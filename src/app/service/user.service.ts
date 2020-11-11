@@ -14,8 +14,8 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  make(user: User){
-    return this.http.post(this.url+'/create', user).toPromise().then();
+  create(user: User){
+    return this.http.post(this.url+'/create', user);
   }
 
 }

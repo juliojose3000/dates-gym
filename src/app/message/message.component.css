@@ -7,3 +7,8 @@ button{
 h1{
     text-align: center;
 }
+
+.pRegister{
+    width: 350px;
+    align-items: center;
+}

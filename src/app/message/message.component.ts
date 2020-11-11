@@ -17,6 +17,7 @@ export class MessageComponent implements OnInit {
 
     title: string;
     message: string;
+    class: string;
 
 
     constructor(
@@ -29,6 +30,7 @@ export class MessageComponent implements OnInit {
 
         this.title = this.data.title;
         this.message = this.data.message;
+        this.class = this.data.class;
 
     }
 
