@@ -7,49 +7,48 @@ import { PopupComponent } from '../popup/popup.component';
 import { ScheduleService } from '../service/schedule.service';
 import { AuthenticationService } from '../service/authentication.service';
 import { MessageComponent } from '../message/message.component';
+import { MyResponse } from '../model/myresponse.model';
+import { Utils } from '../utils/utils';
+import { Codes, Strings } from '../resources/resources';
 
 @Component({
   selector: 'app-reserve',
   templateUrl: './reserve.component.html',
-  styleUrls: ['./reserve.component.css']
+  styleUrls: ['./reserve.component.scss']
 })
 export class ReserveComponent implements OnInit {
 
   schedule: Schedule;
-  arrayShiefts: Array<Shift[]>; 
+  arrayShiefts: Array<Shift[]> = new Array<Shift[]>(); 
   response: boolean;
   message: string;
   title: string;
   date: string;
   startHour: string;
   class: string;
+  mResponse: MyResponse;
 
-  constructor(
-    public dialog: MatDialog,
-    private router: Router,
-    private scheduleService: ScheduleService,
-    auten:AuthenticationService) 
-  {
+  constructor(public dialog: MatDialog, private router: Router, private scheduleService: ScheduleService, private utils: Utils) {
 
-
-    this.scheduleService.get(localStorage.getItem('token')).subscribe((data: any)=>{
-      console.log(data);
-      this.schedule = data;
-      this.arrayShiefts = this.schedule.shifts;
-
-      this.arrayShiefts.forEach(function (shifts) {
-        shifts.forEach(function(shift){
-          shift.clients.forEach(function(client){
-            if(String(client.id) == localStorage.getItem('userId')){
-              console.log("Este espacio está reservado por mí");
-              shift.cssClass = "cell_reserved"; 
-            }
+    this.scheduleService.get(localStorage.getItem('token')).subscribe((data: any)=>{  
+      this.mResponse = data;
+      if(this.mResponse.code==Codes.TOKEN_EXPIRED){
+        this.utils.checkTokenExpired(this.mResponse);
+      }else{
+        this.schedule = this.mResponse.data as Schedule;
+        this.arrayShiefts = this.schedule.shifts;
+        //Busco si algun espacio ha sido reservado por el usuario actual
+        this.arrayShiefts.forEach(function (shifts) {
+          shifts.forEach(function(shift){
+            shift.clients.forEach(function(client){
+              if(String(client.id) == localStorage.getItem('userId')){
+                shift.cssClass = "cell_reserved"; 
+              }
+            });
           });
-        });
-      });
-
+        });//end busqueda
+      }
     });
-
 
   }
 
@@ -58,7 +57,6 @@ export class ReserveComponent implements OnInit {
 
   //Cuando hago click en un espacio
   openDialog(date: string, startHour: string, endHour: string){
-
     const space = document.getElementById(date+"_"+startHour);//clicked space
     this.class = space.getAttribute("class");//get css attribute class
 
@@ -70,7 +68,6 @@ export class ReserveComponent implements OnInit {
   }
 
   reserveDate(date: string, startHour: string, endHour: string){
-
     this.date = date;
     this.startHour = startHour;
 
@@ -174,7 +171,6 @@ export class ReserveComponent implements OnInit {
 
   }
 
-  
   formatAMPM(time) {
     var hours = time.split(":")[0];
     var minutes = time.split(":")[1];
@@ -184,11 +180,4 @@ export class ReserveComponent implements OnInit {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
-  
-
-  substractOneSpace(){
-    const signUpButton = document.getElementById(this.date+", "+this.startHour);
-  }
-
-
 }

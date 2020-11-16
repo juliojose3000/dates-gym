@@ -4,6 +4,7 @@ import { RequestOptions, Headers, Response, URLSearchParams } from '@angular/htt
 import { Observable } from 'rxjs';
 import { Schedule } from '../model/schedule.model';
 import { environment } from '../../environments/environment';
+import { MyResponse } from '../model/myresponse.model';
 
 @Injectable()
 export class ScheduleService {
@@ -15,13 +16,9 @@ export class ScheduleService {
   constructor(private http: HttpClient) {
   }
   
-  get(headers){
-    let header = new HttpHeaders().set(
-      "Authorization",
-      headers
-    );
-    console.log(this.TAG + " - El token es: " + headers)
-    return this.http.get<Schedule>(this.url+'/get', {headers:header});
+  get(token){
+    let header = new HttpHeaders().set("Authorization", token);
+    return this.http.get<MyResponse>(this.url+'/get', {headers:header});
   }
 
 }

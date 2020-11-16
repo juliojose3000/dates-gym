@@ -4,11 +4,12 @@ table{
     border-collapse: collapse;
 }
 
-th{
+th{//centro el texto de los encabezados
     width: 5%;
+    text-align: center;
 }
 
-td{
+td{//centro el texto de las casillas
     text-align: center;
 }
 

@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './service/authentication.service'
 import { MessageComponent } from './message/message.component';
+import { Utils } from './utils/utils';
 
 
 @NgModule({
@@ -53,10 +54,8 @@ import { MessageComponent } from './message/message.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService],
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils],
   bootstrap: [AppComponent],
-  entryComponents: [
-    PopupComponent, MessageComponent
-  ]
+  entryComponents: [PopupComponent, MessageComponent]
 })
 export class AppModule { }

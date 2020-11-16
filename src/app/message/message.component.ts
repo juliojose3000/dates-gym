@@ -20,18 +20,12 @@ export class MessageComponent implements OnInit {
     class: string;
 
 
-    constructor(
-        public dialogRef: MatDialogRef<MessageComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any,
-        private reserveService: ReserveService) {
-    }
+    constructor(public dialogRef: MatDialogRef<MessageComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit(): void {
-
         this.title = this.data.title;
         this.message = this.data.message;
         this.class = this.data.class;
-
     }
 
     onNoClick(): void {
