@@ -16,14 +16,12 @@ import { MyResponse } from '../model/myresponse.model';
 export class PopupComponent implements OnInit {
 
     title: string;
-    message: string;
     date: Date;
     startHour: string;
     endHour: string;
 
     user: User;
     reservation: Reservation;
-    response: boolean;
 
     dateToShow: string;
     mResponse: MyResponse;
@@ -31,6 +29,8 @@ export class PopupComponent implements OnInit {
     buttonLeftText: string;
     buttonRightText: string;
     method:string;
+    message:string;
+
 
     constructor(
         public dialogRef: MatDialogRef<PopupComponent>,
@@ -69,21 +69,9 @@ export class PopupComponent implements OnInit {
 
         this.user = new User(-1, "", "", localStorage.getItem('email'), "");
         this.reservation = new Reservation(this.user, this.date, this.startHour);
-
-        //let responsex: Promise<MyResponse> = <Promise<MyResponse>> this.reserveService.make(this.reservation, localStorage.getItem('token'));
-
         this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
             this.mResponse = data;
-
-            if(this.mResponse.successful){
-                this.response = true;
-            }else{
-                this.response = false;
-                this.message = this.mResponse.message;
-            }
-
             this.closeDialog();
-
         });
     }
 
@@ -94,14 +82,6 @@ export class PopupComponent implements OnInit {
 
         this.reserveService.cancel(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
             this.mResponse = data;
-
-            if(this.mResponse.successful){
-                this.response = true;
-            }else{
-                this.response = false;
-                this.message = this.mResponse.message;
-            }
-
             this.closeDialog();
 
         });
@@ -152,8 +132,9 @@ export class PopupComponent implements OnInit {
       
     closeDialog(){
         this.dialogRef.close({ 
-            response: this.response,
-            message: this.message
+            isSuccessful: this.mResponse.successful,
+            message: this.mResponse.message,
+            code: this.mResponse.code
         });
     }
 

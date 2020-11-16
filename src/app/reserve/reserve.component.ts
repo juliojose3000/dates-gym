@@ -20,7 +20,7 @@ export class ReserveComponent implements OnInit {
 
   schedule: Schedule;
   arrayShiefts: Array<Shift[]> = new Array<Shift[]>(); 
-  response: boolean;
+  isResponseSuccessful: boolean;
   message: string;
   title: string;
   date: string;
@@ -33,7 +33,7 @@ export class ReserveComponent implements OnInit {
     this.scheduleService.get(localStorage.getItem('token')).subscribe((data: any)=>{  
       this.mResponse = data;
       if(this.mResponse.code==Codes.TOKEN_EXPIRED){
-        this.utils.checkTokenExpired(this.mResponse);
+        this.utils.goToLoginByExpiredToken();
       }else{
         this.schedule = this.mResponse.data as Schedule;
         this.arrayShiefts = this.schedule.shifts;
@@ -87,10 +87,10 @@ export class ReserveComponent implements OnInit {
 
     //Cuando cierro el modal
     dialogRef.afterClosed().subscribe(result => {
-      this.response = result.response;
+      this.isResponseSuccessful = result.isSuccessful;
 
       //Reservación exitosa
-      if(this.response){
+      if(this.isResponseSuccessful){
         this.title = "Éxito";
         this.message = "Su cita se ha reservado con éxito";
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
@@ -104,8 +104,11 @@ export class ReserveComponent implements OnInit {
       }else{
         this.title = "Error"
         this.message = result.message;
+        if(result.code==Codes.TOKEN_EXPIRED) {
+          this.utils.goToLoginByExpiredToken();
+          return;
+        }
       }
-
       //Muestro el resultado: Fallo o Éxito
       this.dialog.open(MessageComponent, {
         data: {
@@ -140,10 +143,10 @@ export class ReserveComponent implements OnInit {
 
     //Cuando cierro el modal
     dialogRef.afterClosed().subscribe(result => {
-      this.response = result.response;
+      this.isResponseSuccessful = result.isSuccessful;
 
       //Reservación exitosa
-      if(this.response){
+      if(this.isResponseSuccessful){
         this.title = "Éxito";
         this.message = "Su cita se ha cancelado";
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
@@ -157,6 +160,10 @@ export class ReserveComponent implements OnInit {
       }else{
         this.title = "Error"
         this.message = result.message;
+        if(result.code==Codes.TOKEN_EXPIRED) {
+          this.utils.goToLoginByExpiredToken();
+          return;
+        }
       }
 
       //Muestro el resultado: Fallo o Éxito

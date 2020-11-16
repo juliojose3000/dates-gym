@@ -10,18 +10,15 @@ export class Utils{
 
     ngOnInit(){}
 
-    checkTokenExpired(mResponse: MyResponse){
-        if(mResponse.code==Codes.TOKEN_EXPIRED){
-            console.log(mResponse);
-            this.dialog.open(MessageComponent, {
-                data: {
-                    title: Strings.GENERAL_ERROR,
-                    message: Strings.TOKEN_EXPIRED
-                }
-            }).afterClosed().subscribe( result => {
-                this.router.navigate(['login']);
-            });  
+    goToLoginByExpiredToken(){
+    this.dialog.open(MessageComponent, {
+        data: {
+            title: Strings.GENERAL_ERROR,
+            message: Strings.TOKEN_EXPIRED
         }
-      }
+    }).afterClosed().subscribe( result => {
+        this.router.navigate(['login']);
+    }); 
+    }
 
 }
