@@ -4,10 +4,8 @@ export const Codes = {
   };
 
 export const Strings={
-  TOKEN_EXPIRED:"Su sesión ha finalizado, por favor ingrese de nuevo",
   RESERVATE_SPACE:"Está seguro que desea reservar este espacio",
   CANCEL_RESERVATION: "Está seguro que desea cancelar la reservación en este espacio",
-  GENERAL_ERROR: "Operación fallida"
 }
 
 export const CSS_CLASSES={

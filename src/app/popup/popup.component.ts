@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import {Inject} from '@angular/core';
+import { Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ReserveService } from '../service/reserve.service';
 import { User } from '../model/user.model';
@@ -20,13 +20,8 @@ export class PopupComponent implements OnInit {
     date: Date;
     startHour: string;
     endHour: string;
-
-    user: User;
     reservation: Reservation;
-
     dateToShow: string;
-    mResponse: MyResponse;
-
     buttonLeftText: string;
     buttonRightText: string;
     method:string;
@@ -58,34 +53,15 @@ export class PopupComponent implements OnInit {
     }
     
     submit(){
-         
+        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.date, this.startHour);
         if(this.method=="reservate")
-            this.reservate();
+            this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{
+                this.closeDialog(mResponse);
+            });
         else if(this.method=="cancel")
-            this.cancelReservation();
-
-    }
-
-    reservate(){
-
-        this.user = new User(-1, "", "", localStorage.getItem('email'), "");
-        this.reservation = new Reservation(this.user, this.date, this.startHour);
-        this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
-            this.mResponse = data;
-            this.closeDialog();
-        });
-    }
-
-    cancelReservation(){
-
-        this.user = new User(-1, "", "", localStorage.getItem('email'), "");
-        this.reservation = new Reservation(this.user, this.date, this.startHour);
-
-        this.reserveService.cancel(this.reservation, localStorage.getItem('token')).toPromise().then((data: any)=>{
-            this.mResponse = data;
-            this.closeDialog();
-
-        });
+            this.reserveService.cancel(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{
+                this.closeDialog(mResponse);
+            });
 
     }
 
@@ -108,12 +84,12 @@ export class PopupComponent implements OnInit {
         return strTime;
     }
       
-    closeDialog(){
+    closeDialog(mResponse: MyResponse){
         this.dialogRef.close({ 
-            code: this.mResponse.code,
-            isSuccessful: this.mResponse.successful,
-            title: this.mResponse.title,
-            message: this.mResponse.message
+            code: mResponse.code,
+            isSuccessful: mResponse.isSuccessful,
+            title: mResponse.title,
+            description: mResponse.description
         });
     }
 

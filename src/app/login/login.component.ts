@@ -64,10 +64,9 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth = new Authentication(this.email, this.password);
     const pInvalidCredentials = document.getElementById('invalid_credentials');
-    this.authService.authenticate(this.auth).subscribe(
-      (mResponse: MyResponse) => {
+    this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
 
-        if(mResponse.successful){
+        if(mResponse.isSuccessful){
           this.saveUserSessionData(mResponse);
           this.router.navigate(['home']);
           pInvalidCredentials.style.visibility = "hidden";
@@ -77,7 +76,7 @@ export class LoginComponent implements OnInit {
           this.dialog.open(MessageComponent, {
             data: {
                 title: mResponse.title,
-                message: mResponse.message
+                message: mResponse.description
             }
           }); 
         }
@@ -91,32 +90,22 @@ export class LoginComponent implements OnInit {
 
   signUp(){
 
-    this.user = new User(0, this.name, this.phone, this.email, this.password);
+    this.user = new User(this.email, this.name, this.phone, this.password);
 
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
-      console.log(mResponse);
-      if(mResponse.successful){
-        this.saveUserSessionData(mResponse);
-        //Muestro el resultado: Fallo o Éxito
-        this.dialog.open(MessageComponent, {
-          data: {
-            title: mResponse.title,
-            message: mResponse.message,
-            class: CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL
-          }
-        }).afterClosed().subscribe(result => {
+      this.dialog.open(MessageComponent, {
+        data: {
+          title: mResponse.title,
+          message: mResponse.description,
+          class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+        }
+      }).afterClosed().subscribe(() => {
+        if(mResponse.isSuccessful){
+          this.saveUserSessionData(mResponse);
           this.router.navigate(['home']);
-        });          
-      }
-      else{
-        //Muestro el resultado: Fallo o Éxito
-        this.dialog.open(MessageComponent, {
-          data: {
-            title: mResponse.title,
-            message: mResponse.message
-          }
-        });
-      }
+        }
+      });          
+      
     },
     (error) => {//Error callback
       console.error('error caught in component')

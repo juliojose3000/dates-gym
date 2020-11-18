@@ -10,6 +10,7 @@ import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Utils } from '../utils/utils';
 import { Codes, Strings, CSS_CLASSES } from '../resources/resources';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-reserve',
@@ -20,21 +21,17 @@ export class ReserveComponent implements OnInit {
 
   schedule: Schedule;
   arrayShiefts: Array<Shift[]> = new Array<Shift[]>(); 
-
-
   date: string;
   startHour: string;
   class: string;
-  mResponse: MyResponse;
 
-  constructor(public dialog: MatDialog, private router: Router, private scheduleService: ScheduleService, private utils: Utils) {
+  constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils) {
 
-    this.scheduleService.get(localStorage.getItem('token')).subscribe((data: any)=>{  
-      this.mResponse = data;
-      if(this.mResponse.code==Codes.TOKEN_EXPIRED){
-        this.utils.goToLoginByExpiredToken();
+    this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{  
+      if(mResponse.code==Codes.TOKEN_EXPIRED){
+        this.utils.goToLoginByExpiredToken(mResponse);
       }else{
-        this.schedule = this.mResponse.data as Schedule;
+        this.schedule = mResponse.data as Schedule;
         this.arrayShiefts = this.schedule.shifts;
         //Busco si algun espacio ha sido reservado por el usuario actual
         this.arrayShiefts.forEach(function (shifts) {
@@ -46,7 +43,7 @@ export class ReserveComponent implements OnInit {
             });
           });
         });//end busqueda
-      }
+      }//else
     });
 
   }
@@ -59,6 +56,10 @@ export class ReserveComponent implements OnInit {
     const space = document.getElementById(date+"_"+startHour);//clicked space
     this.class = space.getAttribute("class");//get css attribute class
 
+    /**Si la celda tiene el formato estandar, es que aún no ha sido reservada por el usuario, por ende, despliegue 
+     * el popup preguntando si quiere reservar el espacio. En caso contrario, muestre el popup preguntando si quiere
+     * cancelar la reservación
+     */
     if(this.class == CSS_CLASSES.STANDARD_CELL)
       this.reserveDate(date, startHour, endHour);
     else if(this.class == CSS_CLASSES.CELL_RESERVED)
@@ -84,7 +85,7 @@ export class ReserveComponent implements OnInit {
     });
 
     //Cuando cierro el modal
-    dialogRef.afterClosed().subscribe(mResponse => {
+    dialogRef.afterClosed().subscribe((mResponse: MyResponse) => {
 
       //Reservación exitosa
       if(mResponse.isSuccessful){
@@ -98,7 +99,7 @@ export class ReserveComponent implements OnInit {
       //Fallo en la reservación
       }else{
         if(mResponse.code==Codes.TOKEN_EXPIRED) {
-          this.utils.goToLoginByExpiredToken();
+          this.utils.goToLoginByExpiredToken(mResponse);
           return;
         }
       }
@@ -106,7 +107,7 @@ export class ReserveComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: mResponse.title,
-          message: mResponse.message
+          message: mResponse.description
         }
       });
 
@@ -135,8 +136,7 @@ export class ReserveComponent implements OnInit {
     });
 
     //Cuando cierro el modal
-    dialogRef.afterClosed().subscribe(mResponse => {
-
+    dialogRef.afterClosed().subscribe((mResponse: MyResponse) => {
       //Cancelación exitosa
       if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
@@ -149,7 +149,7 @@ export class ReserveComponent implements OnInit {
       //Fallo en la reservación
       }else{
         if(mResponse.code==Codes.TOKEN_EXPIRED) {
-          this.utils.goToLoginByExpiredToken();
+          this.utils.goToLoginByExpiredToken(mResponse);
           return;
         }
       }
@@ -158,7 +158,7 @@ export class ReserveComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: mResponse.title,
-          message: mResponse.message
+          message: mResponse.description
         }
       });
 

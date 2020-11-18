@@ -1,18 +1,17 @@
 export class MyResponse{
 
-    //TODO por qué no funk isSuccesful
-    successful: boolean;
+    isSuccessful: boolean;
     title: string;
-    message: string;
+    description: string;
     code: number;
     token: string;
     data: Object;
 
-    constructor(successful: boolean, title: string, message: string, code: number, token: string, data: Object)
+    constructor(isSuccessful: boolean, title: string, description: string, code: number, token: string, data: Object)
     {
-        this.successful = successful;
+        this.isSuccessful = isSuccessful;
         this.title = title;
-        this.message = message;
+        this.description = description;
         this.code = code;
         this.token = token;
         this.data = data;
