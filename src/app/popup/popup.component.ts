@@ -7,6 +7,7 @@ import { ReserveService } from '../service/reserve.service';
 import { User } from '../model/user.model';
 import { Reservation } from '../model/reservation.model';
 import { MyResponse } from '../model/myresponse.model';
+import { DAYS_NAME, MONTHS_NAME } from '../resources/resources';
 
 @Component({
   selector: 'popup-component',
@@ -90,31 +91,8 @@ export class PopupComponent implements OnInit {
 
     dateFormat(){
 
-        var daysName = {
-            'Mon': 'Lunes',
-            'Tue': 'Martes',
-            'Wed': 'Miércoles',
-            'Thu': 'Jueves',
-            'Fri': 'Viernes'
-        };
-
-        var monthsName = {
-            'Jan': 'Enero',
-            'Feb': 'Febrero',
-            'Mar': 'Marzo',
-            'Apr': 'Abril',
-            'May': 'Mayo',
-            'Jun': 'Junio',
-            'July': 'Julio',
-            'Aug': 'Agosto',
-            'Sep': 'Septiembre',
-            'Oct': 'Octubre',
-            'Nov': 'Noviembre',
-            'Dec': 'Diciembre'
-        };
-
-        var dayName = daysName[this.date.toString().split(" ", 1)[0]];
-        var monthName = monthsName[this.date.toString().split(" ", 2)[1]];
+        var dayName = DAYS_NAME[this.date.toString().split(" ", 1)[0]];
+        var monthName = MONTHS_NAME[this.date.toString().split(" ", 2)[1]];
         this.dateToShow = dayName+', '+this.date.getDate()+' de '+monthName+' del '+this.date.getFullYear();
         this.formatAMPM(this.startHour);
 
@@ -132,9 +110,10 @@ export class PopupComponent implements OnInit {
       
     closeDialog(){
         this.dialogRef.close({ 
+            code: this.mResponse.code,
             isSuccessful: this.mResponse.successful,
-            message: this.mResponse.message,
-            code: this.mResponse.code
+            title: this.mResponse.title,
+            message: this.mResponse.message
         });
     }
 

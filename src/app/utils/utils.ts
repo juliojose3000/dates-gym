@@ -11,14 +11,14 @@ export class Utils{
     ngOnInit(){}
 
     goToLoginByExpiredToken(){
-    this.dialog.open(MessageComponent, {
-        data: {
-            title: Strings.GENERAL_ERROR,
-            message: Strings.TOKEN_EXPIRED
-        }
-    }).afterClosed().subscribe( result => {
-        this.router.navigate(['login']);
-    }); 
+        this.dialog.open(MessageComponent, {
+            data: {
+                title: Strings.GENERAL_ERROR,
+                message: Strings.TOKEN_EXPIRED
+            }
+        }).afterClosed().subscribe( result => {
+            this.router.navigate(['login']);
+        }); 
     }
 
 }

@@ -9,7 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Utils } from '../utils/utils';
-import { Codes, Strings } from '../resources/resources';
+import { Codes, Strings, CSS_CLASSES } from '../resources/resources';
 
 @Component({
   selector: 'app-reserve',
@@ -20,9 +20,8 @@ export class ReserveComponent implements OnInit {
 
   schedule: Schedule;
   arrayShiefts: Array<Shift[]> = new Array<Shift[]>(); 
-  isResponseSuccessful: boolean;
-  message: string;
-  title: string;
+
+
   date: string;
   startHour: string;
   class: string;
@@ -60,11 +59,10 @@ export class ReserveComponent implements OnInit {
     const space = document.getElementById(date+"_"+startHour);//clicked space
     this.class = space.getAttribute("class");//get css attribute class
 
-    if(this.class == "cell")
+    if(this.class == CSS_CLASSES.STANDARD_CELL)
       this.reserveDate(date, startHour, endHour);
-    else if(this.class == "cell_reserved")
+    else if(this.class == CSS_CLASSES.CELL_RESERVED)
       this.cancelDate(date, startHour, endHour);
-
   }
 
   reserveDate(date: string, startHour: string, endHour: string){
@@ -76,7 +74,7 @@ export class ReserveComponent implements OnInit {
       data: {
         method: "reservate",
         title: "Reservar",
-        message: "Está seguro que desea reservar este espacio",
+        message: Strings.RESERVATE_SPACE,
         date: date,
         startHour: startHour,
         endHour: endHour,
@@ -86,13 +84,10 @@ export class ReserveComponent implements OnInit {
     });
 
     //Cuando cierro el modal
-    dialogRef.afterClosed().subscribe(result => {
-      this.isResponseSuccessful = result.isSuccessful;
+    dialogRef.afterClosed().subscribe(mResponse => {
 
       //Reservación exitosa
-      if(this.isResponseSuccessful){
-        this.title = "Éxito";
-        this.message = "Su cita se ha reservado con éxito";
+      if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
         var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
         var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
@@ -102,9 +97,7 @@ export class ReserveComponent implements OnInit {
 
       //Fallo en la reservación
       }else{
-        this.title = "Error"
-        this.message = result.message;
-        if(result.code==Codes.TOKEN_EXPIRED) {
+        if(mResponse.code==Codes.TOKEN_EXPIRED) {
           this.utils.goToLoginByExpiredToken();
           return;
         }
@@ -112,8 +105,8 @@ export class ReserveComponent implements OnInit {
       //Muestro el resultado: Fallo o Éxito
       this.dialog.open(MessageComponent, {
         data: {
-          title: this.title,
-          message: this.message
+          title: mResponse.title,
+          message: mResponse.message
         }
       });
 
@@ -132,7 +125,7 @@ export class ReserveComponent implements OnInit {
       data: {
         method: "cancel",
         title: "Cancelar reservación",
-        message: "Está seguro que desea cancelar la reservación en este espacio",
+        message: Strings.CANCEL_RESERVATION,
         date: date,
         startHour: startHour,
         endHour: endHour,
@@ -142,13 +135,10 @@ export class ReserveComponent implements OnInit {
     });
 
     //Cuando cierro el modal
-    dialogRef.afterClosed().subscribe(result => {
-      this.isResponseSuccessful = result.isSuccessful;
+    dialogRef.afterClosed().subscribe(mResponse => {
 
-      //Reservación exitosa
-      if(this.isResponseSuccessful){
-        this.title = "Éxito";
-        this.message = "Su cita se ha cancelado";
+      //Cancelación exitosa
+      if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
         var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
         var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
@@ -158,9 +148,7 @@ export class ReserveComponent implements OnInit {
 
       //Fallo en la reservación
       }else{
-        this.title = "Error"
-        this.message = result.message;
-        if(result.code==Codes.TOKEN_EXPIRED) {
+        if(mResponse.code==Codes.TOKEN_EXPIRED) {
           this.utils.goToLoginByExpiredToken();
           return;
         }
@@ -169,8 +157,8 @@ export class ReserveComponent implements OnInit {
       //Muestro el resultado: Fallo o Éxito
       this.dialog.open(MessageComponent, {
         data: {
-          title: this.title,
-          message: this.message
+          title: mResponse.title,
+          message: mResponse.message
         }
       });
 

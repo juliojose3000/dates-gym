@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { MyResponse } from '../model/myresponse.model';
 import { MessageComponent } from '../message/message.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CSS_CLASSES, Strings } from '../resources/resources';
 
 
 @Component({
@@ -20,16 +21,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class LoginComponent implements OnInit {
 
   public name: string;
-  public lastname: string;
   public phone: string;
   public email:string;
-  public username: string;
   public password: string;
 
   private auth: Authentication;
-  private token: Token;
-
-  private mResponse: MyResponse;
   private user: User;
 
   constructor(
@@ -67,21 +63,23 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth = new Authentication(this.email, this.password);
-    console.log(this.auth);
     const pInvalidCredentials = document.getElementById('invalid_credentials');
     this.authService.authenticate(this.auth).subscribe(
-      (data: MyResponse) => {
-        this.mResponse = data;
+      (mResponse: MyResponse) => {
 
-        if(this.mResponse.successful){
-          this.saveUserSessionData(this.mResponse);
+        if(mResponse.successful){
+          this.saveUserSessionData(mResponse);
           this.router.navigate(['home']);
           pInvalidCredentials.style.visibility = "hidden";
         }
-
         else{
-          console.log("Credenciales incorrectos");
-          pInvalidCredentials.style.visibility = "visible";
+          //Invalid credentials
+          this.dialog.open(MessageComponent, {
+            data: {
+                title: mResponse.title,
+                message: mResponse.message
+            }
+          }); 
         }
       },
       (error) => {//Error callback
@@ -95,43 +93,36 @@ export class LoginComponent implements OnInit {
 
     this.user = new User(0, this.name, this.phone, this.email, this.password);
 
-    this.userService.create(this.user).subscribe(
-      (data: MyResponse) => {
-        this.mResponse = data;
-
-        console.log(this.mResponse);
-
-        if(this.mResponse.successful){
-
-          this.saveUserSessionData(this.mResponse);
-
-          //Muestro el resultado: Fallo o Éxito
-          this.dialog.open(MessageComponent, {
-            data: {
-              title: "Éxito",
-              message: "El registro se ha completado satisfactoriamente. A partir de ahora podrá hacer reservaciones para hacer uso de las instalaciones del Gimnasio Cachí Fitness Center",
-              class: "pRegister"
-            }
-          }).afterClosed().subscribe( result => {
-            this.router.navigate(['home']);
-          });          
-        }
-        else{
-  
-          //Muestro el resultado: Fallo o Éxito
-          this.dialog.open(MessageComponent, {
-            data: {
-              title: "Error",
-              message: this.mResponse.message
-            }
-          });
-        }
-      },
-      (error) => {//Error callback
-        console.error('error caught in component')
-        console.log(error);
+    this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
+      console.log(mResponse);
+      if(mResponse.successful){
+        this.saveUserSessionData(mResponse);
+        //Muestro el resultado: Fallo o Éxito
+        this.dialog.open(MessageComponent, {
+          data: {
+            title: mResponse.title,
+            message: mResponse.message,
+            class: CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL
+          }
+        }).afterClosed().subscribe(result => {
+          this.router.navigate(['home']);
+        });          
       }
-    );
+      else{
+        //Muestro el resultado: Fallo o Éxito
+        this.dialog.open(MessageComponent, {
+          data: {
+            title: mResponse.title,
+            message: mResponse.message
+          }
+        });
+      }
+    },
+    (error) => {//Error callback
+      console.error('error caught in component')
+      console.log(error);
+    }
+  );
 
   }
 
