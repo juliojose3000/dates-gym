@@ -12,6 +12,7 @@ import { MessageComponent } from '../message/message.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
+import { Utils } from '../utils/utils';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     public dialog: MatDialog,
-    private spinnerService: SpinnerService) { }
+    private spinnerService: SpinnerService,
+    private utils: Utils) { }
 
   ngOnInit(): void {
 
@@ -87,8 +89,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {//Error callback
         this.spinnerService.resetSpinner();
-        console.error('error caught in component');
-        console.log(error);
+        this.utils.showErrorMessage()
       }
     );
   } // login
@@ -97,6 +98,7 @@ export class LoginComponent implements OnInit {
 
     this.user = new User(this.email, this.name, this.phone, this.password);
 
+    this.spinnerService.requestStarted();
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
       this.dialog.open(MessageComponent, {
         data: {
@@ -113,8 +115,8 @@ export class LoginComponent implements OnInit {
       
     },
     (error) => {//Error callback
-      console.error('error caught in component')
-      console.log(error);
+      this.spinnerService.resetSpinner();
+      this.utils.showErrorMessage()
     }
   );
 

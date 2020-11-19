@@ -8,6 +8,8 @@ import { User } from '../model/user.model';
 import { Reservation } from '../model/reservation.model';
 import { MyResponse } from '../model/myresponse.model';
 import { DAYS_NAME, MONTHS_NAME } from '../resources/resources';
+import { SpinnerService } from '../spinner/spinner.service';
+import { Utils } from '../utils/utils';
 
 @Component({
   selector: 'popup-component',
@@ -31,7 +33,9 @@ export class PopupComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<PopupComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private reserveService: ReserveService) {
+        private reserveService: ReserveService,
+        private spinnerService: SpinnerService,
+        private utils: Utils) {
     }
 
     ngOnInit(): void {
@@ -54,15 +58,24 @@ export class PopupComponent implements OnInit {
     
     submit(){
         this.reservation = new Reservation(new User(localStorage.getItem('email')), this.date, this.startHour);
+        this.spinnerService.requestStarted();
+
         if(this.method=="reservate")
             this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{
                 this.closeDialog(mResponse);
-            });
+            },() => {this.onError();});
+
         else if(this.method=="cancel")
             this.reserveService.cancel(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{
                 this.closeDialog(mResponse);
-            });
+            },() => {this.onError();});
 
+    }
+
+    onError(){
+        this.spinnerService.resetSpinner();//hide loader
+        this.utils.showErrorMessage();//show error message
+        this.dimissDialog();//close popup
     }
 
     dateFormat(){
@@ -85,6 +98,7 @@ export class PopupComponent implements OnInit {
     }
       
     closeDialog(mResponse: MyResponse){
+        this.spinnerService.resetSpinner();
         this.dialogRef.close({ 
             code: mResponse.code,
             isSuccessful: mResponse.isSuccessful,

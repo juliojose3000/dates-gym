@@ -11,6 +11,7 @@ import { MyResponse } from '../model/myresponse.model';
 import { Utils } from '../utils/utils';
 import { Codes, Strings, CSS_CLASSES } from '../resources/resources';
 import { NgStyle } from '@angular/common';
+import { SpinnerService } from '../spinner/spinner.service';
 
 @Component({
   selector: 'app-reserve',
@@ -25,9 +26,12 @@ export class ReserveComponent implements OnInit {
   startHour: string;
   class: string;
 
-  constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils) {
+  constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
+    private spinnerService: SpinnerService) {
 
-    this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{  
+    this.spinnerService.requestStarted();
+    this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
+      this.spinnerService.resetSpinner(); 
       if(mResponse.code==Codes.TOKEN_EXPIRED){
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
@@ -44,6 +48,10 @@ export class ReserveComponent implements OnInit {
           });
         });//end busqueda
       }//else
+    },
+    (error) => {//Error callback
+      this.spinnerService.resetSpinner();
+      this.utils.showErrorMessage()
     });
 
   }
@@ -86,6 +94,8 @@ export class ReserveComponent implements OnInit {
 
     //Cuando cierro el modal
     dialogRef.afterClosed().subscribe((mResponse: MyResponse) => {
+
+      if(mResponse==null) return;
 
       //Reservación exitosa
       if(mResponse.isSuccessful){
@@ -137,6 +147,9 @@ export class ReserveComponent implements OnInit {
 
     //Cuando cierro el modal
     dialogRef.afterClosed().subscribe((mResponse: MyResponse) => {
+
+      if(mResponse==null) return;
+
       //Cancelación exitosa
       if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
