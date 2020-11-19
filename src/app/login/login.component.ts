@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {//Error callback
         this.spinnerService.resetSpinner();
-        this.utils.showErrorMessage()
+        this.utils.showErrorMessage();
       }
     );
   } // login
@@ -100,6 +100,7 @@ export class LoginComponent implements OnInit {
 
     this.spinnerService.requestStarted();
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
+      this.spinnerService.resetSpinner();
       this.dialog.open(MessageComponent, {
         data: {
           title: mResponse.title,
@@ -116,7 +117,7 @@ export class LoginComponent implements OnInit {
     },
     (error) => {//Error callback
       this.spinnerService.resetSpinner();
-      this.utils.showErrorMessage()
+      this.utils.showErrorMessage();
     }
   );
 

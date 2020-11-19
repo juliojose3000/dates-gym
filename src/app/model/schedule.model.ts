@@ -8,10 +8,10 @@ export class Schedule {
     endDate: Date;
 
     constructor(
-        shifts: Array<Shift[]>,
-        weekNumber: number,
-        startDate: Date,
-        endDate: Date)
+        shifts?: Array<Shift[]>,
+        weekNumber?: number,
+        startDate?: Date,
+        endDate?: Date)
     {
         this.shifts=shifts;
         this.weekNumber=weekNumber;
