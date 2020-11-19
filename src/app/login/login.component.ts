@@ -11,6 +11,7 @@ import { MyResponse } from '../model/myresponse.model';
 import { MessageComponent } from '../message/message.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CSS_CLASSES, Strings } from '../resources/resources';
+import { SpinnerService } from '../spinner/spinner.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService, 
     private authService: AuthenticationService,
     private router: Router,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
 
@@ -64,8 +66,10 @@ export class LoginComponent implements OnInit {
   login() {
     this.auth = new Authentication(this.email, this.password);
     const pInvalidCredentials = document.getElementById('invalid_credentials');
-    this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
 
+    this.spinnerService.requestStarted();
+    this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
+        this.spinnerService.resetSpinner();
         if(mResponse.isSuccessful){
           this.saveUserSessionData(mResponse);
           this.router.navigate(['home']);
@@ -82,7 +86,8 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {//Error callback
-        console.error('error caught in component')
+        this.spinnerService.resetSpinner();
+        console.error('error caught in component');
         console.log(error);
       }
     );
