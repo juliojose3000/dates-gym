@@ -1,9 +1,9 @@
 var localhost = "http://localhost:8080/gymcachi";
-var azure = "";
+var azure = "https://gymdates.azurewebsites.net/gymcachi";
 
 export const environment = {
   production: false,
-  localEnviroment: localhost,
+  localEnviroment: azure,
   quickpass: true,
   email: 'juliojose3000@gmail.com',
   password: '123'
