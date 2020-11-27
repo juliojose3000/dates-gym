@@ -1,29 +1,145 @@
-.image-flex-img{
-    height: 70px;
-    width: 70px;
-    margin-left: 20px;
-    margin-top: 20px;
-    float: left;
-}
-
 .header{
     background-color: black;
     width: 100%;
-    height: 150px;
+    position: relative;
+}
+
+//--------------------------------------------------CONTAINER 1 (LOGO AND NAME)--------------------------------------------------//
+
+.logo-container{
+  width: 100%;
+  //background-color: green;
+}
+
+.image-flex-img {
+    height: 100%;
+    width: 12%;
+    min-width: 70px;
+    //background-color: blue;
+    float: left;
+
+}
+
+.div_title{
+    height: 100%;
+    //background-color: red;
+
+    //center text
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    float: left;
 }
 
 p{
     color: white;
-    margin-top: 45px;
     font-family: "Berlin Sans FB Demi Bold";
-    font-size: 30px;
     font-weight: bold;
-    float: left;
+    font-size:2vw;
+    margin-top: 2%;
 }
 
-.container{
-    width: 750px;
-    float: left;
-    /*background-color: blue;*/
-    margin-left: 5px;
+//--------------------------------------------------CONTAINER 2 (NAVBAR)--------------------------------------------------//
+
+.container2{
+    width: 50%;
+    height: 100%;
+    float: right;
+    //background-color: green;
+    display: flex;
+}
+
+#container2 ul{
+    display: flex;//align items horizontal
+}
+
+
+#container2 li a{
+    color: white;
+    font-family: "Berlin Sans FB Demi Bold";
+    font-weight: bold;
+    font-size:calc(2px + 1vw);
+    text-decoration: none;
+}
+
+#container2 .navbar_items{
+    width: 100%;
+    margin-right: 5%;
+    //background-color: blue;
+    //Centrar los items
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    
+}
+
+#container2 .navbar_items ul li{
+    text-transform: uppercase;
+    margin-left: 15px;
+    
+}
+
+#container2 li a:hover {
+  text-decoration: underline;
+}
+
+
+//--------------------------------------------------CONTAINER 3 (NAVBAR FOR SMALL SCREENS)--------------------------------------------------//
+
+.container3{
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+}
+
+#container3 ul{
+  display: flex;//align items horizontal
+  list-style-type: none;//remove dots on list items
+}
+
+
+#container3 .navbar_items{
+  width: 100%;
+
+  //Centrar los items
+  display: flex;
+  justify-content: center; //center content
+  align-items: center; //center of the div
+}
+
+#container3 li a{
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  font-size:calc(5px + 1vw);
+  text-decoration: none;
+  margin: 2vw;
+}
+
+#container3 li a:hover {
+  text-decoration: underline;
+}
+
+
+//------------------------------------------------------QUERIES------------------------------------------------//
+
+//MOBILE SCREENS
+@media (max-width: 845px) {
+  #container2 div ul { display: none; }
+  #container3 { display: flex; }
+  #logo-container { width: 100%; height: 60%; }
+  .image-flex-img{ margin-left: 30%;}
+  .header{ height: 15%; }
+}
+
+//PC SCREENS
+@media (min-width: 845px) {
+  #container2 div ul { display: flex; }
+  #container3 { display: none; }
+  #logo-container { width: 50%; float: left; height: 100%; }
+  .image-flex-img{ margin-left: 15%; }
+  .div_title{ width: 60%; }
+  .header{ height: 12%; }
 }
