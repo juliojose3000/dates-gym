@@ -6,20 +6,17 @@
 }
 
 .logindiv{
-    position: fixed; /* or absolute */
-    top: 20%;
-    left: 30%;
+	position: relative;
+	width: 50%;
+	margin: auto;
+	margin-top: 5%;
+	//border:3px solid rgb(46, 255, 39);
 }
 
-body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
+html, body
+{
+    height: 100%;
+    min-height: 100%;
 }
 
 h1 {
@@ -57,7 +54,7 @@ button {
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
-	padding: 12px 45px;
+	padding: 12px 30px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -103,8 +100,8 @@ input {
 	position: relative;
 	overflow: hidden;
 	width: 768px;
-	max-width: 100%;
 	min-height: 480px;
+	//border:3px solid rgb(46, 255, 39);
 }
 
 .form-container {
@@ -114,14 +111,17 @@ input {
 	transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
-	left: 0;
-	width: 50%;
-	z-index: 2;
-}
 
 .container.right-panel-active .sign-in-container {
 	transform: translateX(100%);
+}
+
+
+.sign-in-container{ 
+	left: 0;
+	width: 50%;
+	z-index: 2;
+	//border:3px solid rgb(22, 18, 255);
 }
 
 .sign-up-container {
@@ -129,13 +129,14 @@ input {
 	width: 50%;
 	opacity: 0;
 	z-index: 1;
+	//border:3px solid rgb(255, 0, 0);
 }
 
 .container.right-panel-active .sign-up-container {
-	transform: translateX(100%);
+	//transform: translateX(100%);
 	opacity: 1;
 	z-index: 5;
-	animation: show 0.6s;
+	animation: show 1s;
 }
 
 @keyframes show {
@@ -260,4 +261,41 @@ footer a {
 #invalid_credentials{
 	color: red;
 	visibility: hidden;
+}
+
+.p_sign{
+	color:rgb(0, 0, 194);
+}
+
+.p_sign:hover{
+    cursor: pointer;
+}
+
+.h1_new_account{
+	margin-top: 40px;
+}
+
+//-----------------------------------------QUERIES---------------------------------------//@at-root
+
+//MOBILE SCREENS
+@media (max-width: 1200px) {
+    #overlay-container{ display: none; }
+	.container{ width: 70%; min-width: 400px; }
+	.sign-in-container{ width: 100%; }
+	#sign_up_container{ width: 100%; }
+	.container.right-panel-active .sign-up-container{ transform: translateX(0%); }
+}
+  
+//PC SCREENS
+@media (min-width: 1200px) {
+	.sign-in-container{ width: 50%; }
+	.container{ max-width: 100%; }
+	.container.right-panel-active .sign-up-container{ transform: translateX(100%); }
+	#pSignUp{ visibility: hidden; }
+	#pSignIn{ visibility: hidden; }
+}
+  
+
+@media (max-width: 845px) {
+	.logindiv{ margin-left: 15%; }
 }

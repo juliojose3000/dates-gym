@@ -18,7 +18,7 @@ import { Utils } from '../utils/utils';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -52,13 +52,25 @@ export class LoginComponent implements OnInit {
 
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
+
+    const pSignUpButton = document.getElementById('pSignUp');
+    const pSignInButton = document.getElementById('pSignIn');
+
     const container = document.getElementById('container');
     
     signUpButton.addEventListener('click', () => {
       container.classList.add("right-panel-active");
     });
+
+    pSignUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
+    });
     
     signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
+    });
+
+    pSignInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
     });
 
