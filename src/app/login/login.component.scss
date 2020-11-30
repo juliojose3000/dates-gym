@@ -5,12 +5,6 @@
 	box-sizing: border-box;
 }
 
-.logindiv{
-	position: relative;
-	margin: auto;
-	margin-top: 5%;
-	//border:3px solid rgb(46, 255, 39);
-}
 
 html, body
 {
@@ -57,6 +51,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	margin-top: 2%;
 }
 
 button:active {
@@ -87,7 +82,7 @@ input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
-	margin: 8px 0;
+	margin: 4px 0;
 	width: 100%;
 }
 
@@ -98,8 +93,9 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 768px;
-	min-height: 480px;
+	width: 50%;
+	height: 450px;
+
 	//border:3px solid rgb(255, 39, 39);
 
 	//Center on screen
@@ -226,7 +222,7 @@ input {
 }
 
 .social-container {
-	margin: 20px 0;
+	margin: 3% 0;
 }
 
 .social-container a {
@@ -279,7 +275,7 @@ footer a {
 }
 
 .h1_new_account{
-	margin-top: 40px;
+	margin-top: 5%;
 }
 
 //-----------------------------------------QUERIES---------------------------------------//@at-root
@@ -287,7 +283,7 @@ footer a {
 //MOBILE SCREENS
 @media (max-width: 1200px) {
     #overlay-container{ display: none; }
-	.container{ width: 40%; min-width: 400px; }
+	.container{ width: 40%; min-width: 350px; height: 420px; }
 	.sign-in-container{ width: 100%; }
 	#sign_up_container{ width: 100%; }
 	.container.right-panel-active .sign-up-container{ transform: translateX(0%); }
