@@ -18,7 +18,7 @@ td{//centro el texto de las casillas
     font-size: 100%;
     background-color: rgba(77, 54, 8, 0.8);
     font-weight: bold;
-    height: 20px;
+    //height: 20px;
 }
 
 .cell{
@@ -54,8 +54,13 @@ table, th, td {
     width: 70%;
 }
 
-.top_header{
-    width: 40px;
+
+#p_available_space_text{
+    margin-bottom: 0px;
+}
+
+#p_range_hours{
+    margin-top: 15px;
 }
 
 //-----------------------------------------QUERIES---------------------------------------//
@@ -64,13 +69,15 @@ table, th, td {
 @media (max-width: 1200px) {
     #p_available_space_text { display: none; }
     .headers { font-size: 10px; }
-    table{ height: 15px; width: 100%; }
+    table{ height: 30px; width: 100%; }
     .cell{ height: 50px; }
     .cell_reserved{ height: 50px; }
 }
    
 //PC SCREENS
 @media (min-width: 1200px) {
-    table{ height: 70%; width: 100%; }
+    table{ height: 370px; width: 100%; }
+    .cell{ height: 50px; }
+    .cell_reserved{ height: 50px; }
 }
   

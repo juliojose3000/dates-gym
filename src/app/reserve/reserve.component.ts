@@ -101,9 +101,17 @@ export class ReserveComponent implements OnInit {
       if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
         var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
-        var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
+
+        var availableSpace = Number(text.split("</p>")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
+        var textForSpace;
+
+        if(window.innerWidth>1200)//PC Screen
+          textForSpace = "Campos disponibles: "
+        else
+          textForSpace = ""
+        
         availableSpace = availableSpace-1;//resto 1 a la cantidad de campos disponibles del espacio. Ej: 4
-        space.innerHTML = "Campos disponibles: "+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 4
+        space.innerHTML = textForSpace+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 4
         space.setAttribute("class","cell_reserved"); //cambio el color del espacio
 
       //Fallo en la reservación
@@ -154,9 +162,17 @@ export class ReserveComponent implements OnInit {
       if(mResponse.isSuccessful){
         const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
         var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
-        var availableSpace = Number(text.split(": ")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
+
+        var availableSpace = Number(text.split("</p>")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
+        var textForSpace;
+
+        if(window.innerWidth>1200)//PC Screen
+          textForSpace = "Campos disponibles: "
+        else
+          textForSpace = ""
+        
         availableSpace = availableSpace+1;//sumo 1 a la cantidad de campos disponibles del espacio. Ej: 6
-        space.innerHTML = "Campos disponibles: "+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 6
+        space.innerHTML = textForSpace+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 6
         space.setAttribute("class","cell"); //cambio el color del espacio
 
       //Fallo en la reservación
