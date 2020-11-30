@@ -93,17 +93,17 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 50%;
+	width: 700px;
 	height: 450px;
 
 	//border:3px solid rgb(255, 39, 39);
 
 	//Center on screen
-	position: fixed;
+	position: absolute;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 
 }
 
@@ -293,7 +293,6 @@ footer a {
 //PC SCREENS
 @media (min-width: 1200px) {
 	.sign-in-container{ width: 50%; }
-	.container{ max-width: 100%; }
 	.container.right-panel-active .sign-up-container{ transform: translateX(100%); }
 	#pSignUp{ visibility: hidden; }
 	#pSignIn{ visibility: hidden; }

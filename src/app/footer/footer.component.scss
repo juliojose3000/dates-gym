@@ -10,9 +10,6 @@
     color: white;
     /*float: left;*/
     font-family: "Berlin Sans FB Demi Bold";
-    font-size: 15px;
-    margin-top: 10px;
-    margin-left: 10px;
     text-align: center;
 }
 
@@ -22,8 +19,6 @@
 
 .social-networks{
     //background-color: blue;
-    width: 180px;
-    height: 85%;
     float: left;
 }
 
@@ -40,10 +35,7 @@
 }
 
 .general-info{
-    width: 230px;
-    height: 90%;
     float: right;
-    margin-right: 2%;
     //background-color: brown;
 }
 
@@ -73,3 +65,21 @@
     float: left;
 }
 
+//-------------------------------QUERIES-------------------------------//
+
+//MOBILE SCREENS
+@media (max-width: 1200px) {
+    .connectWithUs{ font-size: 15px; margin-top: 10px; margin-left: 10px; }
+    .social-networks{ width: 150px; height: 85%; }
+    .general-info{ width: 200px; height: 90%; margin-right: 2%; }
+}
+   
+//PC SCREENS
+@media (min-width: 1200px) {
+
+    .connectWithUs{ font-size: 15px; margin-top: 10px; margin-left: 10px; }
+    .social-networks{ width: 180px; height: 85%; }
+    .general-info{ width: 230px; height: 90%; margin-right: 2%; }
+
+}
+  
