@@ -27,12 +27,12 @@
     justify-content: center;
 }
 
-.image-flex-img{
+/*.image-flex-img{
     height: 30px;
     width: 30px;
     margin-left: 13px;
     margin-top: 5px;
-}
+}*/
 
 .general-info{
     float: right;
@@ -40,9 +40,9 @@
 }
 
 .info{
-    margin-top: 0px;
-    width: 100%;
-    height: 33%;
+    //margin-top: 0px;
+    //width: 100%;
+    //height: 33%;
     float: left;
     //background-color: brown;
 }
@@ -69,9 +69,11 @@
 
 //MOBILE SCREENS
 @media (max-width: 1200px) {
-    .connectWithUs{ font-size: 15px; margin-top: 10px; margin-left: 10px; }
-    .social-networks{ width: 150px; height: 85%; }
+    .connectWithUs{ font-size: 10px; margin-top: 10px; margin-left: 5px; }//social media text
+    .social-networks{ width: 150px; height: 85%; }//social media div
     .general-info{ width: 200px; height: 90%; margin-right: 2%; }
+    .image-flex-img{ height: 18px; width: 18px; margin-left: 8px; margin-top: 0px; }//social media icons
+    .info{ margin-top: 0px; width: 100%; height: 25%; } //info
 }
    
 //PC SCREENS
@@ -80,6 +82,8 @@
     .connectWithUs{ font-size: 15px; margin-top: 10px; margin-left: 10px; }
     .social-networks{ width: 180px; height: 85%; }
     .general-info{ width: 230px; height: 90%; margin-right: 2%; }
+    .image-flex-img{ height: 30px; width: 30px; margin-left: 13px; margin-top: 5px; }
+    .info{ margin-top: 0px; width: 100%; height: 33%; }
 
 }
   
