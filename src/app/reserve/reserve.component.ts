@@ -99,19 +99,14 @@ export class ReserveComponent implements OnInit {
 
       //Reservación exitosa
       if(mResponse.isSuccessful){
-        const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
-        var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
 
-        var availableSpace = Number(text.split("</p>")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
-        var textForSpace;
-
-        if(window.innerWidth>1200)//PC Screen
-          textForSpace = "Campos disponibles: "
-        else
-          textForSpace = ""
-        
+        const pHtml = document.getElementById("p_"+this.date+"_"+this.startHour);//elemento <p> que contiene la cantidad disponible de espacios
+        var pText = pHtml.innerHTML;//obtengo el texto del elemento <p>. Ej: 5
+        var availableSpace = Number(pText);//convierto a entero el texto anterior
         availableSpace = availableSpace-1;//resto 1 a la cantidad de campos disponibles del espacio. Ej: 4
-        space.innerHTML = textForSpace+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 4
+        pHtml.innerHTML = ""+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: 4
+
+        const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio de la tabla que selccionó el usuario
         space.setAttribute("class","cell_reserved"); //cambio el color del espacio
 
       //Fallo en la reservación
@@ -160,19 +155,14 @@ export class ReserveComponent implements OnInit {
 
       //Cancelación exitosa
       if(mResponse.isSuccessful){
-        const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio que reservó el usuario
-        var text = space.innerHTML;//obtengo el texto que tiene ese espacio. Ej: Campos disponibles: 5
 
-        var availableSpace = Number(text.split("</p>")[1]);//obtengo la cantidad de campos disponibles. Ej: 5
-        var textForSpace;
+        const pHtml = document.getElementById("p_"+this.date+"_"+this.startHour);//elemento <p> que contiene la cantidad disponible de espacios
+        var pText = pHtml.innerHTML;//obtengo el texto del elemento <p>. Ej: 5
+        var availableSpace = Number(pText);//convierto a entero el texto anterior
+        availableSpace = availableSpace+1;//resto 1 a la cantidad de campos disponibles del espacio. Ej: 4
+        pHtml.innerHTML = ""+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: 4
 
-        if(window.innerWidth>1200)//PC Screen
-          textForSpace = "Campos disponibles: "
-        else
-          textForSpace = ""
-        
-        availableSpace = availableSpace+1;//sumo 1 a la cantidad de campos disponibles del espacio. Ej: 6
-        space.innerHTML = textForSpace+availableSpace; //setteo el nuevo texto al elemento HTML. Ej: Campos disponibles: 6
+        const space = document.getElementById(this.date+"_"+this.startHour);//obtengo el espacio de la tabla que selccionó el usuario
         space.setAttribute("class","cell"); //cambio el color del espacio
 
       //Fallo en la reservación
