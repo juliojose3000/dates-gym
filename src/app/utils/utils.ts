@@ -1,5 +1,6 @@
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Strings } from '../resources/resources';
@@ -11,6 +12,8 @@ export class Utils{
     ngOnInit(){}
 
     goToLoginByExpiredToken(mResponse: MyResponse){
+        localStorage.setItem("token", null);
+
         this.dialog.open(MessageComponent, {
             data: {
                 title: mResponse.title,

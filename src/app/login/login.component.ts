@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
@@ -79,7 +80,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth = new Authentication(this.email, this.password);
-    const pInvalidCredentials = document.getElementById('invalid_credentials');
 
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
@@ -87,7 +87,8 @@ export class LoginComponent implements OnInit {
         if(mResponse.isSuccessful){
           this.saveUserSessionData(mResponse);
           this.router.navigate(['home']);
-          pInvalidCredentials.style.visibility = "hidden";
+          document.getElementById("a_session").innerHTML = Strings.LOGOUT;
+          document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
         }
         else{
           //Invalid credentials
