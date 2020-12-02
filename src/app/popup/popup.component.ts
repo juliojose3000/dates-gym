@@ -42,7 +42,10 @@ export class PopupComponent implements OnInit {
 
         this.title = this.data.title;
         this.message = this.data.message;
+
         this.date = new Date(this.data.date);
+        this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
+
         this.startHour = this.data.startHour;
         this.endHour = this.data.endHour;
         this.buttonLeftText = this.data.buttonLeftText;
