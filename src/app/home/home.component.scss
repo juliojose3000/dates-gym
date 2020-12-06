@@ -1,24 +1,46 @@
-.button{
-    text-align: center;
-    width: 300px;
-    height: 100px;
-    background-color: rgba(231, 137, 0, 0.8);
-    color: white;
-    font-size: 28px;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  .button:hover {
-    background-color: rgba(255, 154, 2, 0.8);
-    cursor: pointer;
-  }
-  
-  .divButton{
-    //background-color: blue;
+
+
+  .div_image_phrase{
+    //background-color: cyan;
+    display: flex;
     position: fixed;
-    top: 50%;
+    top: 35%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    height: 30vh;
+
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  .div_image{
+    //background-color: brown;
+    display: flex;
+  }
+
+  .div_text{
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.5);
+    //background-color: cyan;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .gym_img{
+    height: 300px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .motivational_text{
+    color: white;
+    font-family: "Berlin Sans FB Demi Bold";
+    font-weight: bold;
+    font-size:1.7vw;
+
+    text-align: center;
+    vertical-align: middle;
+    line-height: 130%; 
   }

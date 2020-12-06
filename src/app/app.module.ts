@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
 
 //Others
 import { Utils } from './utils/utils';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { Utils } from './utils/utils';
     PopupComponent,
     MessageComponent,
     LoginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

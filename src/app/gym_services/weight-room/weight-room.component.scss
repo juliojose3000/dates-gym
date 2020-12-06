@@ -1,0 +1,24 @@
+.button{
+    text-align: center;
+    width: 300px;
+    height: 100px;
+    background-color: rgba(231, 137, 0, 0.8);
+    color: white;
+    font-size: 28px;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  .button:hover {
+    background-color: rgba(255, 154, 2, 0.8);
+    cursor: pointer;
+  }
+  
+  .divButton{
+    //background-color: blue;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
