@@ -10,6 +10,7 @@ import { MyResponse } from '../model/myresponse.model';
 import { DAYS_NAME, MONTHS_NAME } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'popup-component',
@@ -20,6 +21,7 @@ export class PopupComponent implements OnInit {
 
     title: string;
     date: Date;
+    dateString: string;
     startHour: string;
     endHour: string;
     reservation: Reservation;
@@ -35,7 +37,8 @@ export class PopupComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private reserveService: ReserveService,
         private spinnerService: SpinnerService,
-        private utils: Utils) {
+        private utils: Utils,
+        public datepipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -45,6 +48,7 @@ export class PopupComponent implements OnInit {
 
         this.date = new Date(this.data.date);
         this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
+        this.dateString = this.datepipe.transform(this.date, 'yyyy-MM-dd');
 
         this.startHour = this.data.startHour;
         this.endHour = this.data.endHour;
@@ -60,8 +64,10 @@ export class PopupComponent implements OnInit {
     }
     
     submit(){
-        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.date, this.startHour);
+        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.dateString, this.startHour);
         this.spinnerService.requestStarted();
+
+        console.log(this.reservation);
 
         if(this.method=="reservate")
             this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{

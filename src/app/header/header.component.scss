@@ -46,11 +46,12 @@ p{
     height: 100%;
     float: right;
     //background-color: green;
+    //Centrar los items
     display: flex;
 }
 
 #container2 ul{
-    display: flex;//align items horizontal
+    height: 100%;
 }
 
 
@@ -58,31 +59,29 @@ p{
     color: white;
     font-family: "Berlin Sans FB Demi Bold";
     font-weight: bold;
-    font-size:calc(2px + 1vw);
+    font-size: max(1vw, 3px);
     text-decoration: none;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    //background-color: blue;
 }
 
 #container2 .navbar_items{
     width: 100%;
-    margin-right: 5%;
     //background-color: blue;
     //Centrar los items
     display: flex;
     justify-content: right;
     align-items: center;
     
+    //margin-left: 0%;
 }
 
 #container2 .navbar_items ul li{
     text-transform: uppercase;
-    margin-left: 15px;
+    margin-left: 1.5vw;
     
 }
-
-#container2 li a:hover {
-  text-decoration: underline;
-}
-
 
 //--------------------------------------------------CONTAINER 3 (NAVBAR FOR SMALL SCREENS)--------------------------------------------------//
 
@@ -120,12 +119,64 @@ p{
   margin: 2vw;
 }
 
-#container3 li a:hover {
-  text-decoration: underline;
-}
-
 .a_session:hover{
   cursor: pointer;
+}
+
+.p_services{
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  font-size:calc(5px + 1vw);
+  text-decoration: none;
+  margin: 2vw;
+}
+
+
+//-----------------------------------------------DROPDOWN-----------------------------------------------------------//
+
+.dropdown {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  //Centrar los items
+  display: flex;
+  justify-content: center; //center content
+  align-items: center; //center of the div
+}
+
+.dropdown:hover{
+  background-color: rgb(56, 56, 59);
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #000000;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+  height: 50%;
+}
+
+.dropdown-content:hover{
+  background-color: rgb(56, 56, 59);
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.p_services_items{
+  font-size:1vh;
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  text-align: center;
+  margin: auto;
 }
 
 //------------------------------------------------------QUERIES------------------------------------------------//
@@ -137,7 +188,8 @@ p{
   #logo-container { width: 100%; height: 60%; }
   .image-flex-img{ margin-left: 30%;}
   .header{ height: 15%; }
-  p{ margin-top: 2vw; }
+  .p_title{ margin-top: 2vw; }
+  .dropdown-content{ margin-top: 10vh; min-width: 65px; }
 }
 
 //PC SCREENS
@@ -148,5 +200,8 @@ p{
   .image-flex-img{ margin-left: 15%; }
   .div_title{ width: 60%; }
   .header{ height: 12%; }
-  p{ margin-top: 1vw; }
+  .p_title{ margin-top: 1vw; }
+  .dropdown-content{ margin-top: 19.5vh; min-width: 150px; }
 }
+
+

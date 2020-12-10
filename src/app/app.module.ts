@@ -38,6 +38,7 @@ import { FormsModule } from '@angular/forms';
 //Others
 import { Utils } from './utils/utils';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { DatePipe } from '@angular/common'
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     MatRadioModule,
     MatProgressSpinnerModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService],
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [PopupComponent, MessageComponent]
 })

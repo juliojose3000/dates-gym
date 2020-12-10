@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
       session.innerHTML = Strings.LOGOUT;
       session2.innerHTML = Strings.LOGOUT;
     }
+
+    const headerHeight = document.getElementById('container2').style.height;
+    console.log(headerHeight);
+
   }
 
   session(){
@@ -36,6 +40,21 @@ export class HeaderComponent implements OnInit {
       session2.innerHTML = Strings.LOGIN;
       this.router.navigate(['login']);
     }
+  }
+
+  goToWeightRoom(){
+    this.router.navigate(['gym_services/weight_room']);
+    const element = document.getElementById("div_weight_room");
+    element.style.display = "none";
+    console.log(element);
+  }
+
+  goToHome(){
+    this.router.navigate(['home']);
+  }
+
+  aboutUs(){
+    this.router.navigate(['aboutUs']);
   }
 
 }

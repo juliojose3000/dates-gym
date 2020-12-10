@@ -1,0 +1,14 @@
+.div_title{
+    width: 100%;
+    
+    //Centrar los items
+    display: flex;
+    justify-content: center; //center content
+    align-items: center; //center of the div
+}
+
+    .title{
+        color: honeydew;
+        text-align: center;
+        width: 100%;
+    }

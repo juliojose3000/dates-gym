@@ -13,7 +13,7 @@
             </a>
 
             <div class="div_title">
-                <p> CACHÍ FITNESS CENTER </p>
+                <p class="p_title"> CACHÍ FITNESS CENTER </p>
             </div>
 
 
@@ -24,22 +24,66 @@
 
         <div class="navbar_items">
             <ul>
-                <li><a href="home">Inicio</a></li>
-                <li><a href="aboutus">Acerca de nosotros</a></li>
-                <li><a href="services">Servicios</a></li>
-                <li><a class="a_session" id="a_session" role="button" (click)="session()"></a></li>
+                <li>
+                    <div class="dropdown" (click)="goToHome()">
+                        <a href="home">Inicio</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown" (click)="aboutUs()">
+                        <a href="about_us">Acerca de nosotros</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown">
+                        <a href="services">Servicios</a>
+                        <div id="div_weight_room" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
+                    </div>
+                </li>
+
+                <li>      
+                    <div class="dropdown" (click)="session()">
+                        <a class="a_session" id="a_session" role="button" (click)="session()"></a>
+                    </div>
+                </li>
+
             </ul>
         </div>
 
     </div>
 
+
+      
+
     <div id="container3" class="container3">
         <div class="navbar_items">
             <ul>
-                <li><a href="home">Inicio</a></li>
-                <li><a href="aboutus">Acerca de nosotros</a></li>
-                <li><a href="services">Servicios</a></li>
-                <li><a class="a_session" id="a_session2" role="button" (click)="session()"></a></li>
+                <li>
+                    <div class="dropdown" (click)="goToHome()">
+                        <a href="home">Inicio</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown" (click)="aboutUs()">
+                        <a href="about_us">Acerca de nosotros</a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="dropdown">
+                        <p class="p_services">Servicios</p>
+                        <div id="div_weight_room" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
+                    </div>
+                </li>
+
+                <li>      
+                    <div class="dropdown" (click)="session()">
+                        <a class="a_session" id="a_session2" role="button" (click)="session()"></a>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
