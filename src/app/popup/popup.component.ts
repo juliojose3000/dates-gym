@@ -40,11 +40,11 @@ export class PopupComponent implements OnInit {
                 this.router.navigate(['login']);
                 break;
         }
-        this.dialogRef.close();
+        this.dimissDialog();
     }
 
     dimissDialog(){
-        this.dialogRef.close();
+        this.dialogRef.close({});
     }
 
 
