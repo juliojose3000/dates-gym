@@ -37,10 +37,10 @@ export class PopupComponent implements OnInit {
                 const session2 = document.getElementById("a_session2");
                 session.innerHTML = Strings.LOGIN;
                 session2.innerHTML = Strings.LOGIN;
+                this.dimissDialog();
                 this.router.navigate(['login']);
                 break;
         }
-        this.dimissDialog();
     }
 
     dimissDialog(){
