@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Strings } from '../resources/resources';
+import { PopupComponent } from '../popup/popup.component';
+import { Codes, Strings } from '../resources/resources';
 
 
 @Component({
@@ -10,34 +12,36 @@ import { Strings } from '../resources/resources';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     const session = document.getElementById("a_session");
     const session2 = document.getElementById("a_session2");
-    if(localStorage.getItem('token')==null){//There is an active session
-      session.innerHTML = Strings.LOGIN;
-      session2.innerHTML = Strings.LOGIN;
-    }else{
+    if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session
       session.innerHTML = Strings.LOGOUT;
       session2.innerHTML = Strings.LOGOUT;
+    }else{
+      session.innerHTML = Strings.LOGIN;
+      session2.innerHTML = Strings.LOGIN;
     }
-
     const headerHeight = document.getElementById('container2').style.height;
-    console.log(headerHeight);
-
   }
 
   session(){
+    if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//The user have a live session, so user logout its session
 
-    const session = document.getElementById("a_session");
-    const session2 = document.getElementById("a_session2");
-    if(session.innerHTML == Strings.LOGIN){
-      this.router.navigate(['login']);
+      //Invalid credentials
+      this.dialog.open(PopupComponent, {
+        data: {
+            title: Strings.LOGOUT,
+            message: Strings.LOGOUT_MESSAGE,
+            buttonLeftText: Strings.BUTTON_LEFT_LOGOUT,
+            buttonRightText: Strings.BUTTON_RIGHT_LOGOUT,
+            code: Codes.LOGOUT
+        }
+      }); 
+
     }else{
-      localStorage.setItem("token", null);
-      session.innerHTML = Strings.LOGIN;
-      session2.innerHTML = Strings.LOGIN;
       this.router.navigate(['login']);
     }
   }
@@ -46,7 +50,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['gym_services/weight_room']);
     const element = document.getElementById("div_weight_room");
     element.style.display = "none";
-    console.log(element);
   }
 
   goToHome(){

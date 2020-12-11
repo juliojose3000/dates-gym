@@ -24,8 +24,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReserveComponent } from './reserve/reserve.component';
 import { HomeComponent } from './home/home.component';
-import { PopupComponent } from './popup/popup.component';
+import { ReservationPopupComponent } from './reserve/reservation_popup/reservation_popup.component';
 import { SpinnerComponent } from './spinner/spinner.component'
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { PopupComponent } from './popup/popup.component';
 
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,8 +39,7 @@ import { FormsModule } from '@angular/forms';
 
 //Others
 import { Utils } from './utils/utils';
-import { AboutusComponent } from './aboutus/aboutus.component';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { DatePipe } from '@angular/common'
     FooterComponent,
     ReserveComponent,
     HomeComponent,
+    ReservationPopupComponent,
     PopupComponent,
     MessageComponent,
     LoginComponent,
@@ -72,6 +74,6 @@ import { DatePipe } from '@angular/common'
   ],
   providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [PopupComponent, MessageComponent]
+  entryComponents: [ReservationPopupComponent, MessageComponent, PopupComponent]
 })
 export class AppModule { }

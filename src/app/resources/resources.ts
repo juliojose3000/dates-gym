@@ -1,6 +1,7 @@
 export const Codes = {
     TOKEN_EXPIRED: 981015,
-    USER_CREATED_BUT_LOGIN_FAILED: 981025
+    USER_CREATED_BUT_LOGIN_FAILED: 981025,
+    LOGOUT: 981001
   };
 
 export const Strings={
@@ -9,7 +10,11 @@ export const Strings={
   ERROR:"Operación fallida",
   ERROR_DESCRIPTION: "Ha ocurrido un error inésperado, intente de nuevo más tarde",
   LOGIN:"Iniciar sesión",
-  LOGOUT: "Cerrar sesión"
+  LOGOUT: "Cerrar sesión",
+  LOGOUT_MESSAGE: "¿Está seguro que deseas cerrar la sesión?",
+  MAKE_LOGIN: "Necesitas iniciar sesión para poder reservar estacios en la sala de pesas",
+  BUTTON_LEFT_LOGOUT: "Si, cerrar sesión",
+  BUTTON_RIGHT_LOGOUT: "Cancelar"
 }
 
 export const CSS_CLASSES={

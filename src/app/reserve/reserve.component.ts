@@ -3,7 +3,7 @@ import { Shift } from '../model/shift.model';
 import { Schedule } from '../model/schedule.model';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { PopupComponent } from '../popup/popup.component';
+import { ReservationPopupComponent } from './reservation_popup/reservation_popup.component';
 import { ScheduleService } from '../service/schedule.service';
 import { AuthenticationService } from '../service/authentication.service';
 import { MessageComponent } from '../message/message.component';
@@ -79,7 +79,7 @@ export class ReserveComponent implements OnInit {
     this.startHour = startHour;
 
     //Habro un modal
-    const dialogRef = this.dialog.open(PopupComponent, {
+    const dialogRef = this.dialog.open(ReservationPopupComponent, {
       data: {
         method: "reservate",
         title: "Reservar",
@@ -135,7 +135,7 @@ export class ReserveComponent implements OnInit {
     this.startHour = startHour;
 
     //Habro un modal
-    const dialogRef = this.dialog.open(PopupComponent, {
+    const dialogRef = this.dialog.open(ReservationPopupComponent, {
       data: {
         method: "cancel",
         title: "Cancelar reservación",

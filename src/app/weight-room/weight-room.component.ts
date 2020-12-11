@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MessageComponent } from 'src/app/message/message.component';
-import { Strings } from 'src/app/resources/resources';
+import { MessageComponent } from '../message/message.component';
+import { Strings } from '../resources/resources';
 
 @Component({
   selector: 'app-weight-room',
@@ -11,18 +11,18 @@ import { Strings } from 'src/app/resources/resources';
 })
 export class WeightRoomComponent implements OnInit {
 
-  constructor(private router: Router, private popupMessage: MessageComponent, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   showSchedule(){
 
-    if(localStorage.getItem("token")==null){
+    if(localStorage.getItem("token")==""){
 
       this.dialog.open(MessageComponent, {
         data: {
-          title: Strings.MAKE_LOGIN_TITLE,
+          title: Strings.LOGIN,
           message: Strings.MAKE_LOGIN
         }
       });
