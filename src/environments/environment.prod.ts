@@ -4,7 +4,7 @@ var azure = "https://gymdates.azurewebsites.net/gymcachi";
 export const environment = {
   production: true,
   localEnviroment: azure,
-  quickpass: true,
+  quickpass: false,
   email: 'juliojose3000@gmail.com',
   password: '123'
 };
