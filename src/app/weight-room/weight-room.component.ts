@@ -18,17 +18,14 @@ export class WeightRoomComponent implements OnInit {
 
   showSchedule(){
 
-    if(localStorage.getItem("token")==""){
-
+    if(localStorage.getItem("token")=='null' || localStorage.getItem("token")==null){
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.LOGIN,
           message: Strings.MAKE_LOGIN
         }
       });
-
       return;
-
     }
 
     this.router.navigate(['reserve']);

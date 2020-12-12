@@ -18,8 +18,7 @@ export class PopupComponent implements OnInit {
     buttonRightText: string;
     code: number;
 
-    constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialogRef<PopupComponent>, private router: Router) {
-    }
+    constructor(public dialogRef: MatDialogRef<PopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router) {}
 
     ngOnInit(): void {
         this.title = this.data.title;
@@ -30,22 +29,22 @@ export class PopupComponent implements OnInit {
     }
 
     submit(){
-        /*switch(this.code){
+        switch(this.code){
             case Codes.LOGOUT:
-
+                localStorage.setItem("token", null);
+                const session = document.getElementById("a_session");
+                const session2 = document.getElementById("a_session2");
+                session.innerHTML = Strings.LOGIN;
+                session2.innerHTML = Strings.LOGIN;
+                this.router.navigate(['login']);
+                this.dimissDialog();
                 break;
-        }*/
-        localStorage.setItem("token", null);
-        const session = document.getElementById("a_session");
-        const session2 = document.getElementById("a_session2");
-        session.innerHTML = Strings.LOGIN;
-        session2.innerHTML = Strings.LOGIN;
-        this.router.navigate(['login']);
-        this.dimissDialog();
+        }
+
     }
 
     dimissDialog(){
-        this.dialog.close({});
+        this.dialogRef.close({});
     }
 
 

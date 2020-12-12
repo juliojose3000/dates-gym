@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
   }
 
   aboutUs(){
-    this.router.navigate(['aboutUs']);
+    this.router.navigate(['about_us']);
   }
 
 }
