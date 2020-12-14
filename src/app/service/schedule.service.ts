@@ -9,7 +9,7 @@ import { MyResponse } from '../model/myresponse.model';
 @Injectable()
 export class ScheduleService {
 
-  private url = `${environment.localEnviroment}/schedule`;
+  private url = `${environment.url}/schedule`;
 
   private TAG = "Schedule.service.ts"
 
