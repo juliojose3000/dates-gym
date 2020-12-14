@@ -55,7 +55,7 @@ p{
 }
 
 
-#container2 li a{
+/*#container2 li a{
     color: white;
     font-family: "Berlin Sans FB Demi Bold";
     font-weight: bold;
@@ -64,6 +64,16 @@ p{
     margin-left: 1vw;
     margin-right: 1vw;
     //background-color: blue;
+}*/
+
+.container2_encabezado{
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  font-size: max(1vw, 3px);
+  text-decoration: none;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 #container2 .navbar_items{
@@ -110,7 +120,16 @@ p{
   align-items: center; //center of the div
 }
 
-#container3 li a{
+/*#container3 li a{
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  font-size:calc(5px + 1vw);
+  text-decoration: none;
+  margin: 2vw;
+}*/
+
+.container3_encabezado{
   color: white;
   font-family: "Berlin Sans FB Demi Bold";
   font-weight: bold;
@@ -132,6 +151,9 @@ p{
   margin: 2vw;
 }
 
+#container3 .navbar_items ul li{
+  text-transform: uppercase;
+}
 
 //-----------------------------------------------DROPDOWN-----------------------------------------------------------//
 
@@ -171,7 +193,6 @@ p{
 }
 
 .p_services_items{
-  font-size:1vh;
   color: white;
   font-family: "Berlin Sans FB Demi Bold";
   font-weight: bold;
@@ -190,6 +211,7 @@ p{
   .header{ height: 15%; }
   .p_title{ margin-top: 2vw; }
   .dropdown-content{ margin-top: 10vh; min-width: 65px; }
+  .p_services_items{ font-size:0.8vh; }
 }
 
 //PC SCREENS
@@ -202,6 +224,7 @@ p{
   .header{ height: 12%; }
   .p_title{ margin-top: 1vw; }
   .dropdown-content{ margin-top: 19.5vh; min-width: 150px; }
+  .p_services_items{ font-size:0.8vw; }
 }
 
 

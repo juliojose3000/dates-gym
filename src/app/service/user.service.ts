@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class UserService {
 
-  private url = `${environment.localEnviroment}/user`;
+  private url = `${environment.url}/user`;
 
   constructor(private http: HttpClient) {
   }
