@@ -26,26 +26,27 @@
             <ul>
                 <li>
                     <div class="dropdown" (click)="goToHome()">
-                        <a href="home">Inicio</a>
+                        <a class="container2_encabezado" href="home">Inicio</a>
                     </div>
                 </li>
 
                 <li>
                     <div class="dropdown" (click)="aboutUs()">
-                        <a>Acerca de nosotros</a>
+                        <a class="container2_encabezado">Acerca de nosotros</a>
                     </div>
                 </li>
 
                 <li>
                     <div class="dropdown">
-                        <a>Servicios</a>
+                        <a class="container2_encabezado">Servicios</a>
                         <div id="div_weight_room" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
                     </div>
                 </li>
 
                 <li>      
                     <div class="dropdown" (click)="session()">
-                        <a class="a_session" id="a_session"></a>
+                        <a id="a_login_user" class="container2_encabezado"></a>
+                        <div (click)="logout()" id="div_logout" class="dropdown-content"><p class="p_services_items" id="a_session"></p></div>
                     </div>
                 </li>
 
@@ -62,26 +63,27 @@
             <ul>
                 <li>
                     <div class="dropdown" (click)="goToHome()">
-                        <a href="home">Inicio</a>
+                        <a class="container3_encabezado" href="home">Inicio</a>
                     </div>
                 </li>
 
                 <li>
                     <div class="dropdown" (click)="aboutUs()">
-                        <a>Acerca de nosotros</a>
+                        <a class="container3_encabezado">Acerca de nosotros</a>
                     </div>
                 </li>
 
                 <li>
                     <div class="dropdown">
-                        <p class="p_services">Servicios</p>
+                        <a class="container3_encabezado">Servicios</a>
                         <div id="div_weight_room" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
                     </div>
                 </li>
 
                 <li>      
                     <div class="dropdown" (click)="session()">
-                        <a class="a_session" id="a_session2"></a>
+                        <a id="a_login_user2" class="container3_encabezado"></a>
+                        <div (click)="logout()" id="div_logout2" class="dropdown-content"><p class="p_services_items" id="a_session2"></p></div>
                     </div>
                 </li>
             </ul>

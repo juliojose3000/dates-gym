@@ -5,7 +5,7 @@ import { User } from '../model/user.model';
 import { UserService } from '../service/user.service';
 import { Token } from '../model/token.model'
 import { AuthenticationService } from '../service/authentication.service';
-import { environment, errors } from 'src/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MyResponse } from '../model/myresponse.model';
 import { MessageComponent } from '../message/message.component';
@@ -14,6 +14,7 @@ import { CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
+import { environment_variables } from 'src/environments/enviroment.variables';
 
 
 @Component({
@@ -27,7 +28,6 @@ export class LoginComponent implements OnInit {
   public phone: string;
   public email:string;
   public password: string;
-
   private auth: Authentication;
   private user: User;
 
@@ -41,9 +41,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(environment.quickpass){
-      this.email = environment.email;
-      this.password = environment.password;
+    if(environment_variables.quickpass){
+      this.email = environment_variables.email;
+      this.password = environment_variables.password;
     }
 
     this.codigojs();
@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.auth = new Authentication(this.email, this.password);
-
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
         this.spinnerService.resetSpinner();
@@ -89,6 +88,9 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['home']);
           document.getElementById("a_session").innerHTML = Strings.LOGOUT;
           document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
+          document.getElementById("a_login_user").innerHTML = "Julio Segura";
+          document.getElementById("a_login_user2").innerHTML = "Julio Segura";
+          document.getElementById("div_logout").style.display = "";
         }
         else{
           //Invalid credentials
