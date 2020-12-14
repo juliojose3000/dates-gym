@@ -30,7 +30,6 @@ speed-measure-plugin*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-/.firebase/*
 
 # misc
 /.sass-cache
@@ -46,3 +45,4 @@ testem.log
 .DS_Store
 Thumbs.db
 debug.log
+.firebase/hosting.ZGlzdFxkYXRlcy1neW0.cache
