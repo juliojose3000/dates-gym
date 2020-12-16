@@ -14,7 +14,7 @@ import { CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
-import { environment_variables } from 'src/environments/enviroment.variables';
+import { environment_variables } from 'src/environments/environment.variables';
 
 
 @Component({

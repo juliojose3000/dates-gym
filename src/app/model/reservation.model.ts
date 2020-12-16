@@ -3,13 +3,13 @@ import { User } from './user.model';
 export class Reservation{
 
     user: User;
-    shiftDate: string;
+    shiftDate: Date;
     shiftStartHour: string;
 
 
     constructor(
         user: User,
-        shiftDate: string,
+        shiftDate: Date,
         shiftStartHour: string)
     {
         this.user = user;

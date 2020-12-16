@@ -28,7 +28,9 @@ export const DAYS_NAME = {
   'Tue': 'Martes',
   'Wed': 'Miércoles',
   'Thu': 'Jueves',
-  'Fri': 'Viernes'
+  'Fri': 'Viernes',
+  'Sat': 'Sábado',
+  'Sun': 'Domingo'
 };
 
 export const MONTHS_NAME = {
