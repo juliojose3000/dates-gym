@@ -11,6 +11,7 @@ import { DAYS_NAME, MONTHS_NAME } from '../../resources/resources';
 import { SpinnerService } from '../../spinner/spinner.service';
 import { Utils } from '../../utils/utils';
 import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'reservation_popup-component',
@@ -47,7 +48,8 @@ export class ReservationPopupComponent implements OnInit {
         this.message = this.data.message;
 
         this.date = new Date(this.data.date);
-        this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
+        if(environment.production)
+            this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
         this.dateString = this.datepipe.transform(this.date, 'yyyy-MM-dd');
 
         this.startHour = this.data.startHour;
@@ -64,7 +66,8 @@ export class ReservationPopupComponent implements OnInit {
     }
     
     submit(){
-        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.dateString, this.startHour);
+        //TODO para pasar a producción cambiar this.date por this.dateString
+        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.date, this.startHour);
         this.spinnerService.requestStarted();
 
         if(this.method=="reservate")

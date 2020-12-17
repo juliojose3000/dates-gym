@@ -14,7 +14,7 @@ import { CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
-import { environment_variables } from 'src/environments/enviroment.variables';
+import { environment_variables } from 'src/environments/environment.variables';
 
 
 @Component({
@@ -79,6 +79,17 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+
+    if(!this.haveUserFillTheInputs("sign_in")){
+      this.dialog.open(MessageComponent, {
+        data: {
+            title: Strings.ERROR,
+            message: Strings.SIGN_IN_NULL_SPACES
+        }
+      }); 
+      return;
+    }
+
     this.auth = new Authentication(this.email, this.password);
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
@@ -88,8 +99,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['home']);
           document.getElementById("a_session").innerHTML = Strings.LOGOUT;
           document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
-          document.getElementById("a_login_user").innerHTML = "Julio Segura";
-          document.getElementById("a_login_user2").innerHTML = "Julio Segura";
+          document.getElementById("a_login_user").innerHTML = localStorage.getItem("user_name");
+          document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
           document.getElementById("div_logout").style.display = "";
         }
         else{
@@ -110,6 +121,16 @@ export class LoginComponent implements OnInit {
   } // login
 
   signUp(){
+
+    if(!this.haveUserFillTheInputs("sign_in")){
+      this.dialog.open(MessageComponent, {
+        data: {
+            title: Strings.ERROR,
+            message: Strings.SIGN_UP_NULL_SPACES
+        }
+      }); 
+      return;
+    }
 
     this.user = new User(this.email, this.name, this.phone, this.password);
 
@@ -143,6 +164,21 @@ export class LoginComponent implements OnInit {
     localStorage.setItem("token", "Bearer "+mResponse.token);
     localStorage.setItem("email", this.user.email);
     localStorage.setItem("userId", ""+this.user.id);
+    localStorage.setItem("user_name", ""+this.user.name);
+  }
+
+  haveUserFillTheInputs(action: string){
+    if(action=="sign_in"){
+      if(this.email!=undefined && this.password!=undefined)
+        return true;
+      else
+        return false;
+    }else if(action=="sign_up"){
+      if(this.email!=undefined && this.password!=undefined && this.phone!=undefined && this.name!=undefined)
+        return true;
+      else
+        return false;
+    }
   }
 
 
