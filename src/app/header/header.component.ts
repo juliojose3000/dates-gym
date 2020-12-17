@@ -20,16 +20,14 @@ export class HeaderComponent implements OnInit {
     const login_user = document.getElementById("a_login_user");
     const login_user2 = document.getElementById("a_login_user2");
     
-    if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session, so it will be closed
+    if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session
+      login_user.innerHTML = localStorage.getItem("user_name");
+      login_user2.innerHTML = localStorage.getItem("user_name");
       session.innerHTML = Strings.LOGOUT;
       session2.innerHTML = Strings.LOGOUT;
-      login_user.innerHTML = "Julio Segura";
-      login_user2.innerHTML = "Julio Segura";
     }else{
-      session.innerHTML = Strings.LOGIN;
-      session2.innerHTML = Strings.LOGIN;
-      login_user.innerHTML = "Iniciar Sesión";
-      login_user2.innerHTML = "Iniciar Sesión";
+      login_user.innerHTML = Strings.LOGIN;
+      login_user2.innerHTML = Strings.LOGIN;
       document.getElementById("div_logout").style.display = "none";
     }
 

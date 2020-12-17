@@ -13,8 +13,10 @@ export class Utils{
 
     goToLoginByExpiredToken(mResponse: MyResponse){
         localStorage.setItem("token", null);
-        document.getElementById("a_session").innerHTML = Strings.LOGIN;;
-        document.getElementById("a_session2").innerHTML = Strings.LOGIN;;
+        document.getElementById("a_login_user").innerHTML = Strings.LOGIN;
+        document.getElementById("a_login_user2").innerHTML = Strings.LOGIN;
+        document.getElementById("div_logout").style.display = "none";
+        document.getElementById("div_logout2").style.display = "none";
 
         this.dialog.open(MessageComponent, {
             data: {
