@@ -46,3 +46,4 @@ testem.log
 Thumbs.db
 debug.log
 .firebase/hosting.ZGlzdFxkYXRlcy1neW0.cache
+*.cache
