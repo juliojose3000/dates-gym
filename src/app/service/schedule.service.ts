@@ -5,15 +5,18 @@ import { Observable } from 'rxjs';
 import { Schedule } from '../model/schedule.model';
 import { environment } from '../../environments/environment';
 import { MyResponse } from '../model/myresponse.model';
+import { environment_variables } from "src/environments/environment.variables";
 
 @Injectable()
 export class ScheduleService {
 
-  private url = `${environment.url}/schedule`;
-
-  private TAG = "Schedule.service.ts"
+  private url: string;
 
   constructor(private http: HttpClient) {
+    if(environment.production)
+      this.url = `${environment_variables.azure_url}/schedule`;
+    else
+      this.url = `${environment_variables.environment}/schedule`;
   }
   
   get(token){

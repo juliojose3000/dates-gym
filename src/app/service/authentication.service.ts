@@ -9,11 +9,20 @@ import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Authentication } from '../model/authentication.model';
+import { environment_variables } from 'src/environments/environment.variables';
 
 
 @Injectable()
 export class AuthenticationService {
-  constructor(private http: HttpClient) {}
+
+  private url: string;
+
+  constructor(private http: HttpClient) {
+    if(environment.production)
+      this.url = `${environment_variables.azure_url}`;
+    else
+      this.url = `${environment_variables.environment}`;
+  }
 
   logout() {
     // remove user from local storage to log user out
@@ -22,7 +31,7 @@ export class AuthenticationService {
   }
 
   authenticate(authentication: Authentication){
-    return this.http.post<any>(`${environment.url}/authenticate`, authentication);
+    return this.http.post<any>(this.url+'/authenticate', authentication);
   }
 
 }

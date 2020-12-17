@@ -5,13 +5,18 @@ import { Observable } from 'rxjs';
 import { Schedule } from '../model/schedule.model';
 import { Reservation } from '../model/reservation.model';
 import { environment } from '../../environments/environment';
+import { environment_variables } from "src/environments/environment.variables";
 
 @Injectable()
 export class ReserveService {
 
-  private url = `${environment.url}/reservation`;
+  private url: string;
 
   constructor(private http: HttpClient) {
+    if(environment.production)
+      this.url = `${environment_variables.azure_url}/reservation`;
+    else
+      this.url = `${environment_variables.environment}/reservation`;
   }
 
   make(reservation: Reservation, headers){
