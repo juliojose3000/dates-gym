@@ -10,14 +10,9 @@ import { environment_variables } from "src/environments/environment.variables";
 @Injectable()
 export class UserService {
 
-  private url: string;
+  private url = `${environment.url}/user`;
 
-  constructor(private http: HttpClient) {
-    if(environment.production)
-      this.url = `${environment_variables.azure_url}/user`;
-    else
-      this.url = `${environment_variables.environment}/user`;
-  }
+  constructor(private http: HttpClient) {}
 
   create(user: User){
     return this.http.post(this.url+'/create', user);

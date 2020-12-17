@@ -15,14 +15,9 @@ import { environment_variables } from 'src/environments/environment.variables';
 @Injectable()
 export class AuthenticationService {
 
-  private url: string;
+  private url = environment.url;
 
-  constructor(private http: HttpClient) {
-    if(environment.production)
-      this.url = `${environment_variables.azure_url}`;
-    else
-      this.url = `${environment_variables.environment}`;
-  }
+  constructor(private http: HttpClient) {}
 
   logout() {
     // remove user from local storage to log user out
