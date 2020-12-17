@@ -50,9 +50,7 @@ table, th, td {
     margin: 0;
     position: absolute;
     top: 20%;
-    left: 10%;
     height: 60%;
-    width: 80%;
     //background-color: red;
 }
 
@@ -79,15 +77,19 @@ table, th, td {
     .p_available_space_text { display: none; }
     .p_available_space{ margin-top: 12px; }
     .headers { font-size: 10px; }
-    
 }
    
 //PC SCREENS
 @media (min-width: 1200px) {
-    //.top_headers{ font-size: 100%; font-weight: bold; }
+    #headers_mobile { display: none; }
+    #headers_pc { visibility: visible; }
+    .mainDiv{ width: 80%; left: 10%; }
 }
   
 //MOBILE SCREENS
 @media (max-width: 845px) {
     .top_headers{ font-size: 2vw; }
+    #headers_mobile { visibility: visible; }
+    #headers_pc { visibility: hidden; }
+    .mainDiv{ width: 95%; left: 2.5%; }
 }

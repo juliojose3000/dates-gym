@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   session(){
-    if(document.getElementById("a_login_user").innerHTML!="Iniciar Sesión") return;
+    if(document.getElementById("a_login_user").innerHTML!=Strings.LOGIN) return;
 
     if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//The user have a live session, so user logout its session
 
@@ -71,8 +71,8 @@ export class HeaderComponent implements OnInit {
 
   goToWeightRoom(){
     this.router.navigate(['gym_services/weight_room']);
-    const element = document.getElementById("div_weight_room");
-    element.style.display = "none";
+    /*const element = document.getElementById("div_weight_room");
+    element.style.display = "none";*/
   }
 
   goToHome(){

@@ -93,8 +93,6 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 700px;
-	height: 450px;
 
 	//border:3px solid rgb(255, 39, 39);
 
@@ -288,6 +286,7 @@ footer a {
 	#sign_up_container{ width: 100%; }
 	.container.right-panel-active .sign-up-container{ transform: translateX(0%); }
 	.logindiv{ width: 30%; max-width: 500px; }
+	.container{	width: 30vw; height: 60vh; max-height: 450px; }
 }
    
 //PC SCREENS
@@ -297,6 +296,7 @@ footer a {
 	#pSignUp{ visibility: hidden; }
 	#pSignIn{ visibility: hidden; }
 	.logindiv{ width: 50%; max-width: 768px; }
+	.container{	width: 60vw; max-width: 800px; height: 65vh; max-height: 450px; }
 }
   
 

@@ -79,6 +79,17 @@ export class LoginComponent implements OnInit {
 
 
   login() {
+
+    if(!this.haveUserFillTheInputs("sign_in")){
+      this.dialog.open(MessageComponent, {
+        data: {
+            title: Strings.ERROR,
+            message: Strings.SIGN_IN_NULL_SPACES
+        }
+      }); 
+      return;
+    }
+
     this.auth = new Authentication(this.email, this.password);
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
@@ -110,6 +121,16 @@ export class LoginComponent implements OnInit {
   } // login
 
   signUp(){
+
+    if(!this.haveUserFillTheInputs("sign_in")){
+      this.dialog.open(MessageComponent, {
+        data: {
+            title: Strings.ERROR,
+            message: Strings.SIGN_UP_NULL_SPACES
+        }
+      }); 
+      return;
+    }
 
     this.user = new User(this.email, this.name, this.phone, this.password);
 
@@ -144,6 +165,20 @@ export class LoginComponent implements OnInit {
     localStorage.setItem("email", this.user.email);
     localStorage.setItem("userId", ""+this.user.id);
     localStorage.setItem("user_name", ""+this.user.name);
+  }
+
+  haveUserFillTheInputs(action: string){
+    if(action=="sign_in"){
+      if(this.email!=undefined && this.password!=undefined)
+        return true;
+      else
+        return false;
+    }else if(action=="sign_up"){
+      if(this.email!=undefined && this.password!=undefined && this.phone!=undefined && this.name!=undefined)
+        return true;
+      else
+        return false;
+    }
   }
 
 
