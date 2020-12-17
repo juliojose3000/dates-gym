@@ -67,7 +67,7 @@ export class ReservationPopupComponent implements OnInit {
     
     submit(){
         //TODO para pasar a producción cambiar this.date por this.dateString
-        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.date, this.startHour);
+        this.reservation = new Reservation(new User(localStorage.getItem('email')), this.dateString, this.startHour);
         this.spinnerService.requestStarted();
 
         if(this.method=="reservate")

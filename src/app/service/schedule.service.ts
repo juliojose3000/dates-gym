@@ -10,14 +10,9 @@ import { environment_variables } from "src/environments/environment.variables";
 @Injectable()
 export class ScheduleService {
 
-  private url: string;
+  private url = `${environment.url}/schedule`;
 
-  constructor(private http: HttpClient) {
-    if(environment.production)
-      this.url = `${environment_variables.azure_url}/schedule`;
-    else
-      this.url = `${environment_variables.environment}/schedule`;
-  }
+  constructor(private http: HttpClient) {}
   
   get(token){
     let header = new HttpHeaders().set("Authorization", token);

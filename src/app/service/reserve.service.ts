@@ -10,14 +10,9 @@ import { environment_variables } from "src/environments/environment.variables";
 @Injectable()
 export class ReserveService {
 
-  private url: string;
+  private url = `${environment.url}/reservation`;
 
-  constructor(private http: HttpClient) {
-    if(environment.production)
-      this.url = `${environment_variables.azure_url}/reservation`;
-    else
-      this.url = `${environment_variables.environment}/reservation`;
-  }
+  constructor(private http: HttpClient) {}
 
   make(reservation: Reservation, headers){
     let header = new HttpHeaders().set(
