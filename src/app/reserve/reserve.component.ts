@@ -9,7 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Utils } from '../utils/utils';
-import { Codes, Strings, CSS_CLASSES } from '../resources/resources';
+import { Codes, Strings, CSS_CLASSES, DAYS_NAME, MONTHS_NAME } from '../resources/resources';
 import { NgStyle } from '@angular/common';
 import { SpinnerService } from '../spinner/spinner.service';
 
@@ -25,10 +25,12 @@ export class ReserveComponent implements OnInit {
   date: string;
   startHour: string;
   class: string;
+  startDateFormatted: string;
+  endDateFormatted: string = "Domingo";
 
   constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
     private spinnerService: SpinnerService) {
-
+      
     this.spinnerService.requestStarted();
     this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
       this.spinnerService.resetSpinner(); 
@@ -36,6 +38,11 @@ export class ReserveComponent implements OnInit {
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
         this.schedule = mResponse.data as Schedule;
+        this.startDateFormatted = utils.dateFormat(this.schedule.startDate);
+        this.endDateFormatted = utils.dateFormat(this.schedule.endDate);
+        var pWeekDescription = `Semana ${this.schedule.weekNumber}, inicia el ${this.startDateFormatted} y finaliza el ${this.endDateFormatted}`;
+        document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
+
         this.arrayShiefts = this.schedule.shifts;
         //Busco si algun espacio ha sido reservado por el usuario actual
         this.arrayShiefts.forEach(function (shifts) {
