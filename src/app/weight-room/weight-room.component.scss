@@ -1,4 +1,4 @@
-.button{
+  .button{
     text-align: center;
     width: 300px;
     height: 100px;
@@ -14,11 +14,51 @@
     cursor: pointer;
   }
   
-  .divButton{
-    //background-color: blue;
-    position: fixed;
-    top: 50%;
+
+
+  .second_div{
+    width: 50%;
+    min-width: 370px;
+    background-color: rgba(14, 14, 78, 0.548);
+
+    position: absolute;
+    top: 38%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
+
+    .h1_title{
+      color:white;
+      //background-color: darkcyan;
+      width: 100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .p_weight_room_description{
+      color:white;
+      margin-left: 1%;
+    }
+
+
+  .divButton{
+    //background-color: blue;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  //-------------------------------------------------------------//@at-root
+
+  //PC SCREENS
+@media (min-width: 1200px) {
+  .second_div{ height: 28%; }
+}
+
+//MOBILE SCREENS
+@media (max-width: 845px) {
+  .second_div{ height: 40%; }
+}

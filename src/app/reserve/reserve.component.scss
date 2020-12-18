@@ -70,6 +70,24 @@ table, th, td {
     font-size: 1.5vw;
 }
 
+.p_note{
+    color: white;
+    margin-top: 2%;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.p_week{
+    color: white;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 35px;
+}
+
+
 //-----------------------------------------QUERIES---------------------------------------//
 
 //MOBILE SCREENS
@@ -92,4 +110,5 @@ table, th, td {
     #headers_mobile { visibility: visible; }
     #headers_pc { visibility: hidden; }
     .mainDiv{ width: 95%; left: 2.5%; }
+    table{ margin-top: -70px; }
 }
