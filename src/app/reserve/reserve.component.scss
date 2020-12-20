@@ -1,18 +1,26 @@
 table{
-    //height: 250px;
-    //width: 100%;
     border-collapse: collapse;
-    //margin-top: -50px;
 }
 
 th{//centro el texto de los encabezados
-    width: 5%;
     text-align: center;
+    width: 5%;
+
+    //modify cell dimensions
+    /*display:inline-block;
+    width: 160px;
+    height: 50px;*/
 }
 
 td{//centro el texto de las casillas
     text-align: center;
+
+    //modify cell dimensions
+    /*display:inline-block;
+    width: 160px;
+    height: 50px;*/
 }
+
 
 
 .headers{
@@ -67,8 +75,19 @@ table, th, td {
 .top_headers{
     background-color: rgba(77, 54, 8, 0.8);
     height: 50px;
-    font-size: 1.5vw;
+    font-size: 1vw;
+    text-align: center;
 }
+
+.p_week{
+    color: white;
+    font-size:calc(6px + 1.5vw);
+    width: 100%;
+    text-align: center;
+    margin-top: -20px;
+    margin-bottom: 35px;
+}
+
 
 .p_note{
     color: white;
@@ -76,15 +95,6 @@ table, th, td {
     font-size: 12px;
     width: 100%;
     text-align: center;
-}
-
-.p_week{
-    color: white;
-    font-size: 12px;
-    width: 100%;
-    text-align: center;
-    margin-top: -20px;
-    margin-bottom: 35px;
 }
 
 
@@ -95,6 +105,9 @@ table, th, td {
     .p_available_space_text { display: none; }
     .p_available_space{ margin-top: 12px; }
     .headers { font-size: 10px; }
+
+    #headers_mobile { visibility: visible; }
+    #headers_pc { visibility: hidden; }
 }
    
 //PC SCREENS
@@ -111,4 +124,5 @@ table, th, td {
     #headers_pc { visibility: hidden; }
     .mainDiv{ width: 95%; left: 2.5%; }
     table{ margin-top: -70px; }
+    tr{ line-height: 10px; }
 }
