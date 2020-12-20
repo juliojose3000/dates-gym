@@ -26,6 +26,11 @@
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+
+    //round out corners
+    //border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    -moz-border-radius: 15px;
   }
 
     .h1_title{
@@ -45,7 +50,7 @@
   .divButton{
     //background-color: blue;
     position: fixed;
-    top: 65%;
+    top: 70%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -61,4 +66,5 @@
 //MOBILE SCREENS
 @media (max-width: 845px) {
   .second_div{ height: 40%; }
+  .p_weight_room_description{margin-left: 2%;}
 }

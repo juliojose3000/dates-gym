@@ -7,24 +7,88 @@
     align-items: center; //center of the div
 }
 
+    .main_title{
+        color: honeydew;
+        text-align: center;
+        width: 100%;
+    }
+
+.div_vision{
+    background-color: rgba(94, 55, 167, 0.568);
+
+    //Centrar los items
+    display: inline-block;
+    justify-content: center; //center content
+    align-items: center; //center of the div
+
+    //center div on screen
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    //round out corners
+    //border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
+
+.div_mision{
+    height: 20%;
+    background-color: rgba(0, 126, 126, 0.671);
+
+    //Centrar los items
+    display: inline-block;
+    justify-content: center; //center content
+    align-items: center; //center of the div
+
+    //center div on screen
+    position: absolute;
+    
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    //round out corners
+    //border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
     .title{
         color: honeydew;
         text-align: center;
         width: 100%;
-        font-size: 3vw;
-        margin-top: 6vw;
+        margin-top: -150px;
+    }
+
+    .p_text{
+        color: honeydew;
+        text-align: left;
+        width: 95%;
+        //background-color: darkgoldenrod;
+        margin: auto;
     }
 
 
 
 
-    //MOBILE SCREENS
-@media (max-width: 1200px) {
-
+//MOBILE SCREENS
+@media (max-width: 845px) {
+    .main_title{ font-size: 3vh; margin-top: -40px; }
+    .title{ font-size: 2vh; margin-top: 1.5vh; }
+    .p_text{ margin-left: 1.5vw; }
+    .div_vision{ width: 90%; height: 15%; top: 25%; }
+    .div_mision{ width: 90%; top: 45%; }
 }
    
 //PC SCREENS
-@media (min-width: 1200px) {
-
+@media (min-width: 845px) {
+    .main_title{ font-size: 3vw; margin-top: 3vw; }
+    .title{ font-size: 2vw; margin-top: 1.5vw; }
+    .p_text{ margin-top: 2vw; }
+    .div_vision{ width: 30%; height: 20%; top: 35%; }
+    .div_mision{ width: 30%; top: 60%; }
 }
   

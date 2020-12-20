@@ -26,7 +26,7 @@ export class ReserveComponent implements OnInit {
   startHour: string;
   class: string;
   startDateFormatted: string;
-  endDateFormatted: string = "Domingo";
+  endDateFormatted: string = "domingo";
 
   constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
     private spinnerService: SpinnerService) {

@@ -26,26 +26,26 @@ export const CSS_CLASSES={
 }
 
 export const DAYS_NAME = {
-  'Mon': 'Lunes',
-  'Tue': 'Martes',
-  'Wed': 'Miércoles',
-  'Thu': 'Jueves',
-  'Fri': 'Viernes',
-  'Sat': 'Sábado',
-  'Sun': 'Domingo'
+  'Mon': 'lunes',
+  'Tue': 'martes',
+  'Wed': 'miércoles',
+  'Thu': 'jueves',
+  'Fri': 'viernes',
+  'Sat': 'sábado',
+  'Sun': 'domingo'
 };
 
 export const MONTHS_NAME = {
-  'Jan': 'Enero',
-  'Feb': 'Febrero',
-  'Mar': 'Marzo',
-  'Apr': 'Abril',
-  'May': 'Mayo',
-  'Jun': 'Junio',
-  'July': 'Julio',
-  'Aug': 'Agosto',
-  'Sep': 'Septiembre',
-  'Oct': 'Octubre',
-  'Nov': 'Noviembre',
-  'Dec': 'Diciembre'
+  'Jan': 'enero',
+  'Feb': 'febrero',
+  'Mar': 'marzo',
+  'Apr': 'abril',
+  'May': 'mayo',
+  'Jun': 'junio',
+  'Jul': 'julio',
+  'Aug': 'agosto',
+  'Sep': 'septiembre',
+  'Oct': 'octubre',
+  'Nov': 'noviembre',
+  'Dec': 'diciembre'
 };

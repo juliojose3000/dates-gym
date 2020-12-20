@@ -102,6 +102,7 @@ export class LoginComponent implements OnInit {
           document.getElementById("a_login_user").innerHTML = localStorage.getItem("user_name");
           document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
           document.getElementById("div_logout").style.display = "";
+          document.getElementById("div_logout2").style.display = "";
         }
         else{
           //Invalid credentials
