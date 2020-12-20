@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
       login_user.innerHTML = Strings.LOGIN;
       login_user2.innerHTML = Strings.LOGIN;
       document.getElementById("div_logout").style.display = "none";
+      document.getElementById("div_logout2").style.display = "none";
     }
 
   }
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit {
     }else{
       document.getElementById("a_session").innerHTML = Strings.LOGIN;
       document.getElementById("a_session2").innerHTML = Strings.LOGIN;
-      document.getElementById("a_login_user").innerHTML = "Iniciar Sesión";
+      document.getElementById("a_login_user").innerHTML = Strings.LOGIN;
       this.router.navigate(['login']);
     }
   }

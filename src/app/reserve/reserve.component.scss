@@ -84,7 +84,6 @@ table, th, td {
     font-size:calc(6px + 1.5vw);
     width: 100%;
     text-align: center;
-    margin-top: -20px;
     margin-bottom: 35px;
 }
 
@@ -115,6 +114,8 @@ table, th, td {
     #headers_mobile { display: none; }
     #headers_pc { visibility: visible; }
     .mainDiv{ width: 80%; left: 10%; }
+    .p_week{ margin-top: -30px; }
+    
 }
   
 //MOBILE SCREENS
@@ -125,4 +126,5 @@ table, th, td {
     .mainDiv{ width: 95%; left: 2.5%; }
     table{ margin-top: -70px; }
     tr{ line-height: 10px; }
+    .p_week{ margin-top: -60px; }
 }
