@@ -42,7 +42,7 @@ export class Utils{
     dateFormat(date: Date){
         var dateFormatted
         dateFormatted = this.datepipe.transform(date, "E dd MMM yyyy").split(" ");
-        var dayNumber = dateFormatted[1];
+        var dayNumber = Number(dateFormatted[1]);
         if(environment.production)
             dayNumber +=1;
         return `${DAYS_NAME[dateFormatted[0]]}, ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
