@@ -49,3 +49,8 @@ export const MONTHS_NAME = {
   'Nov': 'noviembre',
   'Dec': 'diciembre'
 };
+
+export const TIME_ZONES = {
+  'Costa_Rica': 6,
+  'AZURE_SERVER_WEST_US': 0
+};
