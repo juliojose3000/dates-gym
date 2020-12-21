@@ -9,7 +9,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Utils } from '../utils/utils';
-import { Codes, Strings, CSS_CLASSES, DAYS_NAME, MONTHS_NAME } from '../resources/resources';
+import { Codes, Strings, CSS_CLASSES, DAYS_NAME, MONTHS_NAME, TIME_ZONES } from '../resources/resources';
 import { NgStyle } from '@angular/common';
 import { SpinnerService } from '../spinner/spinner.service';
 
@@ -31,6 +31,9 @@ export class ReserveComponent implements OnInit {
   constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
     private spinnerService: SpinnerService) {
       
+    var timeZone = (new Date().getTimezoneOffset())/60;
+    console.log("time zone: "+timeZone);
+
     this.spinnerService.requestStarted();
     this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
       this.spinnerService.resetSpinner(); 
@@ -38,6 +41,12 @@ export class ReserveComponent implements OnInit {
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
         this.schedule = mResponse.data as Schedule;
+
+        if(timeZone==TIME_ZONES.AZURE_SERVER_WEST_US){
+          this.schedule.startDate.setDate(this.schedule.startDate.getDate()+1);
+          this.schedule.endDate.setDate(this.schedule.endDate.getDate()+1);
+        }
+
         this.startDateFormatted = utils.dateFormat(this.schedule.startDate);
         this.endDateFormatted = utils.dateFormat(this.schedule.endDate);
         var pWeekDescription = `Semana ${this.schedule.weekNumber}, inicia el ${this.startDateFormatted} y finaliza el ${this.endDateFormatted}`;
