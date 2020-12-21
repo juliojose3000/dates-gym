@@ -36,6 +36,9 @@ export class ReserveComponent implements OnInit {
 
     this.spinnerService.requestStarted();
     this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
+
+      console.log(mResponse);
+
       this.spinnerService.resetSpinner(); 
       if(mResponse.code==Codes.TOKEN_EXPIRED){
         this.utils.goToLoginByExpiredToken(mResponse);
