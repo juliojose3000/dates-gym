@@ -40,11 +40,12 @@ export class Utils{
     }
 
     dateFormat(date: Date){
-        var dateFormatted
-        dateFormatted = this.datepipe.transform(date, "E dd MMM yyyy").split(" ");
-        var dayNumber = Number(dateFormatted[1]);
+        var newDate = date;
         if(environment.production)
-            dayNumber +=1;
+            newDate = new Date(date.getDate()+1);     
+        var dateFormatted
+        dateFormatted = this.datepipe.transform(newDate, "E dd MMM yyyy").split(" ");
+        var dayNumber = Number(dateFormatted[1]);
         return `${DAYS_NAME[dateFormatted[0]]}, ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
     }
 
