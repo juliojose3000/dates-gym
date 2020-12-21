@@ -12,6 +12,7 @@ import { Utils } from '../utils/utils';
 import { Codes, Strings, CSS_CLASSES, DAYS_NAME, MONTHS_NAME, TIME_ZONES } from '../resources/resources';
 import { NgStyle } from '@angular/common';
 import { SpinnerService } from '../spinner/spinner.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-reserve',
@@ -44,8 +45,7 @@ export class ReserveComponent implements OnInit {
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
         this.schedule = mResponse.data as Schedule;
-
-        if(timeZone==TIME_ZONES.AZURE_SERVER_WEST_US){
+        if(environment.production){//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
           this.schedule.startDate.setDate(this.schedule.startDate.getDate()+1);
           this.schedule.endDate.setDate(this.schedule.endDate.getDate()+1);
         }
