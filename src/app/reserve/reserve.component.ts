@@ -45,8 +45,8 @@ export class ReserveComponent implements OnInit {
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
         this.schedule = mResponse.data as Schedule;
-        this.startDateFormatted = utils.dateFormat(this.schedule.startDate);
-        this.endDateFormatted = utils.dateFormat(this.schedule.endDate);
+        this.startDateFormatted = utils.dateFormat(new Date(this.schedule.startDate));
+        this.endDateFormatted = utils.dateFormat(new Date(this.schedule.endDate));
         var pWeekDescription = `Semana ${this.schedule.weekNumber}, inicia el ${this.startDateFormatted} y finaliza el ${this.endDateFormatted}`;
         document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
 
