@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { HeaderComponent } from '../header/header.component';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
@@ -41,7 +42,10 @@ export class Utils{
     dateFormat(date: Date){
         var dateFormatted
         dateFormatted = this.datepipe.transform(date, "E dd MMM yyyy").split(" ");
-        return `${DAYS_NAME[dateFormatted[0]]}, ${dateFormatted[1]} de ${MONTHS_NAME[dateFormatted[2]]}`;
+        var dayNumber = dateFormatted[1];
+        if(environment.production)
+            dayNumber +=1;
+        return `${DAYS_NAME[dateFormatted[0]]}, ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
     }
 
 }
