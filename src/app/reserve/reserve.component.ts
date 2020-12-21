@@ -45,16 +45,6 @@ export class ReserveComponent implements OnInit {
         this.utils.goToLoginByExpiredToken(mResponse);
       }else{
         this.schedule = mResponse.data as Schedule;
-        if(environment.production){//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
-          var date = new Date();
-
-          date.setDate(this.schedule.startDate.getDate()+1);
-          this.schedule.startDate.setDate(date.getDate());
-
-          date.setDate(this.schedule.endDate.getDate()+1);
-          this.schedule.endDate.setDate(date.getDate());
-        }
-
         this.startDateFormatted = utils.dateFormat(this.schedule.startDate);
         this.endDateFormatted = utils.dateFormat(this.schedule.endDate);
         var pWeekDescription = `Semana ${this.schedule.weekNumber}, inicia el ${this.startDateFormatted} y finaliza el ${this.endDateFormatted}`;
