@@ -42,7 +42,7 @@ export class Utils{
     dateFormat(date: Date){
         var newDate = date;
         if(environment.production)
-            newDate = new Date(date.getDate()+1);     
+            newDate.setDate(date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day
         var dateFormatted
         dateFormatted = this.datepipe.transform(newDate, "E dd MMM yyyy").split(" ");
         var dayNumber = Number(dateFormatted[1]);
