@@ -33,7 +33,7 @@ export class ReserveComponent implements OnInit {
     private spinnerService: SpinnerService) {
       
     var timeZone = (new Date().getTimezoneOffset())/60;
-    console.log("time zone: "+timeZone);
+    //console.log("time zone: "+timeZone);
 
     this.spinnerService.requestStarted();
     this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
