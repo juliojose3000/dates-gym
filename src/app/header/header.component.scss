@@ -1,35 +1,36 @@
 .header{
     background-color: black;
-    width: 100%;
-    position: relative;
+    width: 100%; /* Toma el ancho de toda la ventana */
+    position: relative; /* indica que la capa sí forma parte del flujo normal de elementos de la página, por lo que su posición dependerá del lugar donde esté en el código y el flujo HTML */
 }
 
 //--------------------------------------------------CONTAINER 1 (LOGO AND NAME)--------------------------------------------------//
 
-.logo-container{
-  width: 100%;
+.logo-container{//Div. Here it shows the gym logo and title (Cachí Fitness Center)
+  position: relative;
   //background-color: green;
 }
 
-.image-flex-img {
-    height: 100%;
-    width: 12%;
-    min-width: 70px;
-    //background-color: blue;
-    float: left;
+  .image-flex-img {//Div. Here it storages gym logo
+      height: 70%; //Logo height
+      margin-top: 2%;
 
-}
+      width: 12%;
+      min-width: 70px;
+      //background-color: blue;
+      float: left;
+  }
 
-.div_title{
-    height: 100%;
-    //background-color: red;
-    
-    //center text
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    float: left;
-}
+  .div_title{
+      height: 100%;
+      //background-color: red;
+      
+      //center text
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      float: left;
+  }
 
 p{
     color: white;
@@ -97,7 +98,7 @@ p{
 
 .container3{
   width: 100%;
-  height: 20px;
+  height: 50%; //50 percent of the header height
   //background-color: red;
   position: absolute;
   bottom: 0;
@@ -107,7 +108,7 @@ p{
   display: flex;//align items horizontal
   list-style-type: none;//remove dots on list items
   margin-left: -45px;
-  margin-top: -15px;
+  margin-top: 2%;
 }
 
 
@@ -151,6 +152,15 @@ p{
   margin: 2vw;
 }
 
+.p_services_items{
+  color: white;
+  font-family: "Berlin Sans FB Demi Bold";
+  font-weight: bold;
+  font-size:calc(5px + 2vw);
+  text-decoration: none;
+  margin: 2vw;
+}
+
 #container3 .navbar_items ul li{
   text-transform: uppercase;
 }
@@ -159,7 +169,7 @@ p{
 
 .dropdown {
   position: relative;
-  height: 100%;
+  //height: 100%;
   width: 100%;
 
   //Centrar los items
@@ -171,6 +181,8 @@ p{
 .dropdown:hover{
   background-color: rgb(56, 56, 59);
   cursor: pointer;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
 }
 
 .dropdown-content {
@@ -182,6 +194,9 @@ p{
   padding-bottom: 12px;
   z-index: 1;
   height: 50%;
+
+  border-radius: 10px;
+  -moz-border-radius: 10px;
 }
 
 .dropdown-content:hover{
@@ -207,12 +222,26 @@ p{
 @media (max-width: 845px) {
   #container2 div ul { display: none; }
   #container3 { display: flex; }
-  #logo-container { width: 100%; height: 60%; }
-  .image-flex-img{ margin-left: 25%;}
-  .header{ height: 10%; }
-  .p_title{ margin-top: 2vw; font-size: 1vh; }
-  .dropdown-content{ margin-top: 10vh; min-width: 65px; }
-  .p_services_items{ font-size:0.8vh; }
+  #logo-container { width: 60%; height: 50%; margin: auto; } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
+  .header{ height: 13%; }
+  .p_title{ margin-top: 2vw; font-size: 1vh; /*Cachi Fitness Center*/ }
+  .dropdown-content{ margin-top: 8vh; /*Distancia entre los elementos de la lita*/ min-width: 75px; } //Div
+  .p_services_items{ font-size:calc(1px + 0.8vh); /* Text size in dropdown sub-items */ margin-top: -3px;}
+  .image-flex-img {//Div. Here it storages gym logo
+    position: relative;
+    top: 40%;
+    left: 31%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .div_title{
+    position: relative;
+    top: 50%;
+    left: 38%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .dropdown { height: 60%; /*60 percent of the container 3 height*/ margin-top: 10px; /* It far of the container 3 top */}
 }
 
 //PC SCREENS
@@ -226,6 +255,7 @@ p{
   .p_title{ margin-top: 1vw; }
   .dropdown-content{ margin-top: 19.5vh; min-width: 150px; }
   .p_services_items{ font-size:0.8vw; }
+  .dropdown { height: 100%; }
 }
 
 
