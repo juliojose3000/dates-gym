@@ -105,14 +105,14 @@ table, th, td {
     .p_available_space{ margin-top: 12px; }
     .headers { font-size: 10px; }
 
-    #headers_mobile { visibility: visible; }
-    #headers_pc { visibility: hidden; }
+    //#headers_mobile { visibility: visible; }
+    //#headers_pc { visibility: hidden; }
 }
    
 //PC SCREENS
-@media (min-width: 1200px) {
-    #headers_mobile { display: none; }
-    #headers_pc { visibility: visible; }
+@media (min-width: 845px) {
+    //#headers_mobile { display: none; }
+    //#headers_pc { visibility: visible; }
     .mainDiv{ width: 80%; left: 10%; }
     .p_week{ margin-top: -30px; }
     
@@ -121,10 +121,10 @@ table, th, td {
 //MOBILE SCREENS
 @media (max-width: 845px) {
     .top_headers{ font-size: 2vw; }
-    #headers_mobile { visibility: visible; }
-    #headers_pc { visibility: hidden; }
+    //#headers_mobile { visibility: visible; }
+    //#headers_pc { visibility: hidden; }
     .mainDiv{ width: 95%; left: 2.5%; }
-    table{ margin-top: -70px; }
+    //table{ margin-top: -70px; }
     tr{ line-height: 10px; }
     .p_week{ margin-top: -60px; }
 }
