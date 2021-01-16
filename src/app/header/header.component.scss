@@ -174,6 +174,7 @@ p{
   font-size:calc(5px + 2vw);
   text-decoration: none;
   margin: 2vw;
+  //background-color: blue;
 }
 
 #container3 .navbar_items ul li{
@@ -199,6 +200,7 @@ p{
   justify-content: center; //center content
   align-items: center; //center of the div
 
+  //Borde gris y redondeado
   border-radius: 10px;
   -moz-border-radius: 10px;
   border: 2px solid rgb(56, 56, 59);
@@ -207,8 +209,6 @@ p{
 .dropdown:hover{
   background-color: rgb(56, 56, 59);
   cursor: pointer;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
 }
 
 .dropdown-content {
@@ -216,14 +216,18 @@ p{
   position: absolute;
   background-color: #000000;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding-top: 12px;
-  padding-bottom: 12px;
+  //padding-top: 1px;
+  //padding-bottom: 1px;
   z-index: 1;
-  height: 50%;
+  height: 100%;
+  width: 100%;
 
+  //Borde gris y redondeado
   border-radius: 10px;
   -moz-border-radius: 10px;
   border: 2px solid rgb(56, 56, 59);
+
+  //background-color: cadetblue;
 }
 
 .dropdown-content:hover{
@@ -241,6 +245,7 @@ p{
   font-weight: bold;
   text-align: center;
   margin: auto;
+  //background-color: blue;
 }
 
 //------------------------------------------------------QUERIES------------------------------------------------//
@@ -253,22 +258,13 @@ p{
   #logo-container { width: 60%; height: 50%; margin: auto; } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
   .header{ height: 13%; }
   .p_title{ margin-top: 2vw; font-size: 1vh; /*Cachi Fitness Center*/ }
-  .dropdown-content{ margin-top: 8vh; /*Distancia entre los elementos de la lita*/ min-width: 75px; } //Div
-  .p_services_items{ font-size:calc(1px + 0.8vh); /* Text size in dropdown sub-items */ margin-top: -3px;}
+  .dropdown-content{ margin-top: 10vh; /*Distancia entre los elementos de la lita*/  } //Div
+  .p_services_items{ font-size:calc(1px + 0.8vh); /* Text size in dropdown sub-items */ }
   .image-flex-img {//Div. Here it storages gym logo
-    position: relative;
-    top: 40%;
-    left: 31%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    width: 8%;
+    position: relative; top: 40%; left: 31%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);width: 8%;
   }
   .div_title{
-    position: relative;
-    top: 50%;
-    left: 40%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: relative; top: 50%; left: 40%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
   }
   .dropdown { height: 60%; /*60 percent of the container 3 height*/ margin-top: 10px; /* It far of the container 3 top */}
 }
@@ -282,7 +278,7 @@ p{
   .div_title{ width: 60%; }
   .header{ height: 12%; }
   .p_title{ margin-top: 1vw; }
-  .dropdown-content{ margin-top: 14vh; min-width: 150px; }
+  .dropdown-content{ margin-top: 14vh; }
   .p_services_items{ font-size:0.8vw; }
   .dropdown { height: 100%; }
 }
