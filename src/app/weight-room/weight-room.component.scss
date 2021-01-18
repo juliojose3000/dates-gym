@@ -1,38 +1,27 @@
-  .button{
-    text-align: center;
-    width: 200px;
-    height: 70px;
-    background-color: rgba(231, 137, 0, 0.8);
-    color: white;
-    font-size: 2.5vh;
-    border: none;
-    border-radius: 10px;
-  }
-  
-  .button:hover {
-    background-color: rgba(255, 154, 2, 0.8);
-    cursor: pointer;
-  }
-  
-
+.main_div{
+  display: flex;
+  height: 80%;
+  width: 100%;
+  position: absolute;
+  //background-color: cadetblue;
+}
 
   .second_div{
-    width: 50%;
+    display: inline-block; //Wrap Content
     min-width: 370px;
     background-color: rgba(14, 14, 78, 0.548);
-    //background-color: cadetblue;
-    height: 50vh;
 
     position: absolute;
-    top: 40%;
+    margin-top: 11rem;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 
     //round out corners
-    //border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
     -moz-border-radius: 15px;
+
+    padding: 10px;
   }
 
     .h1_title{
@@ -40,7 +29,6 @@
       //background-color: darkcyan;
       width: 100%;
       text-align: center;
-      margin-top: 20px;
     }
 
     .p_weight_room_description{
@@ -51,22 +39,38 @@
 
   .divButton{
     //background-color: blue;
-    position: fixed;
-    top: 75%;
+    position: absolute;
+    margin-top: 25rem;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 
+    .button{
+      text-align: center;
+      display: inline-block; //Wrap Content
+      height: 70px;
+      background-color: rgba(231, 137, 0, 0.8);
+      color: white;
+      font-size: 3vw;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .button:hover {
+      background-color: rgba(255, 154, 2, 0.8);
+      cursor: pointer;
+    }
+    
+
   //-------------------------------------------------------------//@at-root
 
   //PC SCREENS
 @media (min-width: 1200px) {
-  //.second_div{ margin-top: 60px; }
+  .button{ font-size: 1.5vw; }
 }
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
-  //.second_div{ height: 50vh; }
   .p_weight_room_description{margin-left: 2%;}
 }
