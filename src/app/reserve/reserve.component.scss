@@ -64,12 +64,17 @@ table, th, td {
 
 
 .p_available_space_text{
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0px;
 }
 
+
+.p_available_space{ 
+    margin: 0px; 
+}
+
 #p_range_hours{
-    margin-top: 12px;
+    margin: 0px;
 }
 
 .top_headers{
@@ -84,7 +89,7 @@ table, th, td {
     font-size:calc(6px + 1.5vw);
     width: 100%;
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 3%;
 }
 
 
@@ -102,17 +107,11 @@ table, th, td {
 //MOBILE SCREENS
 @media (max-width: 1200px) {
     .p_available_space_text { display: none; }
-    .p_available_space{ margin-top: 12px; }
     .headers { font-size: 10px; }
-
-    //#headers_mobile { visibility: visible; }
-    //#headers_pc { visibility: hidden; }
 }
    
 //PC SCREENS
 @media (min-width: 845px) {
-    //#headers_mobile { display: none; }
-    //#headers_pc { visibility: visible; }
     .mainDiv{ width: 80%; left: 10%; }
     .p_week{ margin-top: -30px; }
     
@@ -121,10 +120,7 @@ table, th, td {
 //MOBILE SCREENS
 @media (max-width: 845px) {
     .top_headers{ font-size: 2vw; }
-    //#headers_mobile { visibility: visible; }
-    //#headers_pc { visibility: hidden; }
     .mainDiv{ width: 95%; left: 2.5%; }
-    //table{ margin-top: -70px; }
     tr{ line-height: 10px; }
-    .p_week{ margin-top: -60px; }
+    .p_week{ margin-top: -30px; }
 }

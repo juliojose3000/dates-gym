@@ -1,10 +1,23 @@
-.div_title{
+.maindiv{
+    display: flex;
+    height: 80%;
     width: 100%;
+    position: absolute;
+    //background-color: cadetblue;
+  }
+
+
+.div_title{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    top:5%;
     
     //Centrar los items
     display: flex;
     justify-content: center; //center content
     align-items: center; //center of the div
+    //background-color: green;
 }
 
     .main_title{
@@ -23,28 +36,6 @@
 
     //center div on screen
     position: absolute;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-
-    //round out corners
-    //border: 2px solid rgb(0, 0, 0);
-    border-radius: 15px;
-    -moz-border-radius: 15px;
-}
-
-
-.div_mision{
-    height: 20%;
-    background-color: rgba(0, 126, 126, 0.671);
-
-    //Centrar los items
-    display: inline-block;
-    justify-content: center; //center content
-    align-items: center; //center of the div
-
-    //center div on screen
-    position: absolute;
     
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
@@ -54,6 +45,35 @@
     //border: 2px solid rgb(0, 0, 0);
     border-radius: 15px;
     -moz-border-radius: 15px;
+
+    padding: 10px;
+    max-width: 700px;
+    min-width: 300px;
+}
+
+
+.div_mision{
+    background-color: rgba(0, 126, 126, 0.671);
+
+    //Centrar los items
+    display: inline-block;
+    justify-content: center; //center content
+    align-items: center; //center of the div
+
+    //center div on screen
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    //round out corners
+    //border: 2px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+
+    padding: 10px;
+    max-width: 700px;
+    min-width: 300px;
 }
 
     .title{
@@ -77,18 +97,20 @@
 //MOBILE SCREENS
 @media (max-width: 845px) {
     .main_title{ font-size: 3vh; margin-top: -35px; }
-    .title{ font-size: 2vh; margin-top: 1.5vh; }
+    .title{ font-size: 2vh; margin-top: 0.5vh; }
     .p_text{ margin-left: 1.5vw; }
-    .div_vision{ width: 90%; height: 15%; top: 29%; }
-    .div_mision{ width: 90%; top: 49%; }
+    .div_vision{ width: 90%; }
+    .div_mision{ width: 90%; }
+    .div_vision{ top: 20%; }
+    .div_mision{ top: 47%; }
 }
    
 //PC SCREENS
 @media (min-width: 845px) {
-    .main_title{ font-size: 3vw; margin-top: 3vw; }
-    .title{ font-size: 2vw; margin-top: 1.5vw; }
-    .p_text{ margin-top: 2vw; }
-    .div_vision{ width: 50%; height: 20%; top: 35%; }
-    .div_mision{ width: 50%; height: 25%; top: 62%; }
+    .main_title{ font-size: 2.5vw; }
+    .title{ font-size: 1.8vw; margin-top: 0.5vw; }
+    .p_text{ margin-top: 1vw; }
+    .div_vision{ top: 27%; }
+    .div_mision{ top: 55%; }
 }
   
