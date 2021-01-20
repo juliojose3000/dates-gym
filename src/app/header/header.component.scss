@@ -203,9 +203,9 @@ p{
   cursor: pointer;
 }
 
-.dropdown:hover .dropdown-content {
+/*.dropdown:hover .dropdown-content {
   display: flex;
-}
+}*/
 
 .p_services_items{
   color: white;
@@ -234,7 +234,7 @@ p{
   #logo-container { width: 60%; height: 50%; margin: auto; } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
   .header{ height: 13%; }
   .p_title{ margin-top: 2vw; font-size: 1vh; margin-left: 35px; } /*Cachi Fitness Center*/
-  .dropdown-content{ margin-top: 60px; /*Distancia entre los elementos de la lita*/  } //Div
+  .dropdown-content{ margin-top: 70px; /*Distancia entre los elementos de la lita*/  } //Div
   .image-flex-img {//Div. Here it storages gym logo
     position: relative; top: 40%; left: 31%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);width: 8%;
   }
@@ -244,8 +244,8 @@ p{
   .dropdown { height: 60%; /*60 percent of the container 3 height*/ margin-top: 10px; /* It far of the container 3 top */}
   .p_services_items{font-size:calc(2px + 1vw); /* Text size in dropdown sub-items */}
 
-  .div_border{ height: 60%; }
-  .div_border .dropdown{ height: 100%; }
+  .div_border2{ height: 60%; }
+  .div_border2 .dropdown{ height: 100%; }
 }
 
 //PC SCREENS

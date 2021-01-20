@@ -51,8 +51,16 @@ export class ReserveComponent implements OnInit {
         document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
 
         this.arrayShiefts = this.schedule.shifts;
-        //Busco si algun espacio ha sido reservado por el usuario actual
         this.arrayShiefts.forEach(function (shifts) {
+          
+          //Checks if the space has spired
+          shifts.forEach(function(shift){
+            if(utils.isExpiredShift(shift)){
+              shift.cssClass = "expired_cell"; 
+            }
+          });
+
+          //Busco si algun espacio ha sido reservado por el usuario actual
           shifts.forEach(function(shift){
             shift.clients.forEach(function(client){
               if(String(client.id) == localStorage.getItem('userId')){
@@ -208,4 +216,7 @@ export class ReserveComponent implements OnInit {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
+
+
+
 }
