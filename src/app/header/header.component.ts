@@ -84,4 +84,24 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['about_us']);
   }
 
+  mousedown(element: HTMLDivElement){
+    console.log(element.id);
+    switch(element.id){
+      case "div-services":
+        document.getElementById("div_weight_room2").style.display = "flex";
+        break;
+      case "div-session":
+        console.log(document.getElementById("a_login_user2").innerHTML);
+        if(document.getElementById("a_login_user2").innerHTML!=Strings.LOGIN)
+          document.getElementById("div_logout2").style.display = "flex";
+        break;
+    }
+
+  }
+
+  onblur(event: FocusEvent){
+    document.getElementById("div_weight_room2").style.display = "none";
+    document.getElementById("div_logout2").style.display = "none";
+  }
+
 }

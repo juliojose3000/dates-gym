@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { HeaderComponent } from '../header/header.component';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
+import { Shift } from '../model/shift.model';
 import { DAYS_NAME, MONTHS_NAME, Strings } from '../resources/resources';
 
 export class Utils{
@@ -48,5 +49,13 @@ export class Utils{
         var dayNumber = Number(dateFormatted[1]);
         return `${DAYS_NAME[dateFormatted[0]]}, ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
     }
+
+    isExpiredShift(shift: Shift){
+        var dateString = this.datepipe.transform(shift.date, 'yyyy-MM-dd');
+        var date_time = dateString+" "+shift.startHour;
+        var shiftDateTime = new Date(date_time);
+        var currentDateTime = new Date();
+        return currentDateTime>shiftDateTime;
+      }
 
 }
