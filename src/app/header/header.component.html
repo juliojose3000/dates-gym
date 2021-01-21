@@ -26,7 +26,7 @@
             <ul>
                 <li>
                     <div class="dropdown" (click)="goToHome()">
-                        <a class="container2_encabezado" href="home">Inicio</a>
+                        <a class="container2_encabezado">Inicio</a>
                     </div>
                 </li>
 
@@ -66,19 +66,19 @@
         <div class="navbar_items">
             <ul>
                 <li>
-                    <div class="dropdown" (click)="goToHome()">
-                        <a class="container3_encabezado" href="home">Inicio</a>
+                    <div tabindex="-1" class="dropdown" (click)="goToHome()">
+                        <a class="container3_encabezado">Inicio</a>
                     </div>
                 </li>
 
                 <li>
-                    <div class="dropdown" (click)="aboutUs()">
+                    <div tabindex="-1" class="dropdown" (click)="aboutUs()">
                         <a class="container3_encabezado">Acerca de nosotros</a>
                     </div>
                 </li>
 
                 <li>
-                    <div id="div-services" #refDivServices tabindex="-1" (mouseup)="mousedown(refDivServices)" (focusout)="onblur($event)" class="div_border2">
+                    <div id="div-services" #refDivServices tabindex="-1" (mouseup)="mousedown(refDivServices)" (focusout)="onblur()" class="div_border2">
                         <div class="dropdown">
                             <a class="container3_encabezado">Servicios</a>
                             <div id="div_weight_room2" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
@@ -87,7 +87,7 @@
                 </li>
 
                 <li>    
-                    <div id="div-session" #refDivSession tabindex="-1" (mouseup)="mousedown(refDivSession)" (focusout)="onblur($event)" class="div_border2">
+                    <div id="div-session" #refDivSession tabindex="-1" (mouseup)="mousedown(refDivSession)" (focusout)="onblur()" class="div_border2">
                         <div class="dropdown" (click)="session()">
                             <a id="a_login_user2" class="container3_encabezado"></a>
                             <div (click)="logout()" id="div_logout2" class="dropdown-content"><p class="p_services_items" id="a_session2"></p></div>
