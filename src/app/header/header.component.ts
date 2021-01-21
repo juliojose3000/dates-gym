@@ -71,6 +71,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToWeightRoom(){
+    document.getElementById("div_weight_room2").style.display = "none";
     this.router.navigate(['gym_services/weight_room']);
     /*const element = document.getElementById("div_weight_room");
     element.style.display = "none";*/
@@ -99,7 +100,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  onblur(event: FocusEvent){
+  onblur(){
     document.getElementById("div_weight_room2").style.display = "none";
     document.getElementById("div_logout2").style.display = "none";
   }
