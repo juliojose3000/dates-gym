@@ -28,6 +28,7 @@ import { ReservationPopupComponent } from './reserve/reservation_popup/reservati
 import { SpinnerComponent } from './spinner/spinner.component'
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { PopupComponent } from './popup/popup.component';
+import { LoginWithSocialNetworkComponent } from './login-with-social-network/login-with-social-network.component';
 
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,10 +37,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
 
 //Others
 import { Utils } from './utils/utils';
 import { DatePipe } from '@angular/common';
+
+//Social Login
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
 
 
 @NgModule({
@@ -54,7 +61,8 @@ import { DatePipe } from '@angular/common';
     MessageComponent,
     LoginComponent,
     SpinnerComponent,
-    AboutusComponent
+    AboutusComponent,
+    LoginWithSocialNetworkComponent
   ],
   imports: [
     BrowserModule,
@@ -70,9 +78,31 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     MatCardModule,
     MatRadioModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    SocialLoginModule,
+    CommonModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe],
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe,
+  
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: true,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('578151341935-ullie8jtj0r6l2rrj7163k0jtjg16rbd.apps.googleusercontent.com'),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('561602290896109'),
+          },
+
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ReservationPopupComponent, MessageComponent, PopupComponent]
 })
