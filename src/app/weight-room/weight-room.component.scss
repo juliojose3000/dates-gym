@@ -70,6 +70,13 @@
   .button{ font-size: 1.5vw; }
 }
 
+@media only screen and (max-width: 400px){
+  .p_weight_room_description{ font-size: 10px; }
+  .second_div{ min-width: 300px; }
+  .button{ height: 50px; }
+  .h1_title{ font-size: 20px; }
+}
+
 //MOBILE SCREENS
 @media (max-width: 845px) {
   .p_weight_room_description{margin-left: 2%;}
