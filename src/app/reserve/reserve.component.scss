@@ -5,23 +5,11 @@ table{
 th{//centro el texto de los encabezados
     text-align: center;
     width: 5%;
-
-    //modify cell dimensions
-    /*display:inline-block;
-    width: 160px;
-    height: 50px;*/
 }
 
 td{//centro el texto de las casillas
     text-align: center;
-
-    //modify cell dimensions
-    /*display:inline-block;
-    width: 160px;
-    height: 50px;*/
 }
-
-
 
 .headers{
     font-size: 100%;
@@ -126,6 +114,11 @@ table, th, td {
 @media (max-width: 845px) {
     .top_headers{ font-size: 2vw; }
     .mainDiv{ width: 95%; left: 2.5%; }
-    tr{ line-height: 10px; }
+    //tr{ line-height: 10px; }
     .p_week{ margin-top: -30px; }
+}
+
+@media only screen and (max-width: 400px){
+    .mainDiv { top: 15%; }
+    .headers { height: 45px; }
 }

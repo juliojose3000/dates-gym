@@ -289,6 +289,13 @@ footer a {
 	.container{	width: 30vw; height: 60vh; max-height: 450px; margin-top: 5vh; }
 }
    
+@media only screen and (max-width: 400px){
+	.container{	width: 200px; min-width: 300px; }
+	h1{ font-size: 20px; }
+	button { padding: 6px 15px; }
+	input{ padding: 6px 7px}
+}
+
 //PC SCREENS
 @media (min-width: 1200px) {
 	.sign-in-container{ width: 50%; }
