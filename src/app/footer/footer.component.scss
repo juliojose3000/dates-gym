@@ -71,7 +71,7 @@
 
 //SMALL MOBILES
 @media only screen and (max-width: 400px) {
-    .footer{ height: 70px; }
+    .footer{ height: 70px; bottom: -70px; }
     .social-networks{ display: none; }//social media div
     .general-info{ position: absolute; display: inline-block; left: 0; right: 0; margin: auto; width: 200px; }//general info div container
     .p-info{ font-size: 8px; }
