@@ -123,9 +123,10 @@
 
 //SMALL MOBILES
 @media only screen and (max-width: 400px) {
-    .div_rights{ bottom: 70px; height: 20px; }
+    .div_rights{ bottom: 0px; height: 20px; }
     .p_text_rights{ font-size: 8px; }
     .p_text{ font-size: 10px; }
+    .div_mision{ top: 55%; }
 }
    
 //PC SCREENS
