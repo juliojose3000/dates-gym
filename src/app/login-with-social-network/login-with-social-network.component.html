@@ -1,0 +1,35 @@
+<main class="container mt-5">
+
+    <div class="col-md-6 google_button_div">
+
+        <button mat-raised-button color="warn" (click)="signInWithGoogle()">
+            <i class="fa fa-google"></i>
+            Iniciar con Google
+        </button>
+
+        <br/>
+
+        <button mat-raised-button color="primary" (click)="signInWithFB()">
+            <i class="fa fa-facebook"></i>
+            Iniciar con Facebook
+        </button>
+
+        <br/>
+
+        <button mat-raised-button (click)="signOut()">
+            <i class="fa fa-sign-out"></i>
+            Cerrar Sesión
+        </button>
+
+    </div>
+
+
+    <div class="col-md-6 user_details_div" *ngIf="user">
+        <img src="{{ user.photoUrl }}">
+        <div>
+            <h4>{{user.name}}</h4>
+            <p>{{user.email}}</p>
+        </div>
+    </div>
+
+</main>
