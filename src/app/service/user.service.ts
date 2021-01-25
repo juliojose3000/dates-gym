@@ -18,4 +18,8 @@ export class UserService {
     return this.http.post(this.url+'/create', user);
   }
 
+  social_login(user: User){
+    return this.http.post(this.url+'/social-login', user);
+  }
+
 }

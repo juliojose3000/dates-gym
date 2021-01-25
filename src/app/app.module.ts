@@ -47,7 +47,8 @@ import { DatePipe } from '@angular/common';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 
-
+//Environments
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -91,11 +92,11 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('578151341935-ullie8jtj0r6l2rrj7163k0jtjg16rbd.apps.googleusercontent.com'),
+            provider: new GoogleLoginProvider('578151341935-05prohkmchlm312l4onuslcm5clvdkph.apps.googleusercontent.com'),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('2825760834335341'),
+            provider: new FacebookLoginProvider(`${environment.fb_id}`),
           },
 
         ],
