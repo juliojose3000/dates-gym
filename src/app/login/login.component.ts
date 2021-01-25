@@ -15,6 +15,7 @@ import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
 import { environment_variables } from 'src/environments/environment.variables';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 
 @Component({
@@ -31,13 +32,17 @@ export class LoginComponent implements OnInit {
   private auth: Authentication;
   private user: User;
 
+  social_user: SocialUser;
+  loggedIn: boolean = false;
+
   constructor(
     private userService: UserService, 
     private authService: AuthenticationService,
     private router: Router,
     public dialog: MatDialog,
     private spinnerService: SpinnerService,
-    private utils: Utils) { }
+    private utils: Utils,
+    private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
 
@@ -47,6 +52,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.codigojs();
+
   }
 
   codigojs(){
@@ -95,14 +101,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
         this.spinnerService.resetSpinner();
         if(mResponse.isSuccessful){
-          this.saveUserSessionData(mResponse);
-          this.router.navigate(['home']);
-          document.getElementById("a_session").innerHTML = Strings.LOGOUT;
-          document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
-          document.getElementById("a_login_user").innerHTML = localStorage.getItem("user_name");
-          document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
-          document.getElementById("div_logout").style.display = "";
-          document.getElementById("div_logout2").style.display = "";
+          this.loginSuccesful(mResponse);
         }
         else{
           //Invalid credentials
@@ -146,8 +145,7 @@ export class LoginComponent implements OnInit {
         }
       }).afterClosed().subscribe(() => {
         if(mResponse.isSuccessful){
-          this.saveUserSessionData(mResponse);
-          this.router.navigate(['home']);
+          this.loginSuccesful(mResponse);
         }
       });          
       
@@ -182,5 +180,98 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  signInWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialSignInStartService();
+  }
+
+  signInWithFB(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.socialSignInStartService();
+  }
+
+  socialSignInStartService(){
+
+    this.socialAuthService.authState.subscribe(social_user => {
+      this.social_user = social_user;
+      console.log(social_user);
+
+      if(!this.loggedIn && social_user != null){
+        this.user = new User(social_user.email, social_user.firstName, "Not Registered", String(social_user.id), 0);
+        this.socialSignIn(this.user);
+        this.loggedIn = true;
+      }
+    });
+
+  }
+
+  signOut(): void {
+    this.socialAuthService.signOut();
+  }
+
+  socialSignIn(user: User){
+
+    this.user = user;
+
+    this.spinnerService.requestStarted();
+    this.userService.social_login(this.user).subscribe((mResponse: MyResponse) => {
+      console.log(mResponse);
+      this.spinnerService.resetSpinner();
+
+
+      //Para Registro
+      if(mResponse.description!="Credenciales válidos"){
+
+        this.dialog.open(MessageComponent, {
+          data: {
+            title: mResponse.title,
+            message: mResponse.description,
+            class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+          }
+        }).afterClosed().subscribe(() => {
+          if(mResponse.isSuccessful){
+            this.loginSuccesful(mResponse);
+            return;
+          }
+        }); 
+
+      }
+
+      //Para login
+      if(mResponse.isSuccessful){
+        this.loginSuccesful(mResponse);
+      }else{
+
+        this.dialog.open(MessageComponent, {
+          data: {
+            title: mResponse.title,
+            message: mResponse.description,
+            class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+          }
+        }); 
+
+      }
+
+         
+      
+    },
+    (error) => {//Error callback
+      this.spinnerService.resetSpinner();
+      this.utils.showErrorMessage();
+    }
+  );
+
+  }
+
+  loginSuccesful(mResponse: MyResponse){
+    this.saveUserSessionData(mResponse);
+    this.router.navigate(['home']);
+    document.getElementById("a_session").innerHTML = Strings.LOGOUT;
+    document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
+    document.getElementById("a_login_user").innerHTML = localStorage.getItem("user_name");
+    document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
+    document.getElementById("div_logout").style.display = "";
+    document.getElementById("div_logout2").style.display = "";
+  }
 
 }
