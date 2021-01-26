@@ -1,9 +1,10 @@
 .maindiv{
-    display: flex;
-    height: 80%;
     width: 100%;
-    position: absolute;
-    //background-color: cadetblue;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    //background-color: darkblue;
   }
 
 
@@ -11,7 +12,6 @@
     position: absolute;
     width: 100%;
     height: 10%;
-    top:5%;
     
     //Centrar los items
     display: flex;
@@ -93,11 +93,11 @@
 
 .div_rights{
     background-color: rgb(54, 54, 54);
-    position: fixed;
+    position: absolute;
     height: 30px;
     width: 100%;
-    bottom: 100px;
     display: flex;
+    bottom: 0px;
 }
 
     .p_text_rights{
@@ -112,29 +112,57 @@
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
-    .main_title{ font-size: 3vh; margin-top: -35px; }
+    .main_title{ font-size: 3vh; }
     .title{ font-size: 2vh; margin-top: 0.5vh; }
     .p_text{ margin-left: 1.5vw; }
-    .div_vision{ width: 90%; }
-    .div_mision{ width: 90%; }
-    .div_vision{ top: 20%; }
-    .div_mision{ top: 47%; }
+    .div_title{ top: 15%; }
+    .div_vision{ width: 90%; top: 30% }
+    .div_mision{ width: 90%; top: 50% }
+    .div_rights{ bottom: 0px; }
 }
 
 //SMALL MOBILES
 @media only screen and (max-width: 400px) {
-    .div_rights{ bottom: 0px; height: 20px; }
+    .div_rights{ height: 20px; }
     .p_text_rights{ font-size: 8px; }
     .p_text{ font-size: 10px; }
-    .div_mision{ top: 55%; }
+    .div_title{ top: 8%; }
+    .div_vision{ width: 90%; top: 25% }
+    .div_mision{ width: 90%; top: 45% }
+    .div_rights{ bottom: 0px; }
 }
    
 //PC SCREENS
-@media (min-width: 845px) {
+@media screen and (orientation: landscape) and (max-height: 20000px) {
     .main_title{ font-size: 2.5vw; }
     .title{ font-size: 1.8vw; margin-top: 0.5vw; }
     .p_text{ margin-top: 1vw; }
-    .div_vision{ top: 27%; }
-    .div_mision{ top: 55%; }
+    .div_rights{ bottom: 100px; }
+    .div_vision{ top: 30% }
+    .div_mision{ top: 50% }
 }
   
+//Horizontal Movil View
+@media screen and (orientation: landscape) and (max-height: 800px){
+    .div_rights { position: relative; align-self: flex-end; bottom: 0; }
+    .maindiv{ display: flex; }
+    .div_title{ top: 35%; }
+    .div_vision{ top: 60% }
+    .div_mision{ top: 100% }
+}
+
+//Horizontal Small Movil View
+@media screen and (orientation: landscape) and (max-height: 400px){
+  
+    .div_rights { position: relative; align-self: flex-end; bottom: 0; }
+    .maindiv{ display: flex; }
+    .div_title{ top: 35%; }
+    .div_vision{ top: 60% }
+    .div_mision{ top: 100% }
+  
+}
+
+//Vertical mobile view
+@media screen and (orientation: portrait)and (max-width: 450px){
+    .maindiv{ display: block; }
+}

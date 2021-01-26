@@ -33,8 +33,7 @@ img {vertical-align: middle;}
   max-width: 600px;
   max-height: 300px;
   position: absolute;
-	top:0px;
-	bottom: 0px;
+	top:30%;
 	left: 0;
 	right: 0;
   margin: auto;
@@ -113,10 +112,15 @@ img{
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
-  .slideshow-container{ top: 50px; }
+  .slideshow-container{ top: 30%; }
   h1{ font-size: 17px; }
 }
 
 //PC SCREENS
-@media (min-width: 845px) {
+@media screen and (orientation: landscape) and (max-width: 20000px) {
+}
+
+//Horizontal Movil View
+@media screen and (orientation: landscape) and (max-height: 640px){
+  .slideshow-container{top: 50%}
 }
