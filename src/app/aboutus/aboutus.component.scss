@@ -97,7 +97,7 @@
     height: 30px;
     width: 100%;
     display: flex;
-    bottom: 0px;
+    bottom: 100px;
 }
 
     .p_text_rights{
@@ -109,6 +109,9 @@
         margin: auto;
     }
 
+@media (max-width: 450px){
+    .div_rights{ bottom: 0; }
+}
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
@@ -118,8 +121,9 @@
     .div_title{ top: 15%; }
     .div_vision{ width: 90%; top: 30% }
     .div_mision{ width: 90%; top: 50% }
-    .div_rights{ bottom: 0px; }
 }
+
+
 
 //SMALL MOBILES
 @media only screen and (max-width: 400px) {
@@ -127,13 +131,13 @@
     .p_text_rights{ font-size: 8px; }
     .p_text{ font-size: 10px; }
     .div_title{ top: 8%; }
-    .div_vision{ width: 90%; top: 25% }
-    .div_mision{ width: 90%; top: 45% }
+    .div_vision{ width: 90%; top: 30% }
+    .div_mision{ width: 90%; top: 55% }
     .div_rights{ bottom: 0px; }
 }
    
 //PC SCREENS
-@media screen and (orientation: landscape) and (max-height: 20000px) {
+@media screen and (orientation: landscape) and (max-width: 20000px) {
     .main_title{ font-size: 2.5vw; }
     .title{ font-size: 1.8vw; margin-top: 0.5vw; }
     .p_text{ margin-top: 1vw; }
@@ -143,8 +147,8 @@
 }
   
 //Horizontal Movil View
-@media screen and (orientation: landscape) and (max-height: 800px){
-    .div_rights { position: relative; align-self: flex-end; bottom: 0; }
+@media screen and (orientation: landscape) and (max-height: 640px){
+    .div_rights { position: relative; align-self: flex-end; bottom: 0px; }
     .maindiv{ display: flex; }
     .div_title{ top: 35%; }
     .div_vision{ top: 60% }

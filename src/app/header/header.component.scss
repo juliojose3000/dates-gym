@@ -268,4 +268,9 @@ p{
   .p_services_items{font-size:calc(0.8vw); /* Text size in dropdown sub-items */}
 }
 
+//Horizontal Movil View
+@media screen and (orientation: landscape) and (max-height: 640px){
+  .p_title{ font-size: 3vh; } /*Cachi Fitness Center*/
+}
+
 
