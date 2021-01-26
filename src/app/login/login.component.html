@@ -12,7 +12,7 @@
                 <span>O usa tu cuenta</span>
                 <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
                 <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="#" class="passwordForgotten" >¿Olvidaste tu contraseña?</a>
                 <button (click)="login()">Iniciar sesión</button>
                 <p id="pSignUp" class="p_sign">O regístrate aquí</p>
             </form>
@@ -23,9 +23,8 @@
             <form action="#">
                 <h1 class="h1_new_account">Crear nueva cuenta</h1>
                 <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    <a (click)="signInWithFB()" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a (click)="signInWithGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
                 </div>
                 <span>O usa tu correo para registrarte</span>
                 <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />

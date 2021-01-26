@@ -234,6 +234,14 @@ input {
 	width: 40px;
 }
 
+.social, .passwordForgotten, button{
+	cursor: pointer;
+}
+
+.passwordForgotten{
+	color: rgb(2, 2, 211);
+}
+
 footer {
     background-color: #222;
     color: #fff;
