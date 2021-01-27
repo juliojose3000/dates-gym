@@ -25,15 +25,24 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUs
 })
 export class LoginComponent implements OnInit {
 
+
+  //For Sign Up
   public name: string;
   public phone: string;
   public email:string;
   public password: string;
+
+  //For Sign In
+  public login_email:string;
+  public login_password: string;
+
+
+
   private auth: Authentication;
   private user: User;
 
   social_user: SocialUser;
-  loggedIn: boolean = false;
+  isASocialLogin: boolean = false;
 
   constructor(
     private userService: UserService, 
@@ -96,7 +105,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.auth = new Authentication(this.email, this.password);
+    this.auth = new Authentication(this.login_email, this.login_password);
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
         this.spinnerService.resetSpinner();
@@ -153,8 +162,7 @@ export class LoginComponent implements OnInit {
     (error) => {//Error callback
       this.spinnerService.resetSpinner();
       this.utils.showErrorMessage();
-    }
-  );
+    });
 
   }
 
@@ -168,7 +176,7 @@ export class LoginComponent implements OnInit {
 
   haveUserFillTheInputs(action: string){
     if(action=="sign_in"){
-      if(this.email!=undefined && this.password!=undefined)
+      if(this.login_email!=undefined && this.login_password!=undefined)
         return true;
       else
         return false;
@@ -196,10 +204,11 @@ export class LoginComponent implements OnInit {
       this.social_user = social_user;
       console.log(social_user);
 
-      if(!this.loggedIn && social_user != null){
-        this.user = new User(social_user.email, social_user.firstName, "Not Registered", String(social_user.id), 0);
+      if(!this.isASocialLogin && social_user != null){
+        this.user = new User(social_user.email, social_user.firstName, "Not Registered", social_user.id, 0);
         this.socialSignIn(this.user);
-        this.loggedIn = true;
+        this.isASocialLogin = true;
+        localStorage.setItem("isASocialLogin", this.isASocialLogin==true?"yes":"no");
       }
     });
 
@@ -272,6 +281,67 @@ export class LoginComponent implements OnInit {
     document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
     document.getElementById("div_logout").style.display = "";
     document.getElementById("div_logout2").style.display = "";
+  }
+
+  CheckPasswordStrength() {
+    var password = "";
+    var password_strength = document.getElementById("password_strength");
+  
+  
+      //if textBox is empty
+      if(password.length==0){
+          password_strength.innerHTML = "";
+          return;
+      }
+  
+      //Regular Expressions
+      var regex = new Array();
+      regex.push("[A-Z]"); //For Uppercase Alphabet
+      regex.push("[a-z]"); //For Lowercase Alphabet
+      regex.push("[0-9]"); //For Numeric Digits
+      regex.push("[$@$!%*#?&]"); //For Special Characters
+  
+      var passed = 0;
+  
+      //Validation for each Regular Expression
+      for (var i = 0; i < regex.length; i++) {
+          if((new RegExp (regex[i])).test(password)){
+              passed++;
+          }
+      }
+  
+      //Validation for Length of Password
+      if(passed > 2 && password.length > 8){
+          passed++;
+      }
+  
+      //Display of Status
+      var color = "";
+      var passwordStrength = "";
+      switch(passed){
+          case 0:
+              break;
+          case 1:
+              passwordStrength = "Password is Weak.";
+              color = "Red";
+              break;
+          case 2:
+              passwordStrength = "Password is Good.";
+              color = "darkorange";
+              break;
+          case 3:
+                  break;
+          case 4:
+              passwordStrength = "Password is Strong.";
+              color = "Green";
+              break;
+          case 5:
+              passwordStrength = "Password is Very Strong.";
+              color = "darkgreen";
+              break;
+      }
+      password_strength.innerHTML = passwordStrength;
+      password_strength.style.color = color;
   }
 
 }

@@ -1,4 +1,5 @@
 import { DatePipe } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
@@ -9,6 +10,8 @@ import { Shift } from '../model/shift.model';
 import { DAYS_NAME, MONTHS_NAME, Strings } from '../resources/resources';
 
 export class Utils{
+
+    public is_a_social_login: boolean;
 
     constructor(public dialog: MatDialog, private router: Router, public datepipe: DatePipe){}
 
@@ -52,6 +55,21 @@ export class Utils{
         var shiftDateTime = new Date(date_time);
         var currentDateTime = new Date();
         return currentDateTime>shiftDateTime;
-      }
+    }
+
+    isThereALoggedUser(): boolean{
+        if(localStorage.getItem("token")=='null' || localStorage.getItem("token")==null){
+            this.dialog.open(MessageComponent, {
+              data: {
+                title: Strings.LOGIN,
+                message: Strings.MAKE_LOGIN
+              }
+            });
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 
 }

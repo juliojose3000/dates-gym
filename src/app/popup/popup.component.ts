@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Codes, Strings } from '../resources/resources';
 import { SocialAuthService } from 'angularx-social-login';
+import { Utils } from '../utils/utils';
 
 @Component({
   selector: 'popup-component',
@@ -19,7 +20,12 @@ export class PopupComponent implements OnInit {
     buttonRightText: string;
     code: number;
 
-    constructor(public dialogRef: MatDialogRef<PopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private socialAuthService: SocialAuthService) {}
+    constructor(
+        public dialogRef: MatDialogRef<PopupComponent>, 
+        @Inject(MAT_DIALOG_DATA) public data: any, 
+        private router: Router, 
+        private socialAuthService: SocialAuthService,
+        public utils: Utils) {}
 
     ngOnInit(): void {
         this.title = this.data.title;
@@ -37,7 +43,8 @@ export class PopupComponent implements OnInit {
                 document.getElementById("a_login_user2").innerHTML = Strings.LOGIN;
                 document.getElementById("div_logout").style.display = "none";
                 document.getElementById("div_logout2").style.display = "none";
-                this.signOut();
+                if(localStorage.getItem("isASocialLogin")=="yes")//Only for social sessions
+                    this.socialAuthService.signOut();
                 this.router.navigate(['login']);
                 this.dimissDialog();
                 break;
@@ -47,10 +54,6 @@ export class PopupComponent implements OnInit {
 
     dimissDialog(){
         this.dialogRef.close({});
-    }
-
-    signOut(): void {
-        this.socialAuthService.signOut();
     }
 
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MessageComponent } from '../message/message.component';
 import { Strings } from '../resources/resources';
+import { Utils } from '../utils/utils';
 
 @Component({
   selector: 'app-weight-room',
@@ -11,22 +12,14 @@ import { Strings } from '../resources/resources';
 })
 export class WeightRoomComponent implements OnInit {
 
-  constructor(private router: Router, public dialog: MatDialog) { }
+  constructor(private router: Router, public dialog: MatDialog, public utils: Utils) { }
 
   ngOnInit(): void {
   }
 
   showSchedule(){
 
-    if(localStorage.getItem("token")=='null' || localStorage.getItem("token")==null){
-      this.dialog.open(MessageComponent, {
-        data: {
-          title: Strings.LOGIN,
-          message: Strings.MAKE_LOGIN
-        }
-      });
-      return;
-    }
+    if(!this.utils.isThereALoggedUser()) return;
 
     this.router.navigate(['reserve']);
   }
