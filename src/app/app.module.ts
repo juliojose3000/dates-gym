@@ -28,7 +28,6 @@ import { ReservationPopupComponent } from './reserve/reservation_popup/reservati
 import { SpinnerComponent } from './spinner/spinner.component'
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { PopupComponent } from './popup/popup.component';
-import { LoginWithSocialNetworkComponent } from './login-with-social-network/login-with-social-network.component';
 
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -62,8 +61,7 @@ import { environment } from '../environments/environment';
     MessageComponent,
     LoginComponent,
     SpinnerComponent,
-    AboutusComponent,
-    LoginWithSocialNetworkComponent
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

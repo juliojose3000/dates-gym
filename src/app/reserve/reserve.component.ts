@@ -31,6 +31,8 @@ export class ReserveComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
     private spinnerService: SpinnerService) {
+
+    if(!this.utils.isThereALoggedUser()) return;
       
     var timeZone = (new Date().getTimezoneOffset())/60;
     //console.log("time zone: "+timeZone);
