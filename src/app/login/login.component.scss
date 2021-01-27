@@ -5,6 +5,12 @@
 	box-sizing: border-box;
 }
 
+.logindiv{
+	width: 100%;
+	height: 80%;
+	display: flex;
+	position: relative;
+}
 
 html, body
 {
@@ -91,7 +97,6 @@ input {
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
 	overflow: hidden;
 
 	//border:3px solid rgb(255, 39, 39);
@@ -286,6 +291,16 @@ footer a {
 
 //-----------------------------------------QUERIES---------------------------------------//
 
+//PC SCREENS
+@media screen and (orientation: landscape) and (max-width: 20000px) {
+	.sign-in-container{ width: 50%; }
+	.container.right-panel-active .sign-up-container{ transform: translateX(100%); }
+	#pSignUp{ visibility: hidden; }
+	#pSignIn{ visibility: hidden; }
+	.logindiv{ width: 50%; max-width: 768px; }
+	.container{	width: 60vw; max-width: 800px; height: 65vh; max-height: 450px; left: 100%; }
+}
+
 //MOBILE SCREENS
 @media (max-width: 1200px) {
     #overlay-container{ display: none; }
@@ -293,10 +308,10 @@ footer a {
 	.sign-in-container{ width: 100%; }
 	#sign_up_container{ width: 100%; }
 	.container.right-panel-active .sign-up-container{ transform: translateX(0%); }
-	.logindiv{ width: 30%; max-width: 500px; }
 	.container{	width: 30vw; height: 60vh; max-height: 450px; margin-top: 5vh; }
 }
-   
+
+//SMALL MOBILES SCREENS
 @media only screen and (max-width: 400px){
 	.container{	width: 200px; min-width: 300px; }
 	h1{ font-size: 20px; }
@@ -304,18 +319,16 @@ footer a {
 	input{ padding: 6px 7px}
 }
 
-//PC SCREENS
-@media (min-width: 1200px) {
-	.sign-in-container{ width: 50%; }
-	.container.right-panel-active .sign-up-container{ transform: translateX(100%); }
-	#pSignUp{ visibility: hidden; }
-	#pSignIn{ visibility: hidden; }
-	.logindiv{ width: 50%; max-width: 768px; }
-	.container{	width: 60vw; max-width: 800px; height: 65vh; max-height: 450px; }
-}
+
   
 
-@media (max-width: 845px) {
-	.logindiv{ margin-left: 15%; }
+@media  (max-width: 845px) {
 	.container{ top: 40%; }
 }
+
+//Horizontal Movil View
+@media screen and (orientation: landscape) and (max-height: 640px){
+	.container{
+		height: 400px;
+	}
+  }
