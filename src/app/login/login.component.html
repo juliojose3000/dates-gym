@@ -29,23 +29,23 @@
                 <span>O usa tu correo para registrarte</span>
 
                 <div class="div_input_sign_up">
-                    <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (keyup)="keyupEvent($event.target)"/>
-                    <img id="name_point" class="default_point">
+                    <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (input)="keyupEvent($event.target)"/>
+                    <img id="name_point" class="default_point" src="../../assets/img/point_gray.png">
                 </div>
 
                 <div class="div_input_sign_up">
-                    <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" (keyup)="keyupEvent($event.target)"/>
-                    <img id="email_point" class="default_point">
+                    <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" (input)="keyupEvent($event.target)"/>
+                    <img id="email_point" class="default_point" src="../../assets/img/point_gray.png">
+                </div>  
+
+                <div class="div_input_sign_up">
+                    <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
+                    <img id="password_point" class="default_point" src="../../assets/img/point_gray.png">
                 </div>
 
                 <div class="div_input_sign_up">
-                    <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (keyup)="keyupEvent($event.target)"/>
-                    <img id="password_point" class="default_point">
-                </div>
-
-                <div class="div_input_sign_up">
-                    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (keyup)="keyupEvent($event.target)"/>
-                    <img id="phone_point" class="default_point">
+                    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)"/>
+                    <img id="phone_point" class="default_point" src="../../assets/img/point_gray.png">
                 </div>
 
                 <button (click)="signUp()">Registrarse</button>
