@@ -27,10 +27,27 @@
                     <a (click)="signInWithGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
                 </div>
                 <span>O usa tu correo para registrarte</span>
-                <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />
-                <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
-                <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />
-                <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" />
+
+                <div class="div_input_sign_up">
+                    <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (keyup)="keyupEvent($event.target)"/>
+                    <img id="name_point" class="default_point">
+                </div>
+
+                <div class="div_input_sign_up">
+                    <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" (keyup)="keyupEvent($event.target)"/>
+                    <img id="email_point" class="default_point">
+                </div>
+
+                <div class="div_input_sign_up">
+                    <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (keyup)="keyupEvent($event.target)"/>
+                    <img id="password_point" class="default_point">
+                </div>
+
+                <div class="div_input_sign_up">
+                    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (keyup)="keyupEvent($event.target)"/>
+                    <img id="phone_point" class="default_point">
+                </div>
+
                 <button (click)="signUp()">Registrarse</button>
                 <p id="pSignIn" class="p_sign">O inicia sesión aquí</p>
             </form>

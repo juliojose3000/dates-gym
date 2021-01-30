@@ -16,7 +16,10 @@ export const Strings={
   BUTTON_LEFT_LOGOUT: "Si, cerrar sesión",
   BUTTON_RIGHT_LOGOUT: "Cancelar",
   SIGN_IN_NULL_SPACES: "Debe rellenar los campos para iniciar sesión",
-  SIGN_UP_NULL_SPACES: "Debe rellenar los campos para poder registrarse"
+  SIGN_UP_NULL_SPACES: "Debe rellenar los campos para poder registrarse",
+  IT_IS_NOT_A_STRONG_PASSWORD: "La contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
+  IT_IS_NOT_A_VALID_EMAIL: "El correo ingresado no es un correo válido. Por favor ingrese un correo válido",
+  IT_IS_NOT_A_VALID_PHONE: "El número de teléfono ingresado no es un válido. Por favor ingrese un número válido"
 }
 
 export const CSS_CLASSES={
