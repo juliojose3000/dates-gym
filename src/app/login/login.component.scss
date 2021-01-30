@@ -298,29 +298,6 @@ footer a {
 	//background-color: #8cceeb;
 }
 
-.default_password_point, .first_password_point, .second_password_point, .third_password_point{
-	height: 15px;
-	width: 15px;
-	margin-left: 15px;
-}
-
-	.default_password_point{
-		content:url("../../assets/img/point_gray.png");
-	}
-
-	.first_password_point{
-		content:url("../../assets/img/bad_input.png");
-	}
-
-	.second_password_point{
-		content:url("../../assets/img/point_yellow.png");
-	}
-
-	.third_password_point{
-		content:url("../../assets/img/right_input.png");
-	}
-
-
 .div_input_sign_up{
 	display: flex;
 	align-items: center; //center vertical
@@ -329,22 +306,10 @@ footer a {
 	//background-color: chartreuse;
 }
 
-	.default_point, .right_point, .bad_point{
+	.default_point{
 		height: 15px;
 		width: 15px;
 		margin-left: 15px;
-	}
-	
-	.default_point{
-		content:url("../../assets/img/point_gray.png");
-	}
-
-	.right_point{
-		content:url("../../assets/img/right_input.png");
-	}
-
-	.bad_point{
-		content:url("../../assets/img/bad_input.png");
 	}
 
 //-----------------------------------------QUERIES---------------------------------------//

@@ -297,7 +297,7 @@ export class LoginComponent implements OnInit {
   checkPasswordStrength(password: string) {
     //if textBox is empty
     if(password==""){
-      document.getElementById("password_point").setAttribute("class","default_password_point");
+      document.getElementById("password_point").setAttribute("src","../../assets/img/point_gray.png");
       return;
     }
 
@@ -333,7 +333,7 @@ export class LoginComponent implements OnInit {
           passwordStrength = "Password is Weak.";
           this.isAStrongPassword = false;
           color = "Red";
-          document.getElementById("password_point").setAttribute("class","first_password_point");
+          document.getElementById("password_point").setAttribute("src","../../assets/img/bad_input.png");
           break;
           
         case 2:
@@ -343,7 +343,7 @@ export class LoginComponent implements OnInit {
           passwordStrength = "Password is Good.";
           this.isAStrongPassword = true;
           color = "yellow";
-          document.getElementById("password_point").setAttribute("class","second_password_point");
+          document.getElementById("password_point").setAttribute("src","../../assets/img/point_yellow.png");
           break;
 
         case 4:
@@ -353,7 +353,7 @@ export class LoginComponent implements OnInit {
           this.isAStrongPassword = true;
           passwordStrength = "Password is Strong.";
           color = "Green";
-          document.getElementById("password_point").setAttribute("class","third_password_point");
+          document.getElementById("password_point").setAttribute("src","../../assets/img/right_input.png");
           break;
     }
   }
@@ -375,18 +375,18 @@ export class LoginComponent implements OnInit {
 
       case "name":
         if(value!="")
-          document.getElementById("name_point").setAttribute("class","right_point");
+          document.getElementById("name_point").setAttribute("src","../../assets/img/right_input.png");
         else
-          document.getElementById("name_point").setAttribute("class","default_point");
+          document.getElementById("name_point").setAttribute("src","../../assets/img/point_gray.png");
         break;
 
       case "email":
         if(this.checkEmail())
-          document.getElementById("email_point").setAttribute("class","right_point");
+          document.getElementById("email_point").setAttribute("src","../../assets/img/right_input.png");
         else if(value=="")
-          document.getElementById("email_point").setAttribute("class","default_point");
+          document.getElementById("email_point").setAttribute("src","../../assets/img/point_gray.png");
         else
-          document.getElementById("email_point").setAttribute("class","bad_point");
+          document.getElementById("email_point").setAttribute("src","../../assets/img/bad_input.png");
         break;
 
 
@@ -397,9 +397,11 @@ export class LoginComponent implements OnInit {
 
       case "phone":
         if(this.isAValidPhoneNumber())
-          document.getElementById("phone_point").setAttribute("class","right_point");
+          document.getElementById("phone_point").setAttribute("src","../../assets/img/right_input.png");
+        else if(value=="")
+          document.getElementById("phone_point").setAttribute("src","../../assets/img/point_gray.png");
         else
-          document.getElementById("phone_point").setAttribute("class","bad_point");
+          document.getElementById("phone_point").setAttribute("src","../../assets/img/bad_input.png");
         break;
 
     }
