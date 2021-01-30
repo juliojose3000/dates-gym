@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
 
   social_user: SocialUser;
   isASocialLogin: boolean = false;
+  isAStrongPassword: boolean = false;
 
   constructor(
     private userService: UserService, 
@@ -131,13 +132,23 @@ export class LoginComponent implements OnInit {
 
   signUp(){
 
-    if(!this.haveUserFillTheInputs("sign_in")){
-      this.dialog.open(MessageComponent, {
-        data: {
-            title: Strings.ERROR,
-            message: Strings.SIGN_UP_NULL_SPACES
-        }
-      }); 
+    if(!this.haveUserFillTheInputs("sign_up")){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.SIGN_UP_NULL_SPACES } }); 
+      return;
+    }
+
+    if(!this.isAStrongPassword){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
+      return;
+    }
+
+    if(!this.checkEmail()){// If the email enters is not valid
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_EMAIL } }); 
+      return;
+    }
+
+    if(!this.isAValidPhoneNumber()){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_PHONE } }); 
       return;
     }
 
@@ -283,65 +294,120 @@ export class LoginComponent implements OnInit {
     document.getElementById("div_logout2").style.display = "";
   }
 
-  CheckPasswordStrength() {
-    var password = "";
-    var password_strength = document.getElementById("password_strength");
-  
-  
-      //if textBox is empty
-      if(password.length==0){
-          password_strength.innerHTML = "";
-          return;
-      }
-  
-      //Regular Expressions
-      var regex = new Array();
-      regex.push("[A-Z]"); //For Uppercase Alphabet
-      regex.push("[a-z]"); //For Lowercase Alphabet
-      regex.push("[0-9]"); //For Numeric Digits
-      regex.push("[$@$!%*#?&]"); //For Special Characters
-  
-      var passed = 0;
-  
-      //Validation for each Regular Expression
-      for (var i = 0; i < regex.length; i++) {
-          if((new RegExp (regex[i])).test(password)){
-              passed++;
-          }
-      }
-  
-      //Validation for Length of Password
-      if(passed > 2 && password.length > 8){
-          passed++;
-      }
-  
-      //Display of Status
-      var color = "";
-      var passwordStrength = "";
-      switch(passed){
-          case 0:
-              break;
-          case 1:
-              passwordStrength = "Password is Weak.";
-              color = "Red";
-              break;
-          case 2:
-              passwordStrength = "Password is Good.";
-              color = "darkorange";
-              break;
-          case 3:
-                  break;
-          case 4:
-              passwordStrength = "Password is Strong.";
-              color = "Green";
-              break;
-          case 5:
-              passwordStrength = "Password is Very Strong.";
-              color = "darkgreen";
-              break;
-      }
-      password_strength.innerHTML = passwordStrength;
-      password_strength.style.color = color;
+  checkPasswordStrength(password: string) {
+    //if textBox is empty
+    if(password==""){
+      document.getElementById("password_point").setAttribute("class","default_password_point");
+      return;
+    }
+
+    //Regular Expressions
+    var regex = new Array();
+    regex.push("[A-Z]"); //For Uppercase Alphabet
+    regex.push("[a-z]"); //For Lowercase Alphabet
+    regex.push("[0-9]"); //For Numeric Digits
+    regex.push("[$@$!%*#?&]"); //For Special Characters
+
+    var passed = 0;
+
+    //Validation for each Regular Expression
+    for (var i = 0; i < regex.length; i++) {
+        if((new RegExp (regex[i])).test(password)){
+            passed++;
+        }
+    }
+
+    //Validation for Length of Password
+    if(passed > 2 && password.length > 8){
+        passed++;
+    }
+
+    //Display of Status
+    var color = "";
+    var passwordStrength = "";
+    switch(passed){
+        case 0:
+          break;
+
+        case 1:
+          passwordStrength = "Password is Weak.";
+          this.isAStrongPassword = false;
+          color = "Red";
+          document.getElementById("password_point").setAttribute("class","first_password_point");
+          break;
+          
+        case 2:
+            break;
+
+        case 3:
+          passwordStrength = "Password is Good.";
+          this.isAStrongPassword = true;
+          color = "yellow";
+          document.getElementById("password_point").setAttribute("class","second_password_point");
+          break;
+
+        case 4:
+          break;
+
+        case 5:
+          this.isAStrongPassword = true;
+          passwordStrength = "Password is Strong.";
+          color = "Green";
+          document.getElementById("password_point").setAttribute("class","third_password_point");
+          break;
+    }
+  }
+
+  checkEmail(): boolean{
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return re.test(String(this.email).toLowerCase());
+    
+  }
+
+  keyupEvent(el: HTMLInputElement){
+
+    var element = el.name;
+    var value = el.value;
+
+    switch(element){
+
+      case "name":
+        if(value!="")
+          document.getElementById("name_point").setAttribute("class","right_point");
+        else
+          document.getElementById("name_point").setAttribute("class","default_point");
+        break;
+
+      case "email":
+        if(this.checkEmail())
+          document.getElementById("email_point").setAttribute("class","right_point");
+        else if(value=="")
+          document.getElementById("email_point").setAttribute("class","default_point");
+        else
+          document.getElementById("email_point").setAttribute("class","bad_point");
+        break;
+
+
+      case "password":
+        this.checkPasswordStrength(value);
+        break;
+
+
+      case "phone":
+        if(this.isAValidPhoneNumber())
+          document.getElementById("phone_point").setAttribute("class","right_point");
+        else
+          document.getElementById("phone_point").setAttribute("class","bad_point");
+        break;
+
+    }
+
+  }
+
+  isAValidPhoneNumber(): boolean{
+    return this.phone.length==8 && /^\d+$/.test(this.phone);
   }
 
 }

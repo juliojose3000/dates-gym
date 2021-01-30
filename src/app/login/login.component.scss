@@ -289,6 +289,64 @@ footer a {
 	margin-top: 5%;
 }
 
+.div_password_strong{
+	display: flex;
+	align-items: center; //center vertical
+	justify-content: center; //center horizontal
+	width: 80%;
+	height: 20px;
+	//background-color: #8cceeb;
+}
+
+.default_password_point, .first_password_point, .second_password_point, .third_password_point{
+	height: 15px;
+	width: 15px;
+	margin-left: 15px;
+}
+
+	.default_password_point{
+		content:url("../../assets/img/point_gray.png");
+	}
+
+	.first_password_point{
+		content:url("../../assets/img/bad_input.png");
+	}
+
+	.second_password_point{
+		content:url("../../assets/img/point_yellow.png");
+	}
+
+	.third_password_point{
+		content:url("../../assets/img/right_input.png");
+	}
+
+
+.div_input_sign_up{
+	display: flex;
+	align-items: center; //center vertical
+	justify-content: center; //center horizontal
+	width: 100%;
+	//background-color: chartreuse;
+}
+
+	.default_point, .right_point, .bad_point{
+		height: 15px;
+		width: 15px;
+		margin-left: 15px;
+	}
+	
+	.default_point{
+		content:url("../../assets/img/point_gray.png");
+	}
+
+	.right_point{
+		content:url("../../assets/img/right_input.png");
+	}
+
+	.bad_point{
+		content:url("../../assets/img/bad_input.png");
+	}
+
 //-----------------------------------------QUERIES---------------------------------------//
 
 //PC SCREENS
@@ -297,7 +355,7 @@ footer a {
 	.container.right-panel-active .sign-up-container{ transform: translateX(100%); }
 	#pSignUp{ visibility: hidden; }
 	#pSignIn{ visibility: hidden; }
-	.logindiv{ width: 50%; max-width: 768px; }
+	.logindiv{ width: 50%; }
 	.container{	width: 60vw; max-width: 800px; height: 65vh; max-height: 450px; left: 100%; }
 }
 
@@ -305,6 +363,8 @@ footer a {
 @media (max-width: 1200px) {
     #overlay-container{ display: none; }
 	.container{ width: 40%; min-width: 350px; height: 420px; }
+	#pSignUp{ visibility: visible; }
+	#pSignIn{ visibility: visible; }
 	.sign-in-container{ width: 100%; }
 	#sign_up_container{ width: 100%; }
 	.container.right-panel-active .sign-up-container{ transform: translateX(0%); }
@@ -329,6 +389,6 @@ footer a {
 //Horizontal Movil View
 @media screen and (orientation: landscape) and (max-height: 640px){
 	.container{
-		height: 400px;
+		height: 430px;
 	}
-  }
+}
