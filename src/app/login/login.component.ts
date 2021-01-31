@@ -216,7 +216,7 @@ export class LoginComponent implements OnInit {
       console.log(social_user);
 
       if(!this.isASocialLogin && social_user != null){
-        this.user = new User(social_user.email, social_user.firstName, "Not Registered", social_user.id, 0);
+        this.user = new User(social_user.email, social_user.name, "Not Registered", social_user.id, 0);
         this.socialSignIn(this.user);
         this.isASocialLogin = true;
         localStorage.setItem("isASocialLogin", this.isASocialLogin==true?"yes":"no");
