@@ -1,101 +1,63 @@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-
 <div class="header">
 
-    <div id="logo-container" class="logo-container">
+    <div class="div_header">
 
-            <a href="https://cachi-fitness-center.web.app/">
-                <img src="../../assets/img/body-icon.png"
-                    alt="Body"
-                    class="image-flex-img">
-            </a>
+        <div class="div_image_logo">
+            <img src="../../assets/img/body-icon.png"
+                alt="Body"
+                class="img_imagen">
+        </div>
 
-            <div class="div_title">
-                <p class="p_title"> CACHÍ FITNESS CENTER </p>
-            </div>
+        <div class="div_title">
+            <p class="p_title"> CACHÍ FITNESS CENTER </p>
+        </div>
 
 
     </div>
 
 
-    <div id="container2" class="container2">
+    <div class="navbar_items">
+        <ul>
+            <li>
 
-        <div class="navbar_items">
-            <ul>
-                <li>
-                    <div class="dropdown" (click)="goToHome()">
-                        <a class="container2_encabezado">Inicio</a>
+                <div class="dropdown">
+                    <button class="dropbtn" (click)="goToHome()">Inicio</button>
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="dropdown">
+                    <button class="dropbtn" (click)="aboutUs()">Nosotros</button>
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="dropdown">
+                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)">Servicios</button>
+                    <div id="div_services" class="dropdown-content">
+                        <a (click)="goToWeightRoom()">Sala de Pesas</a>
                     </div>
-                </li>
+                </div>
 
-                <li>
-                    <div class="dropdown" (click)="aboutUs()">
-                        <a class="container2_encabezado">Nosotros</a>
+            </li>
+
+            <li>     
+
+                <div class="dropdown">
+                    <button id="btn_session" class="dropbtn" (mouseup)="mouseup($event.target)"></button>
+                    <div id="div_user" class="dropdown-content">
+                        <a (click)="logout()" id="a_session"></a>
+                        <a href="#">Perfil</a>
                     </div>
-                </li>
+                </div>
 
-                <li>
-                    <div class="div_border">
-                        <div class="dropdown">
-                            <a class="container2_encabezado">Servicios</a>
-                            <div id="div_weight_room" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
-                        </div>
-                    </div>
-                </li>
+            </li>
 
-                <li>     
-                    <div class="div_border">
-                        <div class="dropdown" (click)="session()">
-                            <a id="a_login_user" class="container2_encabezado"></a>
-                            <div (click)="logout()" id="div_logout" class="dropdown-content"><p class="p_services_items" id="a_session"></p></div>
-                        </div>
-                    </div> 
-                </li>
-
-            </ul>
-        </div>
-
-    </div>
-
-
-      
-
-    <div id="container3" class="container3">
-        <div class="navbar_items">
-            <ul>
-                <li>
-                    <div tabindex="-1" class="dropdown" (click)="goToHome()">
-                        <a class="container3_encabezado">Inicio</a>
-                    </div>
-                </li>
-
-                <li>
-                    <div tabindex="-1" class="dropdown" (click)="aboutUs()">
-                        <a class="container3_encabezado">Nosotros</a>
-                    </div>
-                </li>
-
-                <li>
-                    <div id="div-services" #refDivServices tabindex="-1" (mouseup)="mousedown(refDivServices)" (focusout)="onblur()" class="div_border2">
-                        <div class="dropdown">
-                            <a class="container3_encabezado">Servicios</a>
-                            <div id="div_weight_room2" class="dropdown-content" (click)="goToWeightRoom()"><p class="p_services_items">Sala de Pesas</p></div>
-                        </div>
-                    </div>
-                </li>
-
-                <li>    
-                    <div id="div-session" #refDivSession tabindex="-1" (mouseup)="mousedown(refDivSession)" (focusout)="onblur()" class="div_border2">
-                        <div class="dropdown" (click)="session()">
-                            <a id="a_login_user2" class="container3_encabezado"></a>
-                            <div (click)="logout()" id="div_logout2" class="dropdown-content"><p class="p_services_items" id="a_session2"></p></div>
-                        </div>
-                    </div>  
-                </li>
-            </ul>
-        </div>
+        </ul>
     </div>
 
 </div>

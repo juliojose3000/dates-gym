@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from '../popup/popup.component';
 import { Codes, Strings } from '../resources/resources';
+import { Utils } from '../utils/utils';
 
 
 @Component({
@@ -12,30 +13,34 @@ import { Codes, Strings } from '../resources/resources';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  isAMobileScreen: boolean = false;
+
+  constructor(private router: Router, public dialog: MatDialog, public utils: Utils) {}
 
   ngOnInit(): void {
+    if(this.utils.getWidth()<=845) this.isAMobileScreen = true;
+
     const session = document.getElementById("a_session");
-    const session2 = document.getElementById("a_session2");
-    const login_user = document.getElementById("a_login_user");
-    const login_user2 = document.getElementById("a_login_user2");
+    const login_user = document.getElementById("btn_session");
+
+    if(this.isAMobileScreen){
+      document.getElementById("div_services").setAttribute("class", "display_none");
+      document.getElementById("div_user").setAttribute("class", "display_none");
+    }
+      
     
     if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session
       login_user.innerHTML = localStorage.getItem("user_name");
-      login_user2.innerHTML = localStorage.getItem("user_name");
       session.innerHTML = Strings.LOGOUT;
-      session2.innerHTML = Strings.LOGOUT;
     }else{
+      document.getElementById("div_user").setAttribute("class", "display_none");
       login_user.innerHTML = Strings.LOGIN;
-      login_user2.innerHTML = Strings.LOGIN;
-      document.getElementById("div_logout").style.display = "none";
-      document.getElementById("div_logout2").style.display = "none";
     }
 
   }
 
   session(){
-    if(document.getElementById("a_login_user").innerHTML!=Strings.LOGIN) return;
+    if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN) return;
 
     if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//The user have a live session, so user logout its session
 
@@ -52,8 +57,7 @@ export class HeaderComponent implements OnInit {
 
     }else{
       document.getElementById("a_session").innerHTML = Strings.LOGIN;
-      document.getElementById("a_session2").innerHTML = Strings.LOGIN;
-      document.getElementById("a_login_user").innerHTML = Strings.LOGIN;
+      document.getElementById("btn_session").innerHTML = Strings.LOGIN;
       this.router.navigate(['login']);
     }
   }
@@ -70,11 +74,13 @@ export class HeaderComponent implements OnInit {
     }); 
   }
 
+  services(){
+    document.getElementById("div_services").setAttribute("class", "dropdown-content");
+  }
+
   goToWeightRoom(){
-    document.getElementById("div_weight_room2").style.display = "none";
+    document.getElementById("div_services").setAttribute("class", "display_none");
     this.router.navigate(['gym_services/weight_room']);
-    /*const element = document.getElementById("div_weight_room");
-    element.style.display = "none";*/
   }
 
   goToHome(){
@@ -85,24 +91,24 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['about_us']);
   }
 
-  mousedown(element: HTMLDivElement){
-    console.log(element.id);
+  onblur(){
+    document.getElementById("div_services").style.display = "none";
+    document.getElementById("div_user").style.display = "none";
+  }
+
+  mouseup(element: HTMLButtonElement){
     switch(element.id){
-      case "div-services":
-        document.getElementById("div_weight_room2").style.display = "flex";
+      case "btn_services":
+        document.getElementById("div_services").setAttribute("class", "dropdown-content");
         break;
-      case "div-session":
-        console.log(document.getElementById("a_login_user2").innerHTML);
-        if(document.getElementById("a_login_user2").innerHTML!=Strings.LOGIN)
-          document.getElementById("div_logout2").style.display = "flex";
+      case "btn_session":
+        if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN)
+          document.getElementById("div_user").setAttribute("class", "dropdown-content");
+        else 
+          this.session();
         break;
     }
 
-  }
-
-  onblur(){
-    document.getElementById("div_weight_room2").style.display = "none";
-    document.getElementById("div_logout2").style.display = "none";
   }
 
 }

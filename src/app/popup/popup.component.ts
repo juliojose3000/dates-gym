@@ -39,10 +39,8 @@ export class PopupComponent implements OnInit {
         switch(this.code){
             case Codes.LOGOUT:
                 localStorage.setItem("token", null);
-                document.getElementById("a_login_user").innerHTML = Strings.LOGIN;
-                document.getElementById("a_login_user2").innerHTML = Strings.LOGIN;
-                document.getElementById("div_logout").style.display = "none";
-                document.getElementById("div_logout2").style.display = "none";
+                document.getElementById("btn_session").innerHTML = Strings.LOGIN;
+                document.getElementById("div_user").setAttribute("class", "display_none");
                 if(localStorage.getItem("isASocialLogin")=="yes")//Only for social sessions
                     this.socialAuthService.signOut();
                 this.router.navigate(['login']);

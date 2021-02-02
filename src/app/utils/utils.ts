@@ -19,10 +19,8 @@ export class Utils{
 
     goToLoginByExpiredToken(mResponse: MyResponse){
         localStorage.setItem("token", null);
-        document.getElementById("a_login_user").innerHTML = Strings.LOGIN;
-        document.getElementById("a_login_user2").innerHTML = Strings.LOGIN;
+        document.getElementById("btn_session").innerHTML = Strings.LOGIN;
         document.getElementById("div_logout").style.display = "none";
-        document.getElementById("div_logout2").style.display = "none";
 
         this.dialog.open(MessageComponent, {
             data: {
@@ -70,6 +68,33 @@ export class Utils{
             return true;
         }
 
+    }
+
+    getFirstWordFromString(name: string){
+        var firstWord = name.replace(/ .*/,'');
+        return firstWord;
+    }
+
+    //This method returns the brower's width
+    getWidth() {
+        return Math.max(
+          document.body.scrollWidth,
+          document.documentElement.scrollWidth,
+          document.body.offsetWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth
+        );
+    }
+
+    //This method returns the brower's height
+    getHeight() {
+        return Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight
+        );
     }
 
 }

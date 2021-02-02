@@ -6,18 +6,15 @@
 
 //--------------------------------------------------CONTAINER 1 (LOGO AND NAME)--------------------------------------------------//
 
-.logo-container{//Div. Here it shows the gym logo and title (Cachí Fitness Center)
+.div_header{//Div. Here it shows the gym logo and title (Cachí Fitness Center)
   position: relative;
-  //background-color: green;
+  display: flex; 
 }
 
-  .image-flex-img {//Div. Here it storages gym logo
+  .img_imagen {//Div. Here it storages gym logo
       height: 70%; //Logo height
-      margin-top: 2%;
-
       width: 12%;
       min-width: 30px;
-      //background-color: blue;
       float: left;
   }
 
@@ -37,236 +34,152 @@ p{
     font-family: "Berlin Sans FB Demi Bold";
     font-weight: bold;
     font-size:2vw;
-    //margin-top: 1.5vw;
 }
 
 //--------------------------------------------------CONTAINER 2 (NAVBAR)--------------------------------------------------//
 
-.container2{
+.navbar_items{
     width: 50%;
     height: 100%;
     float: right;
-    //background-color: green;
     //Centrar los items
     display: flex;
+    position: absolute;
 }
 
-#container2 ul{
-  //background-color: blue;
+.navbar_items ul{
   display: flex;//align items horizontal
-  height: 100%;
   list-style-type: none;//remove dots on list items
 }
 
-.container2_encabezado{
-  color: white;
-  font-family: "Berlin Sans FB Demi Bold";
-  font-weight: bold;
-  font-size: 1vw;
-  text-decoration: none;
-  margin-left: 1vw;
-  margin-right: 1vw;
-}
-
-#container2 .navbar_items{
-  position: relative;
-  width: 100%;
-  height: 50%;
-
-  //Centro verticalmente los items del navbar en el container 2
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 30px;
-
-  //background-color: blue;
-  //Centrar los items
-  display: flex;
-  justify-content: right;
-  align-items: center;
-}
-
-#container2 .navbar_items ul li{
+.navbar_items ul li{
     text-transform: uppercase;
-    margin-left: 1.5vw; //space beetween navbar options
-    
-}
-
-//--------------------------------------------------CONTAINER 3 (NAVBAR FOR SMALL SCREENS)--------------------------------------------------//
-
-.container3{
-  display: none;
-  width: 100%;
-  //height: 50%; //50 percent of the header height
-  //background-color: red;
-  position: absolute;
-}
-
-#container3 ul{
-  display: flex;//align items horizontal
-  list-style-type: none;//remove dots on list items
-  margin-left: -45px;
-  margin-top: 2%;
-}
-
-
-#container3 .navbar_items{
-  width: 100%;
-
-  //Centrar los items
-  display: flex;
-  justify-content: center; //center content
-  align-items: center; //center of the div
-}
-
-.container3_encabezado{
-  color: white;
-  font-family: "Berlin Sans FB Demi Bold";
-  font-weight: bold;
-  font-size:calc(3px + 1vw);
-  text-decoration: none;
-  margin: 1vw;
-}
-
-.a_session:hover{
-  cursor: pointer;
-}
-
-.p_services{
-  color: white;
-  font-family: "Berlin Sans FB Demi Bold";
-  font-weight: bold;
-  font-size:calc(5px + 1vw);
-  text-decoration: none;
-  margin: 2vw;
-}
-
-.p_services_items{
-  color: white;
-  font-family: "Berlin Sans FB Demi Bold";
-  font-weight: bold;
-  font-size:calc(5px + 2vw);
-  text-decoration: none;
-  margin: 2vw;
-  //background-color: blue;
-}
-
-#container3 .navbar_items ul li{
-  text-transform: uppercase;
-  margin-left: 3vw; //space beetween navbar options
-}
-
-#container3 .dropdown{
-  margin-left: 0;
+    margin-left: 3px;
 }
 
 //-----------------------------------------------DROPDOWN-----------------------------------------------------------//
 
-.dropdown {
-  position: relative;
-  width: 100%;
-  //background-color: blue;
-
-  //Centrar los items
-  display: flex;
-  justify-content: center; //center content
-  align-items: center; //center of the div
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #000000;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-size: 1vw;
+  text-transform: uppercase;
 
   //Borde gris y redondeado
   border-radius: 10px;
   -moz-border-radius: 10px;
-  border: 2px solid rgb(56, 56, 59);
+  //border: 1px solid rgb(56, 56, 59);
+
+  width: 11vw;
+  min-width: 80px;
+  height: 100%;
 }
 
-.dropdown:hover{
-  background-color: rgb(56, 56, 59);
-  cursor: pointer;
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height: 100%;
 }
 
+/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #000000;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  height: 100%;
-  width: 100%;
+  width: 11vw;
+  min-width: 80px;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  background-color: #000000;
+  color: white;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-decoration: none;
+  display: block;
+  margin-top: 2px;
+  font-size: 0.9vw;
 
   //Borde gris y redondeado
   border-radius: 10px;
   -moz-border-radius: 10px;
-  border: 2px solid rgb(56, 56, 59);
-}
+  border: 1px solid rgb(56, 56, 59);
 
-.dropdown-content:hover{
-  background-color: rgb(56, 56, 59);
-  cursor: pointer;
-}
-
-/*.dropdown:hover .dropdown-content {
-  display: flex;
-}*/
-
-.p_services_items{
-  color: white;
-  font-family: "Berlin Sans FB Demi Bold";
-  font-weight: bold;
   text-align: center;
-  margin: auto;
-  //background-color: blue;
 }
 
-.div_border{
-  height: 100%;
-  //background-color: cadetblue;
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover { background-color: rgb(56, 56, 59); cursor: pointer; }
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-.div_border:hover .dropdown-content {
-  display: flex;
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: rgb(56, 56, 59);
+}
+
+//-------------------------------------------------------------------------------------------------------------//@at-root
+
+.display_none{
+  display: none;
 }
 
 //------------------------------------------------------QUERIES------------------------------------------------//
 
-//MOBILE SCREENS
-@media only screen and (max-width: 845px) {
-  #container2 div ul { display: none; }
-  #container3 { display: flex; height: 50%; }
-  #logo-container { width: 60%; margin: auto; height: 50%; /*50 percent of the header height*/ } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
-  .header{ height: 11%; }
-  .p_title{ margin-top: 2vw; font-size: 1vh; margin-left: 35px; } /*Cachi Fitness Center*/
-  .dropdown-content{ margin-top: 70px; /*Distancia entre los elementos de la lita*/  } //Div
-  .image-flex-img {//Div. Here it storages gym logo
-    position: relative; top: 40%; left: 31%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);width: 8%;
-  }
-  .div_title{
-    position: relative; top: 50%; left: 40%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);
-  }
-  .dropdown { height: 60%; /*60 percent of the container 3 height*/ margin-top: 10px; /* It far of the container 3 top */}
-  .p_services_items{font-size:calc(2px + 1vw); /* Text size in dropdown sub-items */}
-
-  .div_border2{ height: 60%; }
-  .div_border2 .dropdown{ height: 100%; }
-}
-
-@media only screen and (max-width: 400px){
-  #logo-container { display: none; } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
-  .header{ height: 7%; }
-  #container3 { bottom: 0; top: 0; margin: auto; }
-}
-
 //PC SCREENS
-@media (min-width: 845px) {
-  #container2 div ul { display: flex; }
-  #container3 { display: none; }
-  #logo-container { width: 50%; float: left; height: 100%; }
-  .image-flex-img{ margin-left: 15%; }
-  .div_title{ width: 60%; }
+@media screen and (max-width: 20000px) {
   .header{ height: 12%; }
-  .p_title{ margin-top: 1vw; }
-  .dropdown-content{ margin-top: 14vh; }
-  .dropdown { height: 100%; }
-  .div_border{ padding-bottom: 15px; }
-  .p_services_items{font-size:calc(0.8vw); /* Text size in dropdown sub-items */}
+    .div_header { width: 50%; float: left; height: 100%; }
+      .div_image_logo{ height: 60%; width: 15%; position: relative; margin: auto; margin-right: 0; margin-left: 3%; } 
+        .img_imagen{ height: 100%; width: 100%; }
+      .div_title{ width: 60%; }
+        .p_title{ margin-top: 1vw; }
+
+    .navbar_items { right: 0; } 
+      ul{ padding: 0px; margin: 0; height: 70%; margin: auto; }
 }
+
+//MOBILE SCREENS
+@media (max-width: 845px) {
+  .header{ height: 11%; }
+    
+    .div_header { width: 100%; margin: auto; height: 50%; /*50 percent of the header height*/ } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
+      .div_image_logo{ width: 40%; position: relative; } 
+        .img_imagen { position: relative; float: right; width: 10%; } /*Div. Here it storages gym logo*/ 
+      .div_title{ width: 60%; position: relative; }
+        .p_title{ margin-top: 2vw; font-size: 1vh; } /*Cachi Fitness Center*/
+
+    .navbar_items { height: 50%; width: 100%; bottom: 0; } 
+        ul{ position: relative; left: 0; margin: auto; padding: 0px; }
+          li{ margin-left: 2vw; }
+            .dropdown { height: 100%; /*60 percent of the container 3 height*/ }
+              .dropbtn{ font-size: 2vw; width: 11vw; }
+              .dropdown-content a{ font-size: 1.8vw; padding-top: 8px; padding-bottom: 8px; }
+}
+
+//SMALL MOBILE SCREENS
+@media (max-width: 400px){
+  .header{ height: 7%; }
+    .div_header{ display: none; } 
+  
+    .navbar_items{ height: 70%; position: absolute; margin: auto; bottom: 0; top: 0; }
+      ul{ height: 100%; }
+        .dropbtn{ font-size: 10px; width: 11vw; }
+        .dropdown-content a{ font-size: 8px; }
+    
+    
+}
+
 
 //Horizontal Movil View
 @media screen and (orientation: landscape) and (max-height: 640px){
