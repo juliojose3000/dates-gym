@@ -56,8 +56,8 @@ export class HeaderComponent implements OnInit {
       }); 
 
     }else{
-      document.getElementById("a_session").innerHTML = Strings.LOGIN;
       document.getElementById("btn_session").innerHTML = Strings.LOGIN;
+      document.getElementById("div_user").setAttribute("class", "display_none");
       this.router.navigate(['login']);
     }
   }
