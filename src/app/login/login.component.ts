@@ -182,7 +182,7 @@ export class LoginComponent implements OnInit {
     localStorage.setItem("token", "Bearer "+mResponse.token);
     localStorage.setItem("email", this.user.email);
     localStorage.setItem("userId", ""+this.user.id);
-    localStorage.setItem("user_name", ""+this.user.name);
+    localStorage.setItem("user_name", ""+this.utils.getFirstWordFromString(this.user.name));
   }
 
   haveUserFillTheInputs(action: string){
@@ -216,7 +216,7 @@ export class LoginComponent implements OnInit {
       console.log(social_user);
 
       if(!this.isASocialLogin && social_user != null){
-        this.user = new User(social_user.email, social_user.firstName, "Not Registered", social_user.id, 0);
+        this.user = new User(social_user.email, social_user.name, "Not Registered", social_user.id, 0);
         this.socialSignIn(this.user);
         this.isASocialLogin = true;
         localStorage.setItem("isASocialLogin", this.isASocialLogin==true?"yes":"no");
@@ -287,11 +287,7 @@ export class LoginComponent implements OnInit {
     this.saveUserSessionData(mResponse);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
-    document.getElementById("a_session2").innerHTML = Strings.LOGOUT;
-    document.getElementById("a_login_user").innerHTML = localStorage.getItem("user_name");
-    document.getElementById("a_login_user2").innerHTML = localStorage.getItem("user_name");
-    document.getElementById("div_logout").style.display = "";
-    document.getElementById("div_logout2").style.display = "";
+    document.getElementById("btn_session").innerHTML = localStorage.getItem("user_name");
   }
 
   checkPasswordStrength(password: string) {

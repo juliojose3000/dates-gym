@@ -51,10 +51,10 @@ img{
 /* Caption text */
 .text {
   color: #f2f2f2;
-  font-size: 13px;
+  font-size: 1vw;
   padding: 8px 12px;
   position: absolute;
-  top: -45px;
+  top: -55px;
   width: 100%;
   text-align: center;
 }
@@ -113,7 +113,8 @@ img{
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
-  .slideshow-container{ top: 30%; }
+  .slideshow-container{ top: 35%; }
+  .text{ font-size: 13px; }
   h1{ font-size: 17px; }
 }
 
