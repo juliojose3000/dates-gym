@@ -1,9 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { HeaderComponent } from '../header/header.component';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Shift } from '../model/shift.model';
@@ -20,7 +17,6 @@ export class Utils{
     goToLoginByExpiredToken(mResponse: MyResponse){
         localStorage.setItem("token", null);
         document.getElementById("btn_session").innerHTML = Strings.LOGIN;
-        document.getElementById("div_logout").style.display = "none";
 
         this.dialog.open(MessageComponent, {
             data: {

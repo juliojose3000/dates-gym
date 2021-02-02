@@ -91,11 +91,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['about_us']);
   }
 
-  onblur(){
-    document.getElementById("div_services").style.display = "none";
-    document.getElementById("div_user").style.display = "none";
-  }
-
   mouseup(element: HTMLButtonElement){
     switch(element.id){
       case "btn_services":
