@@ -408,4 +408,8 @@ export class LoginComponent implements OnInit {
     return this.phone.length==8 && /^\d+$/.test(this.phone);
   }
 
+  goToPasswordForgotten(){
+    this.router.navigate(['password_forgotten']);
+  }
+
 }
