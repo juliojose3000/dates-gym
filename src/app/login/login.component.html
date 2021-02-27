@@ -12,7 +12,7 @@
                 <span>O usa tu cuenta</span>
                 <input [(ngModel)]="login_email" name="login_email" type="email" placeholder="Correo" />
                 <input [(ngModel)]="login_password" name="login_password" type="password" placeholder="Contraseña" />
-                <a href="#" class="passwordForgotten" >¿Olvidaste tu contraseña?</a>
+                <a (click)="goToPasswordForgotten()" class="passwordForgotten" >¿Olvidaste tu contraseña?</a>
                 <button (click)="login()">Iniciar sesión</button>
                 <p id="pSignUp" class="p_sign">O regístrate aquí</p>
             </form>

@@ -48,6 +48,9 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
 
 //Environments
 import { environment } from '../environments/environment';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { environment } from '../environments/environment';
     MessageComponent,
     LoginComponent,
     SpinnerComponent,
-    AboutusComponent
+    AboutusComponent,
+    UserProfileComponent,
+    PasswordForgottenComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

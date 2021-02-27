@@ -19,7 +19,11 @@ export const Strings={
   SIGN_UP_NULL_SPACES: "Debe rellenar los campos para poder registrarse",
   IT_IS_NOT_A_STRONG_PASSWORD: "La contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
   IT_IS_NOT_A_VALID_EMAIL: "El correo ingresado no es un correo válido. Por favor ingrese un correo válido",
-  IT_IS_NOT_A_VALID_PHONE: "El número de teléfono ingresado no es un válido. Por favor ingrese un número válido"
+  IT_IS_NOT_A_VALID_PHONE: "El número de teléfono ingresado no es un válido. Por favor ingrese un número válido",
+  ENTERS_AN_EMAIL: "Por favor, ingrese un correo electrónico para proceder",
+  ENTERS_A_VALID_EMAIL: "El correo ingresado no es un correo válido",
+  PASSWORDS_NEED_TO_BE_EQUALS: "Las contraseñas tienen que ser las mismas",
+  FILL_INPUTS: "Debe rellenar todos los espacios para poder continuar"
 }
 
 export const CSS_CLASSES={
