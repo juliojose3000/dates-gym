@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   social_user: SocialUser;
   isASocialLogin: boolean = false;
-  isAStrongPassword: boolean = false;
+
 
   constructor(
     private userService: UserService, 
@@ -137,12 +137,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if(!this.isAStrongPassword){
+    if(!this.utils.checkPasswordStrength(this.password)){
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
       return;
     }
 
-    if(!this.checkEmail()){// If the email enters is not valid
+    if(!this.utils.validateEmail(this.email)){// If the email enters is not valid
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_EMAIL } }); 
       return;
     }
@@ -290,77 +290,6 @@ export class LoginComponent implements OnInit {
     document.getElementById("btn_session").innerHTML = localStorage.getItem("user_name");
   }
 
-  checkPasswordStrength(password: string) {
-    //if textBox is empty
-    if(password==""){
-      document.getElementById("password_point").setAttribute("src","../../assets/img/point_gray.png");
-      return;
-    }
-
-    //Regular Expressions
-    var regex = new Array();
-    regex.push("[A-Z]"); //For Uppercase Alphabet
-    regex.push("[a-z]"); //For Lowercase Alphabet
-    regex.push("[0-9]"); //For Numeric Digits
-    regex.push("[$@$!%*#?&]"); //For Special Characters
-
-    var passed = 0;
-
-    //Validation for each Regular Expression
-    for (var i = 0; i < regex.length; i++) {
-        if((new RegExp (regex[i])).test(password)){
-            passed++;
-        }
-    }
-
-    //Validation for Length of Password
-    if(passed > 2 && password.length > 8){
-        passed++;
-    }
-
-    //Display of Status
-    var color = "";
-    var passwordStrength = "";
-    switch(passed){
-        case 0:
-          break;
-
-        case 1:
-          passwordStrength = "Password is Weak.";
-          this.isAStrongPassword = false;
-          color = "Red";
-          document.getElementById("password_point").setAttribute("src","../../assets/img/bad_input.png");
-          break;
-          
-        case 2:
-            break;
-
-        case 3:
-          passwordStrength = "Password is Good.";
-          this.isAStrongPassword = true;
-          color = "yellow";
-          document.getElementById("password_point").setAttribute("src","../../assets/img/point_yellow.png");
-          break;
-
-        case 4:
-          break;
-
-        case 5:
-          this.isAStrongPassword = true;
-          passwordStrength = "Password is Strong.";
-          color = "Green";
-          document.getElementById("password_point").setAttribute("src","../../assets/img/right_input.png");
-          break;
-    }
-  }
-
-  checkEmail(): boolean{
-
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    return re.test(String(this.email).toLowerCase());
-    
-  }
 
   keyupEvent(el: HTMLInputElement){
 
@@ -377,7 +306,7 @@ export class LoginComponent implements OnInit {
         break;
 
       case "email":
-        if(this.checkEmail())
+        if(this.utils.validateEmail(this.email))
           document.getElementById("email_point").setAttribute("src","../../assets/img/right_input.png");
         else if(value=="")
           document.getElementById("email_point").setAttribute("src","../../assets/img/point_gray.png");
@@ -387,7 +316,7 @@ export class LoginComponent implements OnInit {
 
 
       case "password":
-        this.checkPasswordStrength(value);
+        this.utils.checkPasswordStrength(value);
         break;
 
 
