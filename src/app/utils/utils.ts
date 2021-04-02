@@ -144,8 +144,6 @@ export class Utils {
         var passwordStrength = "";
         switch (passed) {
             case 0:
-                break;
-
             case 1:
                 passwordStrength = "Password is Weak.";
                 this.isAStrongPassword = false;
@@ -154,8 +152,6 @@ export class Utils {
                 break;
 
             case 2:
-                break;
-
             case 3:
                 passwordStrength = "Password is Good.";
                 this.isAStrongPassword = true;
@@ -164,8 +160,6 @@ export class Utils {
                 break;
 
             case 4:
-                break;
-
             case 5:
                 this.isAStrongPassword = true;
                 passwordStrength = "Password is Strong.";

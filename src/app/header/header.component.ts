@@ -40,9 +40,9 @@ export class HeaderComponent implements OnInit {
   }
 
   session(){
-    if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN) return;
+    if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN) return;//If there isn't a user session, so don't show anything
 
-    if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//The user have a live session, so user logout its session
+    if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//Show logout popup
 
       //Invalid credentials
       this.dialog.open(PopupComponent, {
@@ -104,6 +104,18 @@ export class HeaderComponent implements OnInit {
         break;
     }
 
+  }
+
+  mouseover(element: HTMLButtonElement){
+    switch(element.id){
+      case "btn_services":
+        document.getElementById("div_services").setAttribute("class", "dropdown-content");
+        break;
+      case "btn_session":
+        if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN)
+          document.getElementById("div_user").setAttribute("class", "dropdown-content");
+        break;
+    }
   }
 
 }
