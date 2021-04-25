@@ -37,7 +37,7 @@
             <li>
 
                 <div class="dropdown">
-                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)">Servicios</button>
+                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Servicios</button>
                     <div id="div_services" class="dropdown-content">
                         <a (click)="goToWeightRoom()">Sala de Pesas</a>
                     </div>
@@ -48,10 +48,10 @@
             <li>     
 
                 <div class="dropdown">
-                    <button id="btn_session" class="dropbtn" (mouseup)="mouseup($event.target)"></button>
+                    <button id="btn_session" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)"></button>
                     <div id="div_user" class="dropdown-content">
+                        <a (click)="goToUserProfile()">Perfil</a>
                         <a (click)="logout()" id="a_session"></a>
-                        <a href="#">Perfil</a>
                     </div>
                 </div>
 

@@ -31,4 +31,8 @@ export class UserService {
     return this.http.post(this.url+'/reset-password', resetPassword);
   }
 
+  updateProfile(user: User){
+    return this.http.post(this.url+'/update_user_profile', user);
+  }
+
 }

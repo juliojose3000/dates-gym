@@ -7,6 +7,7 @@ import { WeightRoomComponent } from './weight-room/weight-room.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: "gym_services/weight_room", component: WeightRoomComponent },
   { path: "about_us", component: AboutusComponent },
   { path: "password_forgotten", component: PasswordForgottenComponent },
-  { path: "reset_password", component: ResetPasswordComponent}
+  { path: "reset_password", component: ResetPasswordComponent},
+  { path: "user_profile", component: UserProfileComponent}
 ];
 
 @NgModule({

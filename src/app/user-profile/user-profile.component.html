@@ -1,1 +1,37 @@
-<p>user-profile works!</p>
+<div class="main_div">
+
+    <div class="second_div">
+
+        <h1 class="h1_title">Tu Perfil</h1>
+
+        <span class="span_text">Nombre: </span>
+        <div class="div_input_sign_up">
+            <input id="name_input" [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (input)="keyupEvent($event.target)"/>
+            <img id="name_point" class="default_point" src="../../assets/img/point_gray.png">
+        </div>
+
+        <span class="span_text">Correo: </span><br>
+        <div class="div_input_sign_up">
+            <input id="email_input" [(ngModel)]="email" name="email" type="email" placeholder="Correo" (input)="keyupEvent($event.target)"/>
+            <img id="email_point" class="default_point" src="../../assets/img/point_gray.png">
+        </div>  
+
+        <span class="span_text">Teléfono: </span><br>
+        <div class="div_input_sign_up">
+            <input id="phone_input" [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)"/>
+            <img id="phone_point" class="default_point" src="../../assets/img/point_gray.png">
+        </div>
+
+        <span class="span_text">Contraseña: </span><br>
+        <div class="div_input_sign_up">
+            <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
+            <img id="password_point" class="default_point" src="../../assets/img/point_gray.png">
+        </div>
+        
+    </div>
+
+    <div class="divButton">
+        <button class="button" (click)="updateUserProfile()"> Actualizar datos </button>
+    </div>
+
+</div>

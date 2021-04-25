@@ -147,12 +147,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if(!this.isAValidPhoneNumber()){
+    if(!this.utils.isAValidPhoneNumber(this.phone)){
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_PHONE } }); 
       return;
     }
 
-    this.user = new User(this.email, this.name, this.phone, this.password);
+    this.user = new User(0, this.email, this.name, this.phone, this.password);
 
     this.spinnerService.requestStarted();
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
@@ -175,14 +175,6 @@ export class LoginComponent implements OnInit {
       this.utils.showErrorMessage();
     });
 
-  }
-
-  saveUserSessionData(mResponse: MyResponse){
-    this.user = mResponse.data as User;
-    localStorage.setItem("token", "Bearer "+mResponse.token);
-    localStorage.setItem("email", this.user.email);
-    localStorage.setItem("userId", ""+this.user.id);
-    localStorage.setItem("user_name", ""+this.utils.getFirstWordFromString(this.user.name));
   }
 
   haveUserFillTheInputs(action: string){
@@ -216,7 +208,7 @@ export class LoginComponent implements OnInit {
       console.log(social_user);
 
       if(!this.isASocialLogin && social_user != null){
-        this.user = new User(social_user.email, social_user.name, "Not Registered", social_user.id, 0);
+        this.user = new User(social_user.id as unknown as number, social_user.name, "Not Registered", social_user.id);
         this.socialSignIn(this.user);
         this.isASocialLogin = true;
         localStorage.setItem("isASocialLogin", this.isASocialLogin==true?"yes":"no");
@@ -284,10 +276,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginSuccesful(mResponse: MyResponse){
-    this.saveUserSessionData(mResponse);
+    this.utils.saveUserSessionData(mResponse);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
-    document.getElementById("btn_session").innerHTML = localStorage.getItem("user_name");
+    document.getElementById("btn_session").innerHTML = this.utils.getFirstWordFromString(localStorage.getItem("user_name"));
   }
 
 
@@ -321,7 +313,7 @@ export class LoginComponent implements OnInit {
 
 
       case "phone":
-        if(this.isAValidPhoneNumber())
+        if(this.utils.isAValidPhoneNumber(this.phone))
           document.getElementById("phone_point").setAttribute("src","../../assets/img/right_input.png");
         else if(value=="")
           document.getElementById("phone_point").setAttribute("src","../../assets/img/point_gray.png");
@@ -331,10 +323,6 @@ export class LoginComponent implements OnInit {
 
     }
 
-  }
-
-  isAValidPhoneNumber(): boolean{
-    return this.phone.length==8 && /^\d+$/.test(this.phone);
   }
 
   goToPasswordForgotten(){
