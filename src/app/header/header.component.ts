@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
       
     
     if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session
-      login_user.innerHTML = localStorage.getItem("user_name");
+      login_user.innerHTML = this.utils.getFirstWordFromString(localStorage.getItem("user_name"));
       session.innerHTML = Strings.LOGOUT;
     }else{
       document.getElementById("div_user").setAttribute("class", "display_none");
@@ -85,6 +85,11 @@ export class HeaderComponent implements OnInit {
 
   goToHome(){
     this.router.navigate(['home']);
+  }
+
+  goToUserProfile(){
+    this.router.navigate(['user_profile']);
+    document.getElementById("div_user").setAttribute("class", "display_none");
   }
 
   aboutUs(){

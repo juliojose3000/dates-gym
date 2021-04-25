@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MessageComponent } from '../message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Shift } from '../model/shift.model';
+import { User } from '../model/user.model';
 import { DAYS_NAME, MONTHS_NAME, Strings } from '../resources/resources';
 
 @Injectable()
@@ -171,5 +172,23 @@ export class Utils {
         return this.isAStrongPassword;
 
     }
+
+    isAValidPhoneNumber(phone: string): boolean {
+        return phone.length == 8 && /^\d+$/.test(phone);
+    }
+
+    getUserId(): number{
+        return (localStorage.getItem('userId') as unknown) as number;
+    }
+
+    saveUserSessionData(mResponse: MyResponse){
+        var user = mResponse.data as User;
+        console.log(user);
+        localStorage.setItem("token", "Bearer "+mResponse.token);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("user_id", ""+user.id);
+        localStorage.setItem("user_name", ""+user.name);
+        localStorage.setItem("user_phoneNumber", user.phoneNumber);
+      }
 
 }
