@@ -93,6 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   aboutUs(){
+    console.log("Header - Se ha Oprimido el botón about us");
     this.router.navigate(['about_us']);
   }
 

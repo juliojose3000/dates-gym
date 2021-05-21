@@ -16,6 +16,7 @@ import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
 import { environment_variables } from 'src/environments/environment.variables';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -95,7 +96,7 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-
+    console.log("LoginComponent - Login Method starts...");
     if(!this.haveUserFillTheInputs("sign_in")){
       this.dialog.open(MessageComponent, {
         data: {
@@ -123,7 +124,8 @@ export class LoginComponent implements OnInit {
           }); 
         }
       },
-      (error) => {//Error callback
+      (error: HttpErrorResponse) => {//Error callback
+        console.log("LoginComponent - LoginMethod Error: "+error.message);
         this.spinnerService.resetSpinner();
         this.utils.showErrorMessage();
       }

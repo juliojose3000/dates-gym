@@ -26,6 +26,7 @@ export class AuthenticationService {
   }
 
   authenticate(authentication: Authentication){
+    console.log("AuthenticationService - Authenticate Method > "+authentication)
     return this.http.post<any>(this.url+'/authenticate', authentication);
   }
 
