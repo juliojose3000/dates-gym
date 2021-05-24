@@ -46,3 +46,6 @@ testem.log
 Thumbs.db
 debug.log
 *.cache
+
+# Android
+/android

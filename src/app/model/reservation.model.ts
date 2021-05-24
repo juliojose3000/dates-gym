@@ -17,4 +17,8 @@ export class Reservation{
         this.shiftStartHour = shiftStartHour;
     }
 
+    toString(){
+        return 'Reservation [ User = '+ this.user.toString() + ', ShiftDate = ' + this.shiftDate + ', ShiftStarHour = ' + this.shiftStartHour+' ]';
+    }
+
 }

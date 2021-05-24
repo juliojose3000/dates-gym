@@ -68,7 +68,7 @@ export class ReservationPopupComponent implements OnInit {
     submit(){
         this.reservation = new Reservation(new User(this.utils.getUserId()), this.dateString, this.startHour);
         this.spinnerService.requestStarted();
-        console.log(this.reservation);
+        console.log(this.reservation.toString());
         if(this.method=="reservate")
             this.reserveService.make(this.reservation, localStorage.getItem('token')).toPromise().then((mResponse: MyResponse)=>{
                 this.closeDialog(mResponse);
