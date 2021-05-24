@@ -178,12 +178,12 @@ export class Utils {
     }
 
     getUserId(): number{
-        return (localStorage.getItem('userId') as unknown) as number;
+        return (localStorage.getItem('user_id') as unknown) as number;
     }
 
     saveUserSessionData(mResponse: MyResponse){
         var user = mResponse.data as User;
-        console.log(user);
+        console.log(user.toString());
         localStorage.setItem("token", "Bearer "+mResponse.token);
         localStorage.setItem("email", user.email);
         localStorage.setItem("user_id", ""+user.id);
