@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
     if(environment_variables.quickpass){
-      this.email = environment_variables.email;
-      this.password = environment_variables.password;
+      this.login_email = environment_variables.email;
+      this.login_password = environment_variables.password;
     }
 
     this.codigojs();

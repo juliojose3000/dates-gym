@@ -17,4 +17,8 @@ export class MyResponse{
         this.data = data;
     }
 
+    toString(){
+        return 'MyResponse [ IsSuccessful = '+ this.isSuccessful + ', Title = ' + this.title + ', Description = ' + this.description + ', Code = ' + this.code + ', Token = ' + this.token + ', Data = ' + this.data.toString() + ' ]';
+    }
+
 }

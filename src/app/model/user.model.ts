@@ -14,4 +14,8 @@ export class User{
         this.password = password;
     }
 
+    toString(){
+        return 'User [ Id = '+ this.id + ', Name = ' + this.name + ', PhoneNumber = ' + this.phoneNumber + ', Email = ' + this.email + ', Password = ' + this.password + ' ]';
+    }
+
 }

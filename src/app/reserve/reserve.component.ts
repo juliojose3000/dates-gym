@@ -13,6 +13,7 @@ import { Codes, Strings, CSS_CLASSES, DAYS_NAME, MONTHS_NAME, TIME_ZONES } from 
 import { NgStyle } from '@angular/common';
 import { SpinnerService } from '../spinner/spinner.service';
 import { environment } from 'src/environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-reserve',
@@ -40,7 +41,7 @@ export class ReserveComponent implements OnInit {
     this.spinnerService.requestStarted();
     this.scheduleService.get(localStorage.getItem('token')).subscribe((mResponse: MyResponse)=>{ 
 
-      console.log(mResponse);
+      console.log(mResponse.toString());
 
       this.spinnerService.resetSpinner(); 
       if(mResponse.code==Codes.TOKEN_EXPIRED){
@@ -65,7 +66,7 @@ export class ReserveComponent implements OnInit {
           //Busco si algun espacio ha sido reservado por el usuario actual
           shifts.forEach(function(shift){
             shift.clients.forEach(function(client){
-              if(String(client.id) == localStorage.getItem('userId')){
+              if(String(client.id) == localStorage.getItem('user_id')){
                 shift.cssClass = "cell_reserved"; 
               }
             });
@@ -73,7 +74,8 @@ export class ReserveComponent implements OnInit {
         });//end busqueda
       }//else
     },
-    (error) => {//Error callback
+    (error: HttpErrorResponse) => {//Error callback
+      console.log(error.message);
       this.spinnerService.resetSpinner();
       this.utils.showErrorMessage()
     });
