@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -20,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   public phone: string;
   public email:string;
   public password: string;
+  public confirmPassword: string;
 
   private user: User;
 
@@ -52,7 +54,7 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
-    if(!this.utils.checkPasswordStrength(this.password)){
+    if(this.password != undefined && !this.utils.checkPasswordStrength(this.password)){
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
       return;
     }
@@ -67,7 +69,14 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
+    if(this.password!=this.confirmPassword){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.PASSWORDS_NEED_TO_BE_EQUALS } }); 
+      return;
+    }
+
     this.user = new User(this.utils.getUserId(), this.email, this.name, this.phone, this.password);
+
+    console.log(this.user.toString());
 
     this.spinnerService.requestStarted();
     this.userService.updateProfile(this.user).subscribe((mResponse: MyResponse) => {
@@ -85,9 +94,10 @@ export class UserProfileComponent implements OnInit {
       });          
       
     },
-    (error) => {//Error callback
+    (error: HttpErrorResponse) => {//Error callback
       this.spinnerService.resetSpinner();
       this.utils.showErrorMessage();
+      console.log(error.message);
     });
 
   }
@@ -120,6 +130,13 @@ export class UserProfileComponent implements OnInit {
         this.utils.checkPasswordStrength(value);
         break;
 
+      case "confirm_password":
+        if(this.password==this.confirmPassword)
+          document.getElementById("confirm_password_point").setAttribute("src","../../assets/img/right_input.png");
+        else
+          document.getElementById("confirm_password_point").setAttribute("src","../../assets/img/bad_input.png");
+        break;
+
 
       case "phone":
         if(this.utils.isAValidPhoneNumber(this.phone))
@@ -140,6 +157,10 @@ export class UserProfileComponent implements OnInit {
         return true;
       else
         return false;
+  }
+
+  showPassword(inputId: string, eyeIconId: string){
+    this.utils.showPassword(inputId, eyeIconId);   
   }
 
 

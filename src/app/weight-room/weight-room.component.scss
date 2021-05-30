@@ -12,7 +12,7 @@
     background-color: rgba(14, 14, 78, 0.548);
 
     position: absolute;
-    margin-top: 11rem;
+    top: 30%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -40,7 +40,7 @@
   .divButton{
     //background-color: blue;
     position: absolute;
-    margin-top: 25rem;
+    top: 25rem;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -80,4 +80,6 @@
 //MOBILE SCREENS
 @media (max-width: 845px) {
   .p_weight_room_description{margin-left: 2%;}
+  .second_div{top:40%}
+  .divButton{top:85%}
 }

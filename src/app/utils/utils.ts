@@ -189,6 +189,23 @@ export class Utils {
         localStorage.setItem("user_id", ""+user.id);
         localStorage.setItem("user_name", ""+user.name);
         localStorage.setItem("user_phoneNumber", user.phoneNumber);
+    }
+
+    showPassword(inputId: string, eyeIconId: string){
+    
+        var inputType = document.getElementById(inputId).getAttribute("type");
+        var eyeClass;
+    
+        if(inputType=="password"){
+          document.getElementById(inputId).setAttribute("type","text");
+          eyeClass = "fa fa-eye";
+        } else{
+          document.getElementById(inputId).setAttribute("type","password");
+          eyeClass = "fa fa-eye-slash";
+        }
+    
+        document.getElementById(eyeIconId).setAttribute("class", eyeClass);
+          
       }
 
 }

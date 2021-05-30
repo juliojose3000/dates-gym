@@ -9,6 +9,10 @@ h1{
 }
 
 .pRegister{
-    width: 350px;
     align-items: center;
+    text-align: center;
+}
+
+.pClass{
+    text-align: center;
 }

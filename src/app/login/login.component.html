@@ -11,7 +11,10 @@
                 </div>
                 <span>O usa tu cuenta</span>
                 <input [(ngModel)]="login_email" name="login_email" type="email" placeholder="Correo" />
-                <input [(ngModel)]="login_password" name="login_password" type="password" placeholder="Contraseña" />
+                <div class="div_password">
+                    <input [(ngModel)]="login_password" id="loginPassword" name="login_password" type="password" placeholder="Contraseña" />
+                    <div id="div_eye" (click)="showPassword('loginPassword', 'eyeIconPassword')" class="div_eye"><span class="input-group-text"><i id="eyeIconPassword" class="fa fa-eye-slash"></i></span></div>
+                </div>
                 <a (click)="goToPasswordForgotten()" class="passwordForgotten" >¿Olvidaste tu contraseña?</a>
                 <button (click)="login()">Iniciar sesión</button>
                 <p id="pSignUp" class="p_sign">O regístrate aquí</p>
@@ -39,7 +42,10 @@
                 </div>  
 
                 <div class="div_input_sign_up">
-                    <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
+                    <div class="div_password">
+                        <input [(ngModel)]="password" id="signUpPassword" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
+                        <div (click)="showPassword('signUpPassword', 'eyeIconSignUpPassword')" class="div_eye"><span class="input-group-text"><i id="eyeIconSignUpPassword" class="fa fa-eye-slash"></i></span></div>
+                    </div>  
                     <img id="password_point" class="default_point" src="../../assets/img/point_gray.png">
                 </div>
 

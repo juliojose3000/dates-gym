@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,36 +24,40 @@ export class PasswordForgottenComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  click(){
-
-    if(this.email==undefined) {
+  click() {
+    if (this.email == undefined) {
       this.dialog.open(MessageComponent, {
         data: {
-            title: Strings.ERROR,
-            message: Strings.ENTERS_AN_EMAIL
+          title: Strings.ERROR,
+          message: Strings.ENTERS_AN_EMAIL
         }
-      }); 
+      });
       return;
     }
 
-    if(!this.utils.validateEmail(this.email)) {
+    if (!this.utils.validateEmail(this.email)) {
       this.dialog.open(MessageComponent, {
         data: {
-            title: Strings.ERROR,
-            message: Strings.ENTERS_A_VALID_EMAIL
+          title: Strings.ERROR,
+          message: Strings.ENTERS_A_VALID_EMAIL
         }
-      }); 
+      });
       return;
     }
 
     this.spinnerService.requestStarted();
-    this.userService.sendLinkResetPassword(this.email).toPromise().then((mResponse: MyResponse)=>{
+    this.userService.sendLinkResetPassword(this.email).toPromise().then((mResponse: MyResponse) => {
       this.spinnerService.resetSpinner();
-      document.getElementById("div_form").style.display = "none";
-      document.getElementById("p_description").style.display = "block";
-    },(mResponse: MyResponse) => {
+      if (mResponse.isSuccessful) {
+        document.getElementById("div_form").style.display = "none";
+        document.getElementById("p_description").style.display = "block";
+      }else{
+        this.utils.showErrorMessageWithDescription(mResponse.description)
+      }
+    }, (error: HttpErrorResponse) => {
       this.spinnerService.resetSpinner();
-      this.utils.showErrorMessageWithDescription(mResponse.description)
+      this.utils.showErrorMessage();
+      console.log(error.message);
     });
 
   }

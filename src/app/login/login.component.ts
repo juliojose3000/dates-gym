@@ -60,6 +60,11 @@ export class LoginComponent implements OnInit {
     if(environment_variables.quickpass){
       this.login_email = environment_variables.email;
       this.login_password = environment_variables.password;
+
+      this.email = environment_variables.email;
+      this.name = environment_variables.name;
+      this.phone = environment_variables.phone;
+      this.password = environment_variables.password;
     }
 
     this.codigojs();
@@ -329,6 +334,10 @@ export class LoginComponent implements OnInit {
 
   goToPasswordForgotten(){
     this.router.navigate(['password_forgotten']);
+  }
+
+  showPassword(inputId: string, eyeIconId: string){
+    this.utils.showPassword(inputId, eyeIconId);   
   }
 
 }

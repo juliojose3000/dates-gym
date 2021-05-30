@@ -6,32 +6,47 @@
 
         <span class="span_text">Nombre: </span>
         <div class="div_input_sign_up">
-            <input id="name_input" [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (input)="keyupEvent($event.target)"/>
+            <input id="name_input" [(ngModel)]="name" name="name" type="text" placeholder="Nombre"
+                (input)="keyupEvent($event.target)" />
             <img id="name_point" class="default_point" src="../../assets/img/point_gray.png">
         </div>
 
         <span class="span_text">Correo: </span><br>
         <div class="div_input_sign_up">
-            <input id="email_input" [(ngModel)]="email" name="email" type="email" placeholder="Correo" (input)="keyupEvent($event.target)"/>
+            <input id="email_input" [(ngModel)]="email" name="email" type="email" placeholder="Correo"
+                (input)="keyupEvent($event.target)" />
             <img id="email_point" class="default_point" src="../../assets/img/point_gray.png">
-        </div>  
+        </div>
 
         <span class="span_text">Teléfono: </span><br>
         <div class="div_input_sign_up">
-            <input id="phone_input" [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)"/>
+            <input id="phone_input" [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono"
+                (input)="keyupEvent($event.target)" />
             <img id="phone_point" class="default_point" src="../../assets/img/point_gray.png">
         </div>
 
-        <span class="span_text">Contraseña: </span><br>
+        <span class="span_text">Nueva contraseña: </span><br>
         <div class="div_input_sign_up">
-            <input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
+            <input [(ngModel)]="password" id="inputPassword" name="password" type="password" placeholder="Contraseña"
+                (input)="keyupEvent($event.target)" />
+            <div (click)="showPassword('inputPassword', 'eyeIconPassword')" class="div_eye"><span
+                    class="input-group-text"><i id="eyeIconPassword" class="fa fa-eye-slash"></i></span></div>
             <img id="password_point" class="default_point" src="../../assets/img/point_gray.png">
         </div>
-        
-    </div>
 
-    <div class="divButton">
-        <button class="button" (click)="updateUserProfile()"> Actualizar datos </button>
+        <span class="span_text">Confirmar nueva contraseña: </span><br>
+        <div class="div_input_sign_up">
+            <input [(ngModel)]="confirmPassword" id="inputConfirmPassword" name="confirm_password" type="password"
+                placeholder="Confirmar contraseña" (input)="keyupEvent($event.target)" />
+            <div (click)="showPassword('inputConfirmPassword', 'eyeIconConfirmPassword')" class="div_eye"><span
+                    class="input-group-text"><i id="eyeIconConfirmPassword" class="fa fa-eye-slash"></i></span></div>
+            <img id="confirm_password_point" class="default_point" src="../../assets/img/point_gray.png">
+        </div>
+
+        <div class="divButton">
+            <button class="button" (click)="updateUserProfile()"> Actualizar datos </button>
+        </div>
+
     </div>
 
 </div>

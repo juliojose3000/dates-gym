@@ -8,7 +8,7 @@ export const Strings={
   RESERVATE_SPACE:"Está seguro que desea reservar este espacio",
   CANCEL_RESERVATION: "Está seguro que desea cancelar la reservación en este espacio",
   ERROR:"Operación fallida",
-  ERROR_DESCRIPTION: "Ha ocurrido un error inésperado, intente de nuevo más tarde",
+  ERROR_DESCRIPTION: "Ha ocurrido un error inésperado, intente de nuevo más tarde.",
   LOGIN:"Iniciar Sesión",
   LOGOUT: "Cerrar Sesión",
   LOGOUT_MESSAGE: "¿Está seguro que deseas cerrar la sesión?",
