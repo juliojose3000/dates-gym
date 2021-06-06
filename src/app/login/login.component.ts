@@ -144,7 +144,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if(!this.utils.checkPasswordStrength(this.password)){
+    if(!this.utils.checkPasswordStrength(this.password, "password_point")){
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
       return;
     }
@@ -315,7 +315,7 @@ export class LoginComponent implements OnInit {
 
 
       case "password":
-        this.utils.checkPasswordStrength(value);
+        this.utils.checkPasswordStrength(value, "password_point");
         break;
 
 

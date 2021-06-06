@@ -112,10 +112,10 @@ export class Utils {
         return re.test(String(email).toLowerCase());
     }
 
-    checkPasswordStrength(password: string): boolean {
+    checkPasswordStrength(password: string, passwordPointId: string): boolean {
         //if textBox is empty
         if (password == "") {
-            document.getElementById("password_point").setAttribute("src", "../../assets/img/point_gray.png");
+            document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/point_gray.png");
             return;
         }
 
@@ -149,7 +149,7 @@ export class Utils {
                 passwordStrength = "Password is Weak.";
                 this.isAStrongPassword = false;
                 color = "Red";
-                document.getElementById("password_point").setAttribute("src", "../../assets/img/bad_input.png");
+                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/bad_input.png");
                 break;
 
             case 2:
@@ -157,7 +157,7 @@ export class Utils {
                 passwordStrength = "Password is Good.";
                 this.isAStrongPassword = true;
                 color = "yellow";
-                document.getElementById("password_point").setAttribute("src", "../../assets/img/point_yellow.png");
+                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/point_yellow.png");
                 break;
 
             case 4:
@@ -165,7 +165,7 @@ export class Utils {
                 this.isAStrongPassword = true;
                 passwordStrength = "Password is Strong.";
                 color = "Green";
-                document.getElementById("password_point").setAttribute("src", "../../assets/img/right_input.png");
+                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/right_input.png");
                 break;
         }
 

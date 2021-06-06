@@ -122,7 +122,7 @@ export class ResetPasswordComponent implements OnInit {
 
       case "passwordConfirmed":
       case "password":
-        this.isThePasswordStreght = this.utils.checkPasswordStrength(this.password);
+        this.isThePasswordStreght = this.utils.checkPasswordStrength(this.password, "password_point");
         if (this.password == this.passwordConfirmed)
         document.getElementById("confirmed_password_point").setAttribute("src", "../../assets/img/right_input.png");
       else
@@ -131,6 +131,10 @@ export class ResetPasswordComponent implements OnInit {
 
     }
 
+  }
+
+  showPassword(inputId: string, eyeIconId: string){
+    this.utils.showPassword(inputId, eyeIconId);   
   }
 
 }
