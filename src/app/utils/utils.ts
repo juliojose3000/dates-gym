@@ -181,6 +181,10 @@ export class Utils {
         return (localStorage.getItem('user_id') as unknown) as number;
     }
 
+    getUserEmail(): string{
+        return localStorage.getItem('email');
+    }
+
     saveUserSessionData(mResponse: MyResponse){
         var user = mResponse.data as User;
         console.log(user.toString());

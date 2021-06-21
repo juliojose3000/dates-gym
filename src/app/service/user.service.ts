@@ -36,4 +36,11 @@ export class UserService {
     return this.http.post(this.url+'/update_user_profile', data);
   }
 
+  //------------------------------ Admin ---------------------------------//
+
+  enableUserAccount( userEmail: string ){
+    return this.http.get<any>(this.url+'/enable_user_account?userEmail='+userEmail);
+  }
+
+
 }
