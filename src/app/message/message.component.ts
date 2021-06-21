@@ -25,7 +25,7 @@ export class MessageComponent implements OnInit {
     ngOnInit(): void {
         this.title = this.data.title;
         this.message = this.data.message;
-        this.class = this.data.class;
+        this.class = this.data.class==undefined?'pClass':this.data.class;
     }
 
     onNoClick(): void {

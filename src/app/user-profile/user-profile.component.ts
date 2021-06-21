@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -20,6 +21,7 @@ export class UserProfileComponent implements OnInit {
   public phone: string;
   public email:string;
   public password: string;
+  public newPassword: string;
 
   private user: User;
 
@@ -52,11 +54,6 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
-    if(!this.utils.checkPasswordStrength(this.password)){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
-      return;
-    }
-
     if(!this.utils.validateEmail(this.email)){// If the email enters is not valid
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_EMAIL } }); 
       return;
@@ -67,10 +64,23 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
+    if(this.newPassword != undefined && this.newPassword.length > 0 && !this.utils.checkPasswordStrength(this.newPassword, "new_password_point")){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_NEW_PASSWORD } }); 
+      return;
+    }
+
+    if(this.password == undefined){
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.PASSWORD_NEEDED } }); 
+      return;
+    }
+
+
     this.user = new User(this.utils.getUserId(), this.email, this.name, this.phone, this.password);
 
+    console.log(this.user.toString());
+
     this.spinnerService.requestStarted();
-    this.userService.updateProfile(this.user).subscribe((mResponse: MyResponse) => {
+    this.userService.updateProfile(this.user, this.newPassword).subscribe((mResponse: MyResponse) => {
       this.spinnerService.resetSpinner();
       this.dialog.open(MessageComponent, {
         data: {
@@ -85,9 +95,10 @@ export class UserProfileComponent implements OnInit {
       });          
       
     },
-    (error) => {//Error callback
+    (error: HttpErrorResponse) => {//Error callback
       this.spinnerService.resetSpinner();
       this.utils.showErrorMessage();
+      console.log(error.message);
     });
 
   }
@@ -117,7 +128,14 @@ export class UserProfileComponent implements OnInit {
 
 
       case "password":
-        this.utils.checkPasswordStrength(value);
+        if(this.password.length > 0)
+          document.getElementById("password_point").setAttribute("src","../../assets/img/right_input.png");
+        else
+          document.getElementById("password_point").setAttribute("src","../../assets/img/bad_input.png");
+        break;
+
+      case "new_password":
+        this.utils.checkPasswordStrength(value, "new_password_point");
         break;
 
 
@@ -140,6 +158,10 @@ export class UserProfileComponent implements OnInit {
         return true;
       else
         return false;
+  }
+
+  showPassword(inputId: string, eyeIconId: string){
+    this.utils.showPassword(inputId, eyeIconId);   
   }
 
 

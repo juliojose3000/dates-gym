@@ -60,6 +60,11 @@ export class LoginComponent implements OnInit {
     if(environment_variables.quickpass){
       this.login_email = environment_variables.email;
       this.login_password = environment_variables.password;
+
+      this.email = environment_variables.email;
+      this.name = environment_variables.name;
+      this.phone = environment_variables.phone;
+      this.password = environment_variables.password;
     }
 
     this.codigojs();
@@ -139,7 +144,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if(!this.utils.checkPasswordStrength(this.password)){
+    if(!this.utils.checkPasswordStrength(this.password, "password_point")){
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
       return;
     }
@@ -310,7 +315,7 @@ export class LoginComponent implements OnInit {
 
 
       case "password":
-        this.utils.checkPasswordStrength(value);
+        this.utils.checkPasswordStrength(value, "password_point");
         break;
 
 
@@ -329,6 +334,10 @@ export class LoginComponent implements OnInit {
 
   goToPasswordForgotten(){
     this.router.navigate(['password_forgotten']);
+  }
+
+  showPassword(inputId: string, eyeIconId: string){
+    this.utils.showPassword(inputId, eyeIconId);   
   }
 
 }

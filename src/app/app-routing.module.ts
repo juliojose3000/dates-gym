@@ -8,6 +8,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,9 @@ const routes: Routes = [
   { path: "about_us", component: AboutusComponent },
   { path: "password_forgotten", component: PasswordForgottenComponent },
   { path: "reset_password", component: ResetPasswordComponent},
-  { path: "user_profile", component: UserProfileComponent}
+  { path: "user_profile", component: UserProfileComponent},
+  { path: "enable_user_account", component: EnableUserAccountComponent },
+  { path: "enable_user_account/:userEmail/:name/:phone", component: EnableUserAccountComponent }
 ];
 
 @NgModule({

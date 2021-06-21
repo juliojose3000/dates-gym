@@ -51,6 +51,7 @@ import { environment } from '../environments/environment';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     AboutusComponent,
     UserProfileComponent,
     PasswordForgottenComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    EnableUserAccountComponent
   ],
   imports: [
     BrowserModule,
