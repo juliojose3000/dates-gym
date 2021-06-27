@@ -1,5 +1,5 @@
 export const environment_variables = {
-    quickpass: true,
+    quickpass: false, //TODO It need to be false on production
     email: 'juliojose3000@gmail.com',
     password: '12345Julio!',
     name: "Julio Segura Chaves",
