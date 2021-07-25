@@ -38,13 +38,13 @@ export class PopupComponent implements OnInit {
     submit(){
         switch(this.code){
             case Codes.LOGOUT:
-                localStorage.setItem("token", null);
                 document.getElementById("btn_session").innerHTML = Strings.LOGIN;
                 document.getElementById("div_user").setAttribute("class", "display_none");
-                if(localStorage.getItem("isASocialLogin")=="yes")//Only for social sessions
-                    this.socialAuthService.signOut();
+                /*if(localStorage.getItem("isASocialLogin")=="yes")//Only for social sessions
+                    this.socialAuthService.signOut();*/
                 this.router.navigate(['login']);
                 this.dimissDialog();
+                localStorage.clear();//clean the local storage
                 break;
         }
 

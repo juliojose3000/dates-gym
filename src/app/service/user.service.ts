@@ -36,6 +36,14 @@ export class UserService {
     return this.http.post(this.url+'/update_user_profile', data);
   }
 
+  registerPhoneNumber(user: User){
+    return this.http.post(this.url+'/update_user_profile', user);
+  }
+
+  userExists(email: string){
+    return this.http.get<any>(this.url+'/user_exists?email='+email);
+  }
+
   //------------------------------ Admin ---------------------------------//
 
   enableUserAccount( userEmail: string ){

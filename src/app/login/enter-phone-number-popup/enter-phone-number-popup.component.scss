@@ -1,0 +1,36 @@
+button{
+    margin-top: 50px;
+    margin:0 auto;
+    display:block;
+}
+
+h1{
+    text-align: center;
+}
+
+.div_input_sign_up{
+	display: flex;
+	align-items: center; //center vertical
+	justify-content: center; //center horizontal
+	width: 100%;
+	//background-color: chartreuse;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 4px 0;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.phone_point{
+    height: 15px;
+    width: 15px;
+    margin-left: 15px;
+}
+
+p{
+    text-align: center;
+}

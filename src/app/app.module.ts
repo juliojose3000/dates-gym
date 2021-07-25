@@ -28,6 +28,7 @@ import { ReservationPopupComponent } from './reserve/reservation_popup/reservati
 import { SpinnerComponent } from './spinner/spinner.component'
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { PopupComponent } from './popup/popup.component';
+import { EnterPhoneNumberPopupComponent } from './login/enter-phone-number-popup/enter-phone-number-popup.component';
 
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -52,6 +53,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
+import { environment_variables } from 'src/environments/environment.variables';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { EnableUserAccountComponent } from './enable-user-account/enable-user-ac
     HomeComponent,
     ReservationPopupComponent,
     PopupComponent,
+    EnterPhoneNumberPopupComponent,
     MessageComponent,
     LoginComponent,
     SpinnerComponent,
@@ -98,7 +101,7 @@ import { EnableUserAccountComponent } from './enable-user-account/enable-user-ac
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider('578151341935-05prohkmchlm312l4onuslcm5clvdkph.apps.googleusercontent.com'),
+            provider: new GoogleLoginProvider(environment_variables.GooglePrividerId),
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
@@ -111,6 +114,6 @@ import { EnableUserAccountComponent } from './enable-user-account/enable-user-ac
   
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ReservationPopupComponent, MessageComponent, PopupComponent]
+  entryComponents: [ReservationPopupComponent, MessageComponent, PopupComponent, EnterPhoneNumberPopupComponent]
 })
 export class AppModule { }

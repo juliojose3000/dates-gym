@@ -10,13 +10,15 @@ import { Router } from '@angular/router';
 import { MyResponse } from '../model/myresponse.model';
 import { MessageComponent } from '../message/message.component';
 import { MatDialog } from '@angular/material/dialog';
-import { CSS_CLASSES, Strings } from '../resources/resources';
+import { Codes, CSS_CLASSES, Strings } from '../resources/resources';
 import { SpinnerService } from '../spinner/spinner.service';
 import { Utils } from '../utils/utils';
 import { HeaderComponent } from '../header/header.component';
 import { environment_variables } from 'src/environments/environment.variables';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { HttpErrorResponse } from '@angular/common/http';
+import { EnterPhoneNumberPopupComponent } from './enter-phone-number-popup/enter-phone-number-popup.component';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -30,11 +32,11 @@ export class LoginComponent implements OnInit {
   //For Sign Up
   public name: string;
   public phone: string;
-  public email:string;
+  public email: string;
   public password: string;
 
   //For Sign In
-  public login_email:string;
+  public login_email: string;
   public login_password: string;
 
 
@@ -44,10 +46,11 @@ export class LoginComponent implements OnInit {
 
   social_user: SocialUser;
   isASocialLogin: boolean = false;
+  detailRecivedSubscription: Subscription;
 
 
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     private authService: AuthenticationService,
     private router: Router,
     public dialog: MatDialog,
@@ -57,7 +60,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(environment_variables.quickpass){
+    if (environment_variables.quickpass) {
       this.login_email = environment_variables.email;
       this.login_password = environment_variables.password;
 
@@ -68,10 +71,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.codigojs();
-
+    
   }
 
-  codigojs(){
+  codigojs() {
 
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
@@ -80,7 +83,7 @@ export class LoginComponent implements OnInit {
     const pSignInButton = document.getElementById('pSignIn');
 
     const container = document.getElementById('container');
-    
+
     signUpButton.addEventListener('click', () => {
       container.classList.add("right-panel-active");
     });
@@ -88,7 +91,7 @@ export class LoginComponent implements OnInit {
     pSignUpButton.addEventListener('click', () => {
       container.classList.add("right-panel-active");
     });
-    
+
     signInButton.addEventListener('click', () => {
       container.classList.remove("right-panel-active");
     });
@@ -102,60 +105,60 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log("LoginComponent - Login Method starts...");
-    if(!this.haveUserFillTheInputs("sign_in")){
+    if (!this.haveUserFillTheInputs("sign_in")) {
       this.dialog.open(MessageComponent, {
         data: {
-            title: Strings.ERROR,
-            message: Strings.SIGN_IN_NULL_SPACES
+          title: Strings.ERROR,
+          message: Strings.SIGN_IN_NULL_SPACES
         }
-      }); 
+      });
       return;
     }
 
     this.auth = new Authentication(this.login_email, this.login_password);
     this.spinnerService.requestStarted();
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
-        this.spinnerService.resetSpinner();
-        if(mResponse.isSuccessful){
-          this.loginSuccesful(mResponse);
-        }
-        else{
-          //Invalid credentials
-          this.dialog.open(MessageComponent, {
-            data: {
-                title: mResponse.title,
-                message: mResponse.description
-            }
-          }); 
-        }
-      },
+      this.spinnerService.resetSpinner();
+      if (mResponse.isSuccessful) {
+        this.loginSuccesful(mResponse);
+      }
+      else {
+        //Invalid credentials
+        this.dialog.open(MessageComponent, {
+          data: {
+            title: mResponse.title,
+            message: mResponse.description
+          }
+        });
+      }
+    },
       (error: HttpErrorResponse) => {//Error callback
-        console.log("LoginComponent - LoginMethod Error: "+error.message);
+        console.log("LoginComponent - LoginMethod Error: " + error.message);
         this.spinnerService.resetSpinner();
         this.utils.showErrorMessage();
       }
     );
   } // login
 
-  signUp(){
+  signUp() {
 
-    if(!this.haveUserFillTheInputs("sign_up")){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.SIGN_UP_NULL_SPACES } }); 
+    if (!this.haveUserFillTheInputs("sign_up")) {
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.SIGN_UP_NULL_SPACES } });
       return;
     }
 
-    if(!this.utils.checkPasswordStrength(this.password, "password_point")){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } }); 
+    if (!this.utils.checkPasswordStrength(this.password, "password_point")) {
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } });
       return;
     }
 
-    if(!this.utils.validateEmail(this.email)){// If the email enters is not valid
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_EMAIL } }); 
+    if (!this.utils.validateEmail(this.email)) {// If the email enters is not valid
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_EMAIL } });
       return;
     }
 
-    if(!this.utils.isAValidPhoneNumber(this.phone)){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_PHONE } }); 
+    if (!this.utils.isAValidPhoneNumber(this.phone)) {
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_PHONE } });
       return;
     }
 
@@ -168,30 +171,30 @@ export class LoginComponent implements OnInit {
         data: {
           title: mResponse.title,
           message: mResponse.description,
-          class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+          class: mResponse.isSuccessful ? CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL : null
         }
       }).afterClosed().subscribe(() => {
-        if(mResponse.isSuccessful){
+        if (mResponse.isSuccessful) {
           this.loginSuccesful(mResponse);
         }
-      });          
-      
+      });
+
     },
-    (error) => {//Error callback
-      this.spinnerService.resetSpinner();
-      this.utils.showErrorMessage();
-    });
+      (error) => {//Error callback
+        this.spinnerService.resetSpinner();
+        this.utils.showErrorMessage();
+      });
 
   }
 
-  haveUserFillTheInputs(action: string){
-    if(action=="sign_in"){
-      if(this.login_email!=undefined && this.login_password!=undefined)
+  haveUserFillTheInputs(action: string) {
+    if (action == "sign_in") {
+      if (this.login_email != undefined && this.login_password != undefined)
         return true;
       else
         return false;
-    }else if(action=="sign_up"){
-      if(this.email!=undefined && this.password!=undefined && this.phone!=undefined && this.name!=undefined)
+    } else if (action == "sign_up") {
+      if (this.email != undefined && this.password != undefined && this.phone != undefined && this.name != undefined)
         return true;
       else
         return false;
@@ -199,118 +202,159 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.socialSignInStartService();
+    console.log("signInWithGoogle");
+
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID)
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("LoginProvider", GoogleLoginProvider.PROVIDER_ID);
+        this.socialSignInStartService();
+      })
+      .catch((error) => {
+        console.log(error); //If user close the authentication window, it enters to catch
+      });
+    
   }
 
   signInWithFB(): void {
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    this.socialSignInStartService();
+    console.log("signInWithFB");
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("LoginProvider", FacebookLoginProvider.PROVIDER_ID);
+        this.socialSignInStartService();
+      }).catch((error) => {
+        console.log(error); //If user close the authentication window, it enters to catch
+      });
+    
   }
 
-  socialSignInStartService(){
+  socialSignInStartService() {
+    console.log("socialSignInStartService");
+    this.detailRecivedSubscription = this.socialAuthService.authState.subscribe(socialUser => {
 
-    this.socialAuthService.authState.subscribe(social_user => {
-      this.social_user = social_user;
-      console.log(social_user);
+      if (this.social_user == undefined || this.social_user != socialUser) {
+        this.social_user = socialUser;
+        this.user = new User();
+        this.user.email = this.social_user.email;
+        this.user.name = this.social_user.name;
 
-      if(!this.isASocialLogin && social_user != null){
-        this.user = new User(social_user.id as unknown as number, social_user.name, "Not Registered", social_user.id);
-        this.socialSignIn(this.user);
-        this.isASocialLogin = true;
-        localStorage.setItem("isASocialLogin", this.isASocialLogin==true?"yes":"no");
+        this.spinnerService.requestStarted();
+        this.userService.userExists(this.user.email).subscribe((mResponse: MyResponse) => {
+          this.spinnerService.resetSpinner();
+          if (mResponse.code == Codes.USER_EMAIL_DOES_NOT_EXISTS) {
+            this.dialog
+              .open(EnterPhoneNumberPopupComponent)
+              .afterClosed().subscribe((data) => {
+                if (data == undefined) return; //this means the user clicks on cancel button
+                this.user.phoneNumber = data.phoneNumber;
+                this.socialSignIn(this.user);
+              });
+
+          } else {
+            this.socialSignIn(this.user);
+          }
+
+        }, (error) => {
+          console.log(error.message);
+          this.spinnerService.resetSpinner();
+          this.utils.showErrorMessage();
+          this.detailRecivedSubscription.unsubscribe();
+        });
+
+
       }
     });
 
   }
 
+  ngOnDestroy() {
+    this.detailRecivedSubscription.unsubscribe();
+  }
+
+
   signOut(): void {
     this.socialAuthService.signOut();
   }
 
-  socialSignIn(user: User){
-
+  socialSignIn(user: User) {
+    console.log("socialSignIn");
+    //return;
     this.user = user;
-
     this.spinnerService.requestStarted();
     this.userService.social_login(this.user).subscribe((mResponse: MyResponse) => {
       console.log(mResponse);
       this.spinnerService.resetSpinner();
 
-
       //Para Registro
-      if(mResponse.description!="Credenciales válidos"){
+      if (mResponse.code == Codes.SOCIAL_USER_CREATED_SUCCESSFUL) {
 
         this.dialog.open(MessageComponent, {
           data: {
             title: mResponse.title,
             message: mResponse.description,
-            class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+            class: mResponse.isSuccessful ? CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL : null
           }
         }).afterClosed().subscribe(() => {
-          if(mResponse.isSuccessful){
+          if (mResponse.isSuccessful) {
             this.loginSuccesful(mResponse);
             return;
           }
-        }); 
+        });
 
       }
 
       //Para login
-      if(mResponse.isSuccessful){
+      if (Codes.USER_CREATED_SUCCESSFUL) {
         this.loginSuccesful(mResponse);
-      }else{
-
+      } else {
         this.dialog.open(MessageComponent, {
           data: {
             title: mResponse.title,
             message: mResponse.description,
-            class: mResponse.isSuccessful?CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL:null
+            class: mResponse.isSuccessful ? CSS_CLASSES.DIALOG_CLASS_FOR_SIGNUP_SUCCESSFUL : null
           }
-        }); 
-
+        });
       }
-
-         
-      
-    },
-    (error) => {//Error callback
+    }, (error) => {//Error callback
+      console.log(error.message);
       this.spinnerService.resetSpinner();
       this.utils.showErrorMessage();
-    }
-  );
+    });
 
   }
 
-  loginSuccesful(mResponse: MyResponse){
+  loginSuccesful(mResponse: MyResponse) {
     this.utils.saveUserSessionData(mResponse);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
     document.getElementById("btn_session").innerHTML = this.utils.getFirstWordFromString(localStorage.getItem("user_name"));
+    this.isASocialLogin = true;
+    localStorage.setItem("isASocialLogin", this.isASocialLogin == true ? "yes" : "no");
   }
 
 
-  keyupEvent(el: HTMLInputElement){
+  keyupEvent(el: HTMLInputElement) {
 
     var element = el.name;
     var value = el.value;
 
-    switch(element){
+    switch (element) {
 
       case "name":
-        if(value!="")
-          document.getElementById("name_point").setAttribute("src","../../assets/img/right_input.png");
+        if (value != "")
+          document.getElementById("name_point").setAttribute("src", "../../assets/img/right_input.png");
         else
-          document.getElementById("name_point").setAttribute("src","../../assets/img/point_gray.png");
+          document.getElementById("name_point").setAttribute("src", "../../assets/img/point_gray.png");
         break;
 
       case "email":
-        if(this.utils.validateEmail(this.email))
-          document.getElementById("email_point").setAttribute("src","../../assets/img/right_input.png");
-        else if(value=="")
-          document.getElementById("email_point").setAttribute("src","../../assets/img/point_gray.png");
+        if (this.utils.validateEmail(this.email))
+          document.getElementById("email_point").setAttribute("src", "../../assets/img/right_input.png");
+        else if (value == "")
+          document.getElementById("email_point").setAttribute("src", "../../assets/img/point_gray.png");
         else
-          document.getElementById("email_point").setAttribute("src","../../assets/img/bad_input.png");
+          document.getElementById("email_point").setAttribute("src", "../../assets/img/bad_input.png");
         break;
 
 
@@ -320,24 +364,24 @@ export class LoginComponent implements OnInit {
 
 
       case "phone":
-        if(this.utils.isAValidPhoneNumber(this.phone))
-          document.getElementById("phone_point").setAttribute("src","../../assets/img/right_input.png");
-        else if(value=="")
-          document.getElementById("phone_point").setAttribute("src","../../assets/img/point_gray.png");
+        if (this.utils.isAValidPhoneNumber(this.phone))
+          document.getElementById("phone_point").setAttribute("src", "../../assets/img/right_input.png");
+        else if (value == "")
+          document.getElementById("phone_point").setAttribute("src", "../../assets/img/point_gray.png");
         else
-          document.getElementById("phone_point").setAttribute("src","../../assets/img/bad_input.png");
+          document.getElementById("phone_point").setAttribute("src", "../../assets/img/bad_input.png");
         break;
 
     }
 
   }
 
-  goToPasswordForgotten(){
+  goToPasswordForgotten() {
     this.router.navigate(['password_forgotten']);
   }
 
-  showPassword(inputId: string, eyeIconId: string){
-    this.utils.showPassword(inputId, eyeIconId);   
+  showPassword(inputId: string, eyeIconId: string) {
+    this.utils.showPassword(inputId, eyeIconId);
   }
 
 }
