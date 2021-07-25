@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Ingrese su número de teléfono</h1>
+<div mat-dialog-content>
+  <p>Para finalizar el registro, ingrese su número de teléfono.<br>
+    Esto permitirá al administrador comunicarte<br>
+    contigo en caso de ser necesario.</p>
+  
+  <div class="div_input_sign_up">
+    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)" maxlength="8"/>    
+    <img id="phone_point_popup" class="phone_point" src="../../assets/img/point_gray.png">
+  </div>
+
+</div>
+<div mat-dialog-actions>
+    <button id="acceptButton" mat-raised-button color="primary" (click)="submit()">Aceptar</button>
+    <button id="acceptButton" mat-raised-button (click)="dimissDialog()">Cancelar</button>
+</div>

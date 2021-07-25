@@ -186,8 +186,8 @@ export class Utils {
     }
 
     saveUserSessionData(mResponse: MyResponse){
-        var user = mResponse.data as User;
-        console.log(user.toString());
+        const user = mResponse.data as User;
+        console.log(user);
         localStorage.setItem("token", "Bearer "+mResponse.token);
         localStorage.setItem("email", user.email);
         localStorage.setItem("user_id", ""+user.id);
