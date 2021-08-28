@@ -12,6 +12,7 @@ import { EnableUserAccountComponent } from './enable-user-account/enable-user-ac
 
 
 const routes: Routes = [
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: "reserve", component: ReserveComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
@@ -21,7 +22,11 @@ const routes: Routes = [
   { path: "reset_password", component: ResetPasswordComponent},
   { path: "user_profile", component: UserProfileComponent},
   { path: "enable_user_account", component: EnableUserAccountComponent },
-  { path: "enable_user_account/:userEmail/:name/:phone", component: EnableUserAccountComponent }
+  { path: "enable_user_account/:userEmail/:name/:phone", component: EnableUserAccountComponent },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) //Lazy load admin module
+  }
 ];
 
 @NgModule({

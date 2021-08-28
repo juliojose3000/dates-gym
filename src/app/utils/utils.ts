@@ -54,7 +54,7 @@ export class Utils {
     dateFormat(date: Date) {
         var dateFormatted = this.datepipe.transform(date, "E dd MMM yyyy").split(" ");
         var dayNumber = Number(dateFormatted[1]);
-        return `${DAYS_NAME[dateFormatted[0]]}, ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
+        return `${DAYS_NAME[dateFormatted[0]]} ${dayNumber} de ${MONTHS_NAME[dateFormatted[2]]}`;
     }
 
     isExpiredShift(shift: Shift) {

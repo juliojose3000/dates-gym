@@ -58,39 +58,48 @@ import { environment_variables } from 'src/environments/environment.variables';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
+
+    //Screens components
     ReserveComponent,
     HomeComponent,
-    ReservationPopupComponent,
-    PopupComponent,
-    EnterPhoneNumberPopupComponent,
-    MessageComponent,
     LoginComponent,
-    SpinnerComponent,
     AboutusComponent,
     UserProfileComponent,
     PasswordForgottenComponent,
     ResetPasswordComponent,
-    EnableUserAccountComponent
+    EnableUserAccountComponent,
+
+    //Static components
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+
+    //Popups/Modals Components
+    ReservationPopupComponent,
+    PopupComponent,
+    MessageComponent,
+    EnterPhoneNumberPopupComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    SocialLoginModule,
+    CommonModule,
+
+    //Material Imports
+    MatCardModule,
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule,
-    HttpClientModule,
-    FormsModule,
-    MatCardModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    SocialLoginModule,
-    CommonModule
+    MatFormFieldModule
   ],
   providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe,
   

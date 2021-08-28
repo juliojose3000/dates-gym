@@ -259,7 +259,8 @@ export class LoginComponent implements OnInit {
           console.log(error.message);
           this.spinnerService.resetSpinner();
           this.utils.showErrorMessage();
-          this.detailRecivedSubscription.unsubscribe();
+          if(this.detailRecivedSubscription != undefined)
+            this.detailRecivedSubscription.unsubscribe();
         });
 
 
@@ -269,7 +270,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.detailRecivedSubscription.unsubscribe();
+    if(this.detailRecivedSubscription != undefined)
+      this.detailRecivedSubscription.unsubscribe();
   }
 
 

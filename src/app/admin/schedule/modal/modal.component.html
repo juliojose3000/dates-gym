@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Reservaciones</h1>
+<h3>Fecha: {{dateToShow}}</h3>
+<div mat-dialog-content>
+
+  <table id="customers">
+    <th>Nombre</th>
+    <th>Teléfono</th>
+    <tr *ngFor="let client of clients">
+      <td>{{client.name}}</td>
+      <td>{{client.phoneNumber}}</td>
+    </tr>
+
+  </table>
+
+</div>
+<div mat-dialog-actions>
+  <button id="btnClose" mat-raised-button color="primary" (click)="dimissDialog()">Cerrar</button>
+</div>
