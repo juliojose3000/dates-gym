@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Codes, Strings } from '../resources/resources';
 import { SocialAuthService } from 'angularx-social-login';
 import { Utils } from '../utils/utils';
+import { UserRoleEnum } from '../model/enums/user-role.enum';
 
 @Component({
   selector: 'popup-component',
@@ -40,8 +41,8 @@ export class PopupComponent implements OnInit {
             case Codes.LOGOUT:
                 document.getElementById("btn_session").innerHTML = Strings.LOGIN;
                 document.getElementById("div_user").setAttribute("class", "display_none");
-                /*if(localStorage.getItem("isASocialLogin")=="yes")//Only for social sessions
-                    this.socialAuthService.signOut();*/
+                if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString())
+                    document.getElementById("div_admin").setAttribute("class", "display_none");
                 this.router.navigate(['login']);
                 this.dimissDialog();
                 localStorage.clear();//clean the local storage

@@ -19,6 +19,7 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUs
 import { HttpErrorResponse } from '@angular/common/http';
 import { EnterPhoneNumberPopupComponent } from './enter-phone-number-popup/enter-phone-number-popup.component';
 import { Subscription } from 'rxjs';
+import { UserRoleEnum } from '../model/enums/user-role.enum';
 
 
 @Component({
@@ -45,7 +46,6 @@ export class LoginComponent implements OnInit {
   private user: User;
 
   social_user: SocialUser;
-  isASocialLogin: boolean = false;
   detailRecivedSubscription: Subscription;
 
 
@@ -162,7 +162,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.user = new User(0, this.email, this.name, this.phone, this.password);
+    this.user = new User(0, this.email, this.name, this.phone, this.password, UserRoleEnum.CUSTOMER);
 
     this.spinnerService.requestStarted();
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
@@ -331,8 +331,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
     document.getElementById("btn_session").innerHTML = this.utils.getFirstWordFromString(localStorage.getItem("user_name"));
-    this.isASocialLogin = true;
-    localStorage.setItem("isASocialLogin", this.isASocialLogin == true ? "yes" : "no");
+
+    if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString()){
+      document.getElementById("div_admin").setAttribute("class", "dropdown");
+    }
   }
 
 

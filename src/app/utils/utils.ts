@@ -193,6 +193,7 @@ export class Utils {
         localStorage.setItem("user_id", ""+user.id);
         localStorage.setItem("user_name", ""+user.name);
         localStorage.setItem("user_phoneNumber", user.phoneNumber);
+        localStorage.setItem("user_role", user.role.toString());
     }
 
     showPassword(inputId: string, eyeIconId: string){

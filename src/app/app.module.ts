@@ -54,6 +54,7 @@ import { PasswordForgottenComponent } from './password-forgotten/password-forgot
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
 import { environment_variables } from 'src/environments/environment.variables';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,7 @@ import { environment_variables } from 'src/environments/environment.variables';
     MatProgressSpinnerModule,
     MatFormFieldModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe,
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe, AdminGuard,
   
     {
       provide: 'SocialAuthServiceConfig',

@@ -9,10 +9,12 @@ import { PasswordForgottenComponent } from './password-forgotten/password-forgot
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
+import { AdminGuard } from './guards/admin.guard';
+import { UserRoleEnum } from './model/enums/user-role.enum';
 
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '',   redirectTo: 'home', pathMatch: 'full' },
   { path: "reserve", component: ReserveComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
@@ -25,6 +27,10 @@ const routes: Routes = [
   { path: "enable_user_account/:userEmail/:name/:phone", component: EnableUserAccountComponent },
   {
     path: 'admin',
+    canActivate: [AdminGuard],
+    data: {
+      allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.TRAINER]
+    },
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) //Lazy load admin module
   }
 ];

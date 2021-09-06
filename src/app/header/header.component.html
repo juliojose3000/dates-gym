@@ -26,6 +26,7 @@
 
             </li>
 
+            <!--
             <li>
 
                 <div class="dropdown">
@@ -33,11 +34,21 @@
                 </div>
 
             </li>
+            -->
+            <li id="div_admin">     <!-- *ngIf="adminGuard.canActivate(null, null)"-->
+                <div  class="dropdown">
+                    <button id="btn_admin" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Administración</button>
+                    <div id = "div_admin_items" class="dropdown-content">
+                        <a (click)="seeWeightRoomReservations()">Ver reservaciones</a>
+                    </div>
+                </div>
+
+            </li>
 
             <li>
 
                 <div class="dropdown">
-                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Servicios</button>
+                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Reservar</button>
                     <div id="div_services" class="dropdown-content">
                         <a (click)="goToWeightRoom()">Sala de Pesas</a>
                     </div>

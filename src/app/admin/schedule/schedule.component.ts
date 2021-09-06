@@ -46,7 +46,7 @@ export class ScheduleComponent implements OnInit {
         this.schedule = mResponse.data as Schedule;
         this.startDateFormatted = utils.dateFormat(new Date(this.schedule.startDate));
         this.endDateFormatted = utils.dateFormat(new Date(this.schedule.endDate));
-        var pWeekDescription = `Semana ${this.schedule.weekNumber}: Del ${this.startDateFormatted} al ${this.endDateFormatted}`;
+        var pWeekDescription = `Reservaciones de la semana del ${this.startDateFormatted} al ${this.endDateFormatted}`;
         document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
 
         this.arrayShiefts = this.schedule.shifts;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AdminGuard } from '../guards/admin.guard';
+import { UserRoleEnum } from '../model/enums/user-role.enum';
 import { PopupComponent } from '../popup/popup.component';
 import { Codes, Strings } from '../resources/resources';
 import { Utils } from '../utils/utils';
@@ -15,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   isAMobileScreen: boolean = false;
 
-  constructor(private router: Router, public dialog: MatDialog, public utils: Utils) {}
+  constructor(private router: Router, public dialog: MatDialog, public utils: Utils, public adminGuard: AdminGuard) {}
 
   ngOnInit(): void {
     if(this.utils.getWidth()<=845) this.isAMobileScreen = true;
@@ -35,6 +37,13 @@ export class HeaderComponent implements OnInit {
     }else{
       document.getElementById("div_user").setAttribute("class", "display_none");
       login_user.innerHTML = Strings.LOGIN;
+    }
+
+    //Check is the user is admin
+    if(localStorage.getItem('user_role') == null || localStorage.getItem('user_role') == UserRoleEnum.CUSTOMER.toString()){
+      document.getElementById("div_admin").setAttribute("class", "display_none");
+    }else if(localStorage.getItem('user_role') == UserRoleEnum.ADMIN.toString()){
+      document.getElementById("div_admin").setAttribute("class", "dropdown");
     }
 
   }
@@ -96,8 +105,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['about_us']);
   }
 
+  seeWeightRoomReservations(){
+    this.router.navigate(['admin/schedule']);
+    document.getElementById("div_admin_items").setAttribute("class", "display_none");
+  }
+
   mouseup(element: HTMLButtonElement){
     switch(element.id){
+      case "btn_admin":
+        document.getElementById("div_admin_items").setAttribute("class", "dropdown-content");
+        break;
       case "btn_services":
         document.getElementById("div_services").setAttribute("class", "dropdown-content");
         break;
@@ -113,6 +130,9 @@ export class HeaderComponent implements OnInit {
 
   mouseover(element: HTMLButtonElement){
     switch(element.id){
+      case "btn_admin":
+        document.getElementById("div_admin_items").setAttribute("class", "dropdown-content");
+        break;
       case "btn_services":
         document.getElementById("div_services").setAttribute("class", "dropdown-content");
         break;
