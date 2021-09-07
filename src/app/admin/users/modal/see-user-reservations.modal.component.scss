@@ -4,7 +4,7 @@ button{
     display:block;
 }
 
-h1{
+h2{
     text-align: center;
 }
 
@@ -23,22 +23,22 @@ h1{
 
 //Table
 
-#customers {
+#customerReservationsTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-  #customers td, #customers th {
+  #customerReservationsTable td, #customerReservationsTable th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  #customerReservationsTable tr:nth-child(even){background-color: #f2f2f2;}
   
-  #customers tr:hover {background-color: #ddd;}
+  #customerReservationsTable tr:hover {background-color: #ddd;}
   
-  #customers th {
+  #customerReservationsTable th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

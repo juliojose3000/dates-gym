@@ -8,27 +8,19 @@ import { User } from 'src/app/model/user.model';
 import { Utils } from 'src/app/utils/utils';
 
 @Component({
-  selector: 'modal-component',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+    selector: 'see-user-reservations.modal-component',
+    templateUrl: './see-user-reservations.modal.component.html',
+    styleUrls: ['./see-user-reservations.modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class SeeUserReservationsModal implements OnInit {
 
-    date: Date;
-    startHour: string;
-    customers: string;
-    clients: User[];
-    endHour: string;
-
+    public customerSelected: User;
 
     constructor(
-        public dialogRef: MatDialogRef<ModalComponent>,
+        public dialogRef: MatDialogRef<SeeUserReservationsModal>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         public utils: Utils) {
-            this.date = new Date(this.data.date);
-            this.startHour = this.data.startHour;
-            this.endHour = this.data.endHour;
-            this.clients = this.data.clients;
+        this.customerSelected = data.customer;
     }
 
     ngOnInit(): void {
@@ -38,10 +30,14 @@ export class ModalComponent implements OnInit {
     onNoClick(): void {
         this.dialogRef.close();
     }
-    
 
-    dimissDialog(){
+
+    dimissDialog() {
         this.dialogRef.close();
     }
+
+
+
+
 
 }

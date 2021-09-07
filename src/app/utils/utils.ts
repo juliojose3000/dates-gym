@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MessageComponent } from '../message/message.component';
+import { MessageComponent } from '../common/message/message.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Shift } from '../model/shift.model';
 import { User } from '../model/user.model';
-import { DAYS_NAME, MONTHS_NAME, Strings } from '../resources/resources';
+import { DAYS_NAME, MONTHS_NAME, Strings } from './resources';
 
 @Injectable()
 export class Utils {
@@ -185,6 +186,14 @@ export class Utils {
         return localStorage.getItem('email');
     }
 
+    getUserRole(): number{
+        return parseInt(localStorage.getItem('user_role'));
+    }
+
+    isUserEnabled(): boolean{
+        return localStorage.getItem('is_enable')=="true"?true:false;
+    }
+
     saveUserSessionData(mResponse: MyResponse){
         const user = mResponse.data as User;
         console.log(user);
@@ -192,8 +201,20 @@ export class Utils {
         localStorage.setItem("email", user.email);
         localStorage.setItem("user_id", ""+user.id);
         localStorage.setItem("user_name", ""+user.name);
-        localStorage.setItem("user_phoneNumber", user.phoneNumber);
+        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-",""));
         localStorage.setItem("user_role", user.role.toString());
+        localStorage.setItem("is_enabled", user.isEnabled?"true":"false");
+    }
+
+    updateUserSessionData(mResponse: MyResponse){
+        const user = mResponse.data as User;
+        console.log(user);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("user_id", ""+user.id);
+        localStorage.setItem("user_name", ""+user.name);
+        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-",""));
+        localStorage.setItem("user_role", user.role.toString());
+        localStorage.setItem("is_enabled", user.isEnabled?"true":"false");
     }
 
     showPassword(inputId: string, eyeIconId: string){
@@ -212,5 +233,21 @@ export class Utils {
         document.getElementById(eyeIconId).setAttribute("class", eyeClass);
           
       }
+
+
+    formatAMPM(time) {
+        var hours = time.split(":")[0];
+        var minutes = time.split(":")[1];
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+
+    getHttpHeader(){
+        return new HttpHeaders().set("Authorization", localStorage.getItem("token"));
+    }
+    
 
 }

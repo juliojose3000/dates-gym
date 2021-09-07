@@ -1,5 +1,5 @@
 export enum UserRoleEnum {
-  ADMIN = 1,
-  TRAINER = 2,
-  CUSTOMER = 3
+  ADMIN = <any>1,
+  TRAINER = <any>2,
+  CUSTOMER = <any>3
 }

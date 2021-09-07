@@ -7,13 +7,14 @@ import { User } from '../model/user.model';
 import { environment } from '../../environments/environment';
 import { environment_variables } from "src/environments/environment.variables";
 import { ResetPassword } from "../model/reset-password.model";
+import { Utils } from "../utils/utils";
 
 @Injectable()
 export class UserService {
 
   private url = `${environment.url}/user`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private utils: Utils) {}
 
   create(user: User){
     return this.http.post(this.url+'/create', user);
@@ -32,12 +33,12 @@ export class UserService {
   }
 
   updateProfile(userUpdated: User, userPassword: string){
-    var data = {user: userUpdated, password: userPassword};
-    return this.http.post(this.url+'/update_user_profile', data);
+    let data = {user: userUpdated, password: userPassword};
+    return this.http.post(this.url+'/update_user_profile', data, {headers:this.utils.getHttpHeader()});
   }
 
   registerPhoneNumber(user: User){
-    return this.http.post(this.url+'/update_user_profile', user);
+    return this.http.post(this.url+'/update_user_profile', user, {headers:this.utils.getHttpHeader()});
   }
 
   userExists(email: string){
@@ -47,7 +48,11 @@ export class UserService {
   //------------------------------ Admin ---------------------------------//
 
   enableUserAccount( userEmail: string ){
-    return this.http.get<any>(this.url+'/enable_user_account?userEmail='+userEmail);
+    return this.http.get<any>(this.url+'/enable_user_account?userEmail='+userEmail, {headers:this.utils.getHttpHeader()});
+  }
+
+  getAll(){
+    return this.http.get<any>(this.url+'/get_all', {headers:this.utils.getHttpHeader()});
   }
 
 

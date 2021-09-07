@@ -5,9 +5,9 @@ import { MyResponse } from 'src/app/model/myresponse.model';
 import { Schedule } from 'src/app/model/schedule.model';
 import { Shift } from 'src/app/model/shift.model';
 import { User } from 'src/app/model/user.model';
-import { Codes } from 'src/app/resources/resources';
+import { Codes } from 'src/app/utils/resources';
 import { ScheduleService } from 'src/app/service/schedule.service';
-import { SpinnerService } from 'src/app/spinner/spinner.service';
+import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 import { Utils } from 'src/app/utils/utils';
 import { ModalComponent } from './modal/modal.component';
 
@@ -97,7 +97,8 @@ export class ScheduleComponent implements OnInit {
       data: {
         date: date,
         startHour: startHour,
-        clients: this.clients
+        clients: this.clients,
+        endHour: endHour
       }
     });
 

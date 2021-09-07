@@ -14,21 +14,21 @@ export class ReserveService {
 
   constructor(private http: HttpClient) {}
 
-  make(reservation: Reservation, headers){
+  make(reservation: Reservation, headers, userId: number){
     let header = new HttpHeaders().set(
       "Authorization",
       headers
     );
-    return this.http.post(this.url+'/make', reservation, {headers:header});
+    return this.http.post(this.url+'/make?userId='+userId, reservation, {headers:header});
   }
 
 
-  cancel(reservation: Reservation, headers){
+  cancel(reservation: Reservation, headers, userId: number){
     let header = new HttpHeaders().set(
       "Authorization",
       headers
     );
-    return this.http.post(this.url+'/cancel', reservation, {headers:header});
+    return this.http.post(this.url+'/cancel?userId='+userId, reservation, {headers:header});
   }
 
 

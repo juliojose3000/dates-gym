@@ -1,0 +1,76 @@
+<div class="header">
+
+    <div class="div_header">
+
+        <div class="div_image_logo">
+            <img src="../../assets/img/body-icon.png"
+                alt="Body"
+                class="img_imagen">
+        </div>
+
+        <div class="div_title">
+            <p class="p_title"> CACHÍ FITNESS CENTER </p>
+        </div>
+
+
+    </div>
+
+
+    <div class="navbar_items">
+        <ul>
+            <li>
+
+                <div class="dropdown">
+                    <button class="dropbtn" (click)="goToHome()">Inicio</button>
+                </div>
+
+            </li>
+
+            <!--
+            <li>
+
+                <div class="dropdown">
+                    <button class="dropbtn" (click)="aboutUs()">Nosotros</button>
+                </div>
+
+            </li>
+            -->
+            <li id="div_admin">     <!-- *ngIf="adminGuard.canActivate(null, null)"-->
+                <div  class="dropdown">
+                    <button id="btn_admin" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Administración</button>
+                    <div id = "div_admin_items" class="dropdown-content">
+                        <a (click)="seeWeightRoomReservations()">Ver reservaciones</a>
+                        <a (click)="seeUsers()">Ver usuarios</a>
+                    </div>
+                </div>
+
+            </li>
+
+            <li>
+
+                <div class="dropdown">
+                    <button id="btn_services" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)">Reservar</button>
+                    <div id="div_services" class="dropdown-content">
+                        <a (click)="goToWeightRoom()">Sala de Pesas</a>
+                    </div>
+                </div>
+
+            </li>
+
+            <li>     
+
+                <div class="dropdown">
+                    <button id="btn_session" class="dropbtn" (mouseup)="mouseup($event.target)" (mouseover)="mouseover($event.target)"></button>
+                    <div id="div_user" class="dropdown-content">
+                        <a (click)="goToUserProfile()">Perfil</a>
+                        <a (click)="logout()" id="a_session"></a>
+                    </div>
+                </div>
+
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+

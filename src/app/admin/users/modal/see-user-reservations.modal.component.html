@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Reservaciones de {{ customerSelected.name }}</h2>
+<div mat-dialog-content>
+
+  <table id="customerReservationsTable" *ngIf = "customerSelected.reservations.length > 0">
+    <th>Fecha</th>
+    <th>Horario</th>
+    <tr *ngFor="let reservation of customerSelected.reservations">
+      <td>{{ utils.dateFormat(reservation.shiftDate) }}</td>
+      <td>{{ utils.formatAMPM(reservation.shiftStartHour) }}</td>
+    </tr>
+
+  </table>
+
+  <p id="labelNoReservation" *ngIf = "customerSelected.reservations.length == 0">** No hay reservaciones **</p>
+
+</div>
+<div mat-dialog-actions>
+  <button id="btnClose" mat-raised-button color="primary" (click)="dimissDialog()">Cerrar</button>
+</div>

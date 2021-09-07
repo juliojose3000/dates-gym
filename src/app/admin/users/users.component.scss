@@ -1,0 +1,51 @@
+.secondDiv{
+    width: 100%;
+    height: 80%;
+}
+
+
+//Table
+
+#customersTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#customersTable td,
+#customersTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customersTable tr:nth-child(odd) {//elementos impares
+    background-color: white;
+}
+
+#customersTable tr:nth-child(even) {//elementos pares
+    background-color: #f2f2f2;
+}
+
+#customersTable tr:hover {
+    background-color: #ddd;
+}
+
+#customersTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+    text-align: center;
+}
+
+
+//-------------------------------QUERIES-------------------------------//
+
+//SMALL MOBILES
+@media only screen and (max-width: 450px) {
+    .colRole{ display: none; }
+}

@@ -1,9 +1,10 @@
 <h1 mat-dialog-title>Reservaciones</h1>
-<h3>Fecha: {{dateToShow}}</h3>
+<h3>Fecha: {{ utils.dateFormat(date) }}</h3>
+<h3>Horario: {{ utils.formatAMPM(startHour) }} - {{ utils.formatAMPM(endHour) }}</h3>
 <div mat-dialog-content>
 
-  <table id="customers">
-    <th>Nombre</th>
+  <table id="customers" *ngIf = "clients.length > 0">
+    <th>Cliente</th>
     <th>Teléfono</th>
     <tr *ngFor="let client of clients">
       <td>{{client.name}}</td>
@@ -11,6 +12,8 @@
     </tr>
 
   </table>
+
+  <p id="labelNoReservation" *ngIf = "clients.length == 0">** No hay reservaciones **</p>
 
 </div>
 <div mat-dialog-actions>
