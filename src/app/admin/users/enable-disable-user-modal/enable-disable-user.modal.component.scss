@@ -1,0 +1,52 @@
+.divModalParent{
+  max-width: 350px;
+}
+
+button{
+    margin-top: 50px;
+    margin:0 auto;
+    display:block;
+}
+
+h2{
+    text-align: center;
+}
+
+#labelNoReservation{
+  text-align: center;
+  font-size: 15px;
+}
+
+.display{
+  display: block;
+}
+
+.hide{
+  display: none;
+}
+
+//Table
+
+#customerReservationsTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #customerReservationsTable td, #customerReservationsTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #customerReservationsTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customerReservationsTable tr:hover {background-color: #ddd;}
+  
+  #customerReservationsTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+    text-align: center;
+  }

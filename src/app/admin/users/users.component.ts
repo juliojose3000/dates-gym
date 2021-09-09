@@ -7,7 +7,8 @@ import { User } from 'src/app/model/user.model';
 import { UserService } from 'src/app/service/user.service';
 import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 import { Utils } from 'src/app/utils/utils';
-import { SeeUserReservationsModal } from './modal/see-user-reservations.modal.component';
+import { SeeUserReservationsModal } from './see-user-reservations-modal/see-user-reservations.modal.component';
+import { EnableDisableUserModal } from './enable-disable-user-modal/enable-disable-user.modal.component';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,7 @@ import { SeeUserReservationsModal } from './modal/see-user-reservations.modal.co
 export class UsersComponent implements OnInit {
 
   public customers: Array<User>;
+  public searchedCustomers: Array<User>;
 
   constructor(
     private userService: UserService,
@@ -30,6 +32,7 @@ export class UsersComponent implements OnInit {
       console.log(mResponse);
       this.spinnerService.resetSpinner();
       this.customers = mResponse.data as Array<User>;
+      this.searchedCustomers = this.customers;
     },
       (error: HttpErrorResponse) => {//Error callback
         console.log(error.message);
@@ -41,7 +44,6 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   getRoleByCode(code) {
@@ -56,7 +58,7 @@ export class UsersComponent implements OnInit {
   seeUserReservations(customerId) {
     let customerSelected;
     this.customers.forEach(customer => {
-      if(customer.id == customerId){
+      if (customer.id == customerId) {
         customerSelected = customer;
       }
     });
@@ -70,5 +72,58 @@ export class UsersComponent implements OnInit {
 
   }
 
+  isUserEnabled(isEnabled: boolean) {
+    return isEnabled ? "Habilitado" : "Deshabilitado";
+  }
+
+  activateOrInactivateUser(customerId: number) {
+    let customerSelected = new User();
+    this.customers.forEach(customer => {
+      if (customer.id == customerId) {
+        customerSelected = customer;
+      }
+    });
+
+    //Habro un modal
+    this.dialog.open(EnableDisableUserModal, {
+      data: {
+        customer: customerSelected
+      }
+    }).afterClosed().subscribe((data) => {
+      let mResponse = data.mResponse;
+      if (mResponse.isSuccessful) {
+        this.customers.forEach(customer => {
+          if (customer.id == customerSelected.id) {
+            customer.isEnabled = !customerSelected.isEnabled;
+            this.onKeyListener();
+          }
+        });
+
+      } else {
+        this.utils.showErrorMessageWithDescription(mResponse.description);
+      }
+    });
+  }
+
+  onKeyListener() {
+    this.searchedCustomers = new Array<User>();
+    const textToSearch = document.getElementById("searchBar") as HTMLInputElement;
+
+    this.customers.forEach(customer => {
+      if (this.doesCustomerHaveThisValue(textToSearch.value, customer)) {
+        this.searchedCustomers.push(customer);
+      }
+    });
+  }
+
+  public doesCustomerHaveThisValue(value: string, customer: User): boolean {
+    if (customer.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+      customer.phoneNumber.toLocaleLowerCase().includes(value.toLocaleLowerCase()) ||
+      customer.email.toLocaleLowerCase().includes(value.toLocaleLowerCase())) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

@@ -47,8 +47,8 @@ export class UserService {
 
   //------------------------------ Admin ---------------------------------//
 
-  enableUserAccount( userEmail: string ){
-    return this.http.get<any>(this.url+'/enable_user_account?userEmail='+userEmail, {headers:this.utils.getHttpHeader()});
+  enableUserAccount( userEmail: string, enableUserAccount: boolean ){
+    return this.http.get<any>(`${this.url}/enable_user_account?userEmail=${userEmail}&enable=${enableUserAccount}`, {headers:this.utils.getHttpHeader()});
   }
 
   getAll(){

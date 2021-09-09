@@ -19,9 +19,9 @@ export class EnableUserAccountComponent implements OnInit {
   phone: string;
 
   constructor(
-    private userService: UserService, 
-    private spinnerService: SpinnerService, 
-    private utils: Utils, 
+    private userService: UserService,
+    private spinnerService: SpinnerService,
+    private utils: Utils,
     private activatedRoute: ActivatedRoute) {
 
   }
@@ -36,17 +36,16 @@ export class EnableUserAccountComponent implements OnInit {
       });
 
     this.spinnerService.requestStarted();
-
-    this.userService.enableUserAccount(this.userEmail).subscribe((mResponse: MyResponse) => {
+    this.userService.enableUserAccount(this.userEmail, true).subscribe((mResponse: MyResponse) => {
       this.spinnerService.resetSpinner();
-      if(mResponse.isSuccessful){
+      if (mResponse.isSuccessful) {
         document.getElementById("divSuccess").setAttribute("class", "display_div");
-      }else{
+      } else {
         document.getElementById("divError").setAttribute("class", "display_div");
         this.responseDescription = mResponse.description;
       }
 
-      
+
     },
       (error: HttpErrorResponse) => {//Error callback
         console.log(error.message);

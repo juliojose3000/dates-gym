@@ -1,4 +1,5 @@
 .header{
+    height: 10%;
     background-color: black;
     width: 100%; /* Toma el ancho de toda la ventana */
     position: relative; /* indica que la capa sí forma parte del flujo normal de elementos de la página, por lo que su posición dependerá del lugar donde esté en el código y el flujo HTML */
@@ -11,23 +12,26 @@
   display: flex; 
 }
 
-  .img_imagen {//Div. Here it storages gym logo
-      height: 70%; //Logo height
-      width: 12%;
-      min-width: 30px;
-      float: left;
+  .div_image_and_title_header{
+    display: inline-flex;
   }
 
-  .div_title{
-      height: 100%;
-      //background-color: red;
-      
-      //center text
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      float: left;
-  }
+    .img_imagen {//Div. Here it storages gym logo
+        width: 12%;
+        min-width: 30px;
+        float: left;
+    }
+
+    .div_title{
+        height: 100%;
+        //background-color: red;
+        
+        //center text
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        float: left;
+    }
 
 p{
     color: white;
@@ -141,11 +145,10 @@ p{
 
 //PC SCREENS
 @media screen and (max-width: 20000px) {
-  .header{ height: 12%; }
     .div_header { width: 50%; float: left; height: 100%; }
-      .div_image_logo{ height: 60%; width: 15%; position: relative; margin: auto; margin-right: 0; margin-left: 3%; } 
-        .img_imagen{ height: 100%; width: 100%; }
-      .div_title{ width: 60%; }
+      .div_image_logo{ width: 15%; position: relative; margin: auto; margin-right: 0; margin-left: 3%; } 
+        .img_imagen{ width: 100%; }
+        
         .p_title{ margin-top: 1vw; }
 
     .navbar_items { right: 0; } 
@@ -154,12 +157,12 @@ p{
 
 //MOBILE SCREENS
 @media (max-width: 845px) {
-  .header{ height: 11%; }
     
     .div_header { width: 100%; margin: auto; height: 50%; /*50 percent of the header height*/ } //Div. Here it shows the gym logo and title (Cachí Fitness Center)
-      .div_image_logo{ width: 40%; position: relative; } 
+    .div_image_and_title_header {margin-left: auto; margin-right: auto;}
+      .div_image_logo{ height: 60%; display: flex; width: fit-content; margin-left: 0; } 
         .img_imagen { position: relative; float: right; width: 10%; } /*Div. Here it storages gym logo*/ 
-      .div_title{ width: 60%; position: relative; }
+      .div_title{ position: relative; }
         .p_title{ margin-top: 2vw; font-size: 1vh; } /*Cachi Fitness Center*/
 
     .navbar_items { height: 50%; width: 100%; bottom: 0; } 

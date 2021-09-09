@@ -3,14 +3,38 @@
     height: 80%;
 }
 
+.divSearchBar{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+.scrollingTable {
+	width: 85%;
+    height: 82%;
+	padding: 0px;
+	margin: 0px auto 0px auto;
+	overflow: auto;
+    margin-top: 20px;
+}
 
 //Table
 
 #customersTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 90%;
-    margin-top: 20px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -42,10 +66,24 @@
     text-align: center;
 }
 
+.colReservations, .colStatus{
+    text-align: center;
+}
+
 
 //-------------------------------QUERIES-------------------------------//
 
 //SMALL MOBILES
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 900px) {
     .colRole{ display: none; }
+}
+
+//SMALL MOBILES
+@media only screen and (max-width: 800px) {
+    .colEmail{ display: none; }
+}
+
+//SMALL MOBILES
+@media only screen and (max-width: 700px) {
+    .colPhone{ display: none; }
 }

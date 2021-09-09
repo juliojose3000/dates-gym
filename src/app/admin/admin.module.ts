@@ -14,13 +14,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SeeUserReservationsModal } from './users/modal/see-user-reservations.modal.component';
+import { EnableDisableUserModal } from './users/enable-disable-user-modal/enable-disable-user.modal.component';
 import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
+import { SeeUserReservationsModal } from './users/see-user-reservations-modal/see-user-reservations.modal.component';
 
 
 
 @NgModule({
-  declarations: [UsersComponent, ScheduleComponent, EnableUserAccountComponent, ModalComponent, SeeUserReservationsModal],
+  declarations: [UsersComponent, ScheduleComponent, EnableUserAccountComponent, ModalComponent, SeeUserReservationsModal, EnableDisableUserModal],
   imports: [
     CommonModule,
     AdminRoutingModule,
