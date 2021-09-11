@@ -1,0 +1,11 @@
+<div class="divModalParent">
+  <h2 mat-dialog-title>{{title}}</h2>
+  <div mat-dialog-content>
+    <p id="labelNoReservation">{{description}}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button id="buttonLeft" mat-raised-button color="primary" (click)="acceptButtonClick()">Proceder</button>
+    <button id="buttonRight" mat-raised-button (click)="dimissDialog()">Cancelar</button>
+  </div>
+
+</div>

@@ -14,21 +14,21 @@ import { ReserveService } from './service/reserve.service';
 import { ScheduleService } from './service/schedule.service';
 import { UserService } from './service/user.service';
 import { AuthenticationService } from './service/authentication.service'
-import { SpinnerService } from './spinner/spinner.service'
+import { SpinnerService } from './common/spinner/spinner.service'
 
 //Components
-import { MessageComponent } from './message/message.component';
-import { LoginComponent } from './login/login.component';
+import { MessageComponent } from './common/message/message.component';
+import { LoginComponent } from './auth/login/login.component';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { ReserveComponent } from './reserve/reserve.component';
-import { HomeComponent } from './home/home.component';
-import { ReservationPopupComponent } from './reserve/reservation_popup/reservation_popup.component';
-import { SpinnerComponent } from './spinner/spinner.component'
-import { AboutusComponent } from './aboutus/aboutus.component';
-import { PopupComponent } from './popup/popup.component';
-import { EnterPhoneNumberPopupComponent } from './login/enter-phone-number-popup/enter-phone-number-popup.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { ReserveComponent } from './customer/reserve/reserve.component';
+import { HomeComponent } from './common/home/home.component';
+import { ReservationPopupComponent } from './customer/reserve/reservation_popup/reservation_popup.component';
+import { SpinnerComponent } from './common/spinner/spinner.component'
+import { AboutusComponent } from './common/aboutus/aboutus.component';
+import { PopupComponent } from './common/popup/popup.component';
+import { EnterPhoneNumberPopupComponent } from './auth/login/enter-phone-number-popup/enter-phone-number-popup.component';
 
 //Modules
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,50 +49,58 @@ import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-logi
 
 //Environments
 import { environment } from '../environments/environment';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { PasswordForgottenComponent } from './password-forgotten/password-forgotten.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { EnableUserAccountComponent } from './enable-user-account/enable-user-account.component';
+import { UserProfileComponent } from './customer/user-profile/user-profile.component';
+import { PasswordForgottenComponent } from './auth/password-forgotten/password-forgotten.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { environment_variables } from 'src/environments/environment.variables';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
+
+    //Screens components
     ReserveComponent,
     HomeComponent,
-    ReservationPopupComponent,
-    PopupComponent,
-    EnterPhoneNumberPopupComponent,
-    MessageComponent,
     LoginComponent,
-    SpinnerComponent,
     AboutusComponent,
     UserProfileComponent,
     PasswordForgottenComponent,
     ResetPasswordComponent,
-    EnableUserAccountComponent
+
+    //Static components
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+
+    //Popups/Modals Components
+    ReservationPopupComponent,
+    PopupComponent,
+    MessageComponent,
+    EnterPhoneNumberPopupComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
+    SocialLoginModule,
+    CommonModule,
+
+    //Material Imports
+    MatCardModule,
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
     MatInputModule,
-    MatFormFieldModule,
-    HttpClientModule,
-    FormsModule,
-    MatCardModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    SocialLoginModule,
-    CommonModule
+    MatFormFieldModule
   ],
-  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe,
+  providers: [ScheduleService, ReserveService, UserService, AuthenticationService, Utils, SpinnerService, DatePipe, AdminGuard,
   
     {
       provide: 'SocialAuthServiceConfig',

@@ -1,0 +1,135 @@
+table{
+    border-collapse: collapse;
+}
+
+th{//centro el texto de los encabezados
+    text-align: center;
+    width: 5%;
+}
+
+td{//centro el texto de las casillas
+    text-align: center;
+}
+
+.headers{
+    font-size: 100%;
+    background-color: rgba(77, 54, 8, 0.8);
+    font-weight: bold;
+    height: 6vh;
+}
+
+.cell{
+    font-size: 80%;
+    background-color: rgba(54, 43, 5, 0.6);
+}
+
+.expired_cell{
+    font-size: 80%;
+    background-color: rgba(95, 95, 95, 0.473);
+}
+
+.cell_reserved{
+    font-size: 80%;
+    background-color: rgba(230, 164, 34, 0.8);
+}
+
+.cell_reserved:hover{
+    cursor: pointer;
+}
+
+.cell:hover{
+    background-color: rgba(182, 144, 21, 0.6);
+    cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid white;
+    color: white;
+}
+
+.mainDiv{
+    position: relative;
+    width: 100%;
+    //background-color: red;
+}
+
+
+.p_available_space_text{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+
+.p_available_space{ 
+    margin: 0px; 
+}
+
+#p_range_hours{
+    margin: 0px;
+}
+
+.top_headers{
+    background-color: rgba(77, 54, 8, 0.8);
+    height: 50px;
+    font-size: 1vw;
+    text-align: center;
+}
+
+.p_week{
+    color: white;
+    font-size:calc(6px + 1.5vw);
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+
+.p_note{
+    color: white;
+    margin-top: 2%;
+    font-size: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+
+//-----------------------------------------QUERIES---------------------------------------//
+
+//MOBILE SCREENS
+@media (max-width: 1200px) {
+    .p_available_space_text { display: none; }
+    .headers { font-size: 10px; }
+}
+   
+//PC SCREENS
+@media (min-width: 845px) {
+    .mainDiv{ width: 80%; left: 10%; }
+    .p_week{ margin-top: 5%; }
+    
+}
+  
+//MOBILE SCREENS
+@media (max-width: 845px) {
+    .top_headers{ font-size: 2vw; }
+    .mainDiv{ width: 95%; left: 2.5%; }
+    .p_week{ margin-top: 15%; }
+}
+
+
+//SMALL MOBILES (VERTICAL VIEW)
+@media only screen and (max-width: 400px){
+    .headers { height: 45px; }
+    .p_week{ margin-top: 3%; }
+}
+
+//Horizontal Movil View
+@media screen and (orientation: landscape) and (max-height: 640px){
+    .p_week{ margin-top: 5%; }
+    .headers{ height: 50px; }
+    .mainDiv{ height: 75%; }
+}
+
+//Horizontal Small Movil View
+@media screen and (orientation: landscape) and (max-height: 400px){
+    .p_week{ margin-top: 10%; }
+}
