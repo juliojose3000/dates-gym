@@ -1,10 +1,12 @@
-<h1 mat-dialog-title>{{title}}</h1>
-<div mat-dialog-content>
-  <p>¿{{message}}?</p>
-  <p>Fecha: {{dateToShow}}</p>
-  <p>Desde las: {{formatAMPM(startHour)}} hasta las: {{formatAMPM(endHour)}}</p>
-</div>
-<div mat-dialog-actions>
+<div class="divModalParent">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    <p>¿{{message}}?</p>
+    <p>Fecha: {{dateToShow}}</p>
+    <p>Horario: {{ utils.formatAMPM(startHour) }} - {{ utils.formatAMPM(endHour) }}</p>
+  </div>
+  <div mat-dialog-actions>
     <button id="buttonLeft" mat-raised-button color="primary" (click)="submit()">{{buttonLeftText}}</button>
     <button id="buttonRight" mat-raised-button (click)="dimissDialog()">{{buttonRightText}}</button>
+  </div>
 </div>

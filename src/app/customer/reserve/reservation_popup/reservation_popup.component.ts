@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'reservation_popup-component',
   templateUrl: './reservation_popup.component.html',
-  styleUrls: ['./reservation_popup.component.css']
+  styleUrls: ['./reservation_popup.component.scss']
 })
 export class ReservationPopupComponent implements OnInit {
 
@@ -38,7 +38,7 @@ export class ReservationPopupComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private reserveService: ReserveService,
         private spinnerService: SpinnerService,
-        private utils: Utils,
+        public utils: Utils,
         public datepipe: DatePipe) {
     }
 
@@ -48,6 +48,7 @@ export class ReservationPopupComponent implements OnInit {
         this.message = this.data.message;
 
         this.date = new Date(this.data.date);
+        this.dateToShow = this.utils.dateFormat(this.date);
         /*if(environment.production)
             this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day*/
         this.dateString = this.datepipe.transform(this.date, 'yyyy-MM-dd');
@@ -57,7 +58,6 @@ export class ReservationPopupComponent implements OnInit {
         this.buttonLeftText = this.data.buttonLeftText;
         this.buttonRightText = this.data.buttonRightText;
         this.method = this.data.method;
-        this.dateFormat();
 
     }
 
@@ -66,7 +66,7 @@ export class ReservationPopupComponent implements OnInit {
     }
     
     submit(){
-        this.reservation = new Reservation(this.dateString, this.startHour);
+        this.reservation = new Reservation(this.dateString, this.startHour, this.endHour);
         this.spinnerService.requestStarted();
         console.log(this.reservation.toString());
         if(this.method=="reservate")
@@ -85,25 +85,6 @@ export class ReservationPopupComponent implements OnInit {
         this.spinnerService.resetSpinner();//hide loader
         this.utils.showErrorMessage();//show error message
         this.dimissDialog();//close popup
-    }
-
-    dateFormat(){
-
-        var dayName = DAYS_NAME[this.date.toString().split(" ", 1)[0]];
-        var monthName = MONTHS_NAME[this.date.toString().split(" ", 2)[1]];
-        this.dateToShow = dayName+', '+this.date.getDate()+' de '+monthName+' del '+this.date.getFullYear();
-        this.formatAMPM(this.startHour);
-
-    }
-
-    formatAMPM(time) {
-        var hours = time.split(":")[0];
-        var minutes = time.split(":")[1];
-        var ampm = hours >= 12 ? 'pm' : 'am';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
-        var strTime = hours + ':' + minutes + ' ' + ampm;
-        return strTime;
     }
       
     closeDialog(mResponse: MyResponse){

@@ -30,7 +30,7 @@ export class ReserveComponent implements OnInit {
   startDateFormatted: string;
   endDateFormatted: string = "domingo";
 
-  constructor(public dialog: MatDialog, private scheduleService: ScheduleService, private utils: Utils,
+  constructor(public dialog: MatDialog, private scheduleService: ScheduleService, public utils: Utils,
     private spinnerService: SpinnerService) {
 
     if(!this.utils.isThereALoggedUser()) return;
@@ -50,7 +50,7 @@ export class ReserveComponent implements OnInit {
         this.schedule = mResponse.data as Schedule;
         this.startDateFormatted = utils.dateFormat(new Date(this.schedule.startDate));
         this.endDateFormatted = utils.dateFormat(new Date(this.schedule.endDate));
-        var pWeekDescription = `Semana ${this.schedule.weekNumber}: Del ${this.startDateFormatted} al ${this.endDateFormatted}`;
+        var pWeekDescription = `Reservaciones disponibles del ${this.startDateFormatted} al ${this.endDateFormatted}`;
         document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
 
         this.arrayShiefts = this.schedule.shifts;
@@ -210,17 +210,6 @@ export class ReserveComponent implements OnInit {
     });
 
   }
-
-  formatAMPM(time) {
-    var hours = time.split(":")[0];
-    var minutes = time.split(":")[1];
-    var ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
-    var strTime = hours + ':' + minutes + ' ' + ampm;
-    return strTime;
-  }
-
 
 
 }

@@ -90,6 +90,7 @@ export class UsersComponent implements OnInit {
         customer: customerSelected
       }
     }).afterClosed().subscribe((data) => {
+      if(data == null) return;
       let mResponse = data.mResponse;
       if (mResponse.isSuccessful) {
         this.customers.forEach(customer => {

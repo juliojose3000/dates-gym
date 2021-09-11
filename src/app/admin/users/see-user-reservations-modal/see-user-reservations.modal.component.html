@@ -6,7 +6,7 @@
     <th>Horario</th>
     <tr *ngFor="let reservation of customerSelected.reservations">
       <td>{{ utils.dateFormat(reservation.shiftDate) }}</td>
-      <td>{{ utils.formatAMPM(reservation.shiftStartHour) }}</td>
+      <td>{{ utils.formatAMPM(reservation.shiftStartHour) }} - {{ utils.formatAMPM(reservation.shiftEndHour) }}</td>
     </tr>
 
   </table>

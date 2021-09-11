@@ -27,7 +27,7 @@
 
         <tbody>
           <tr *ngFor="let column of arrayShiefts[0]; let in = index">
-            <td class="headers"><p id="p_range_hours">{{formatAMPM(arrayShiefts[0][in].startHour)}} - {{formatAMPM(arrayShiefts[0][in].endHour)}}</p></td>
+            <td class="headers"><p id="p_range_hours">{{ utils.formatAMPM(arrayShiefts[0][in].startHour) }} - {{ utils.formatAMPM(arrayShiefts[0][in].endHour) }}</p></td>
             <td class="{{arrayShiefts[0][in].cssClass}}" id='{{arrayShiefts[0][in].date+"_"+arrayShiefts[0][in].startHour}}' (click)="openDialog(arrayShiefts[0][in].date, arrayShiefts[0][in].startHour, arrayShiefts[0][in].endHour)"><p class='p_available_space_text'>Campos disponibles: </p><p class="p_available_space" id='p_{{arrayShiefts[0][in].date+"_"+arrayShiefts[0][in].startHour}}'>{{arrayShiefts[0][in].availableSpace}}</p></td>
             <td class="{{arrayShiefts[1][in].cssClass}}" id='{{arrayShiefts[1][in].date+"_"+arrayShiefts[1][in].startHour}}' (click)="openDialog(arrayShiefts[1][in].date, arrayShiefts[1][in].startHour, arrayShiefts[1][in].endHour)"><p class='p_available_space_text'>Campos disponibles: </p><p class="p_available_space" id='p_{{arrayShiefts[1][in].date+"_"+arrayShiefts[1][in].startHour}}'>{{arrayShiefts[1][in].availableSpace}}</p></td>
             <td class="{{arrayShiefts[2][in].cssClass}}" id='{{arrayShiefts[2][in].date+"_"+arrayShiefts[2][in].startHour}}' (click)="openDialog(arrayShiefts[2][in].date, arrayShiefts[2][in].startHour, arrayShiefts[2][in].endHour)"><p class='p_available_space_text'>Campos disponibles: </p><p class="p_available_space" id='p_{{arrayShiefts[2][in].date+"_"+arrayShiefts[2][in].startHour}}'>{{arrayShiefts[2][in].availableSpace}}</p></td>
