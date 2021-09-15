@@ -10,7 +10,7 @@ export const Codes = {
 export const Strings={
   RESERVATE_SPACE:"Está seguro que desea reservar este espacio",
   CANCEL_RESERVATION: "Está seguro que desea cancelar la reservación",
-  ERROR:"Operación fallida",
+  ERROR:"Error",
   ERROR_DESCRIPTION: "Ha ocurrido un error inésperado, intente de nuevo más tarde.",
   LOGIN:"Iniciar Sesión",
   LOGOUT: "Cerrar Sesión",
@@ -22,7 +22,7 @@ export const Strings={
   SIGN_IN_NULL_SPACES: "Debe rellenar los campos para iniciar sesión",
   SIGN_UP_NULL_SPACES: "Debe rellenar los campos para poder registrarse",
   IT_IS_NOT_A_STRONG_PASSWORD: "La contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
-  PASSWORD_NEEDED: "Necesitas ingresar tu contraseña para que los cambios sean aplicados.",
+  PASSWORD_NEEDED: "Necesitas ingresar tu contraseña actual para que los cambios sean aplicados.",
   IT_IS_NOT_A_STRONG_NEW_PASSWORD: "La nueva contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
   IT_IS_NOT_A_VALID_EMAIL: "El correo ingresado no es un correo válido. Por favor ingrese un correo válido",
   IT_IS_NOT_A_VALID_PHONE: "El número de teléfono ingresado no es un válido. Por favor ingrese un número válido",

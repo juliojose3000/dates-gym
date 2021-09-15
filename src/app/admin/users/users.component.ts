@@ -73,7 +73,7 @@ export class UsersComponent implements OnInit {
   }
 
   isUserEnabled(isEnabled: boolean) {
-    return isEnabled ? "Habilitado" : "Deshabilitado";
+    return isEnabled ? "Deshabilitar" : "Habilitar";
   }
 
   activateOrInactivateUser(customerId: number) {
