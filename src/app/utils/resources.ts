@@ -12,6 +12,7 @@ export const Strings={
   CANCEL_RESERVATION: "Está seguro que desea cancelar la reservación",
   ERROR:"Error",
   ERROR_DESCRIPTION: "Ha ocurrido un error inésperado, intente de nuevo más tarde.",
+  MY_ACCOUNT:"Mi cuenta",
   LOGIN:"Iniciar Sesión",
   LOGOUT: "Cerrar Sesión",
   LOGOUT_MESSAGE: "¿Está seguro que deseas cerrar la sesión?",
