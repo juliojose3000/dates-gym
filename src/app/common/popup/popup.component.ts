@@ -43,6 +43,8 @@ export class PopupComponent implements OnInit {
                 document.getElementById("div_user").setAttribute("class", "display_none");
                 if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString())
                     document.getElementById("div_admin").setAttribute("class", "display_none");
+                if(localStorage.getItem("is_social_login") == "true")
+                    this.socialAuthService.signOut();
                 this.router.navigate(['login']);
                 this.dimissDialog();
                 localStorage.clear();//clean the local storage

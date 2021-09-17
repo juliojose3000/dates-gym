@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(this.auth).subscribe((mResponse: MyResponse) => {
       this.spinnerService.resetSpinner();
       if (mResponse.isSuccessful) {
-        this.loginSuccesful(mResponse);
+        this.loginSuccesful(mResponse, false);
       }
       else {
         //Invalid credentials
@@ -175,7 +175,7 @@ export class LoginComponent implements OnInit {
         }
       }).afterClosed().subscribe(() => {
         if (mResponse.isSuccessful) {
-          this.loginSuccesful(mResponse);
+          this.loginSuccesful(mResponse, false);
         }
       });
 
@@ -300,7 +300,7 @@ export class LoginComponent implements OnInit {
           }
         }).afterClosed().subscribe(() => {
           if (mResponse.isSuccessful) {
-            this.loginSuccesful(mResponse);
+            this.loginSuccesful(mResponse, true);
             return;
           }
         });
@@ -309,7 +309,7 @@ export class LoginComponent implements OnInit {
 
       //Para login
       if (Codes.USER_CREATED_SUCCESSFUL) {
-        this.loginSuccesful(mResponse);
+        this.loginSuccesful(mResponse, true);
       } else {
         this.dialog.open(MessageComponent, {
           data: {
@@ -327,8 +327,8 @@ export class LoginComponent implements OnInit {
 
   }
 
-  loginSuccesful(mResponse: MyResponse) {
-    this.utils.saveUserSessionData(mResponse);
+  loginSuccesful(mResponse: MyResponse, isSocialLogin: boolean) {
+    this.utils.saveUserSessionData(mResponse, isSocialLogin);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
     document.getElementById("btn_session").innerHTML = Strings.MY_ACCOUNT;

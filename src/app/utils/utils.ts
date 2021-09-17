@@ -194,7 +194,7 @@ export class Utils {
         return localStorage.getItem('is_enable')=="true"?true:false;
     }
 
-    saveUserSessionData(mResponse: MyResponse){
+    saveUserSessionData(mResponse: MyResponse, isSocialLogin: boolean){
         const user = mResponse.data as User;
         console.log(user);
         localStorage.setItem("token", "Bearer "+mResponse.token);
@@ -204,6 +204,7 @@ export class Utils {
         localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-",""));
         localStorage.setItem("user_role", user.role.toString());
         localStorage.setItem("is_enabled", user.isEnabled?"true":"false");
+        localStorage.setItem("is_social_login", isSocialLogin?"true":"false");
     }
 
     updateUserSessionData(mResponse: MyResponse){
