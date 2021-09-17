@@ -238,6 +238,7 @@ export class LoginComponent implements OnInit {
         this.user = new User();
         this.user.email = this.social_user.email;
         this.user.name = this.social_user.name;
+        this.user.role = UserRoleEnum.CUSTOMER
 
         this.spinnerService.requestStarted();
         this.userService.userExists(this.user.email).subscribe((mResponse: MyResponse) => {
@@ -330,7 +331,7 @@ export class LoginComponent implements OnInit {
     this.utils.saveUserSessionData(mResponse);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
-    document.getElementById("btn_session").innerHTML = this.utils.getFirstWordFromString(localStorage.getItem("user_name"));
+    document.getElementById("btn_session").innerHTML = Strings.MY_ACCOUNT;
 
     if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString()){
       document.getElementById("div_admin").setAttribute("class", "dropdown");
