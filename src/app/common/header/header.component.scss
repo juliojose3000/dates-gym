@@ -3,6 +3,7 @@
     background-color: black;
     width: 100%; /* Toma el ancho de toda la ventana */
     position: relative; /* indica que la capa sí forma parte del flujo normal de elementos de la página, por lo que su posición dependerá del lugar donde esté en el código y el flujo HTML */
+    min-height: 100px;
 }
 
 //--------------------------------------------------CONTAINER 1 (LOGO AND NAME)--------------------------------------------------//
@@ -10,6 +11,7 @@
 .div_header{//Div. Here it shows the gym logo and title (Cachí Fitness Center)
   position: relative;
   display: flex; 
+  min-height: 50px;
 }
 
   .div_image_and_title_header{
@@ -163,7 +165,7 @@ p{
       .div_image_logo{ height: 60%; display: flex; width: fit-content; margin-left: 0; } 
         .img_imagen { position: relative; float: right; width: 10%; } /*Div. Here it storages gym logo*/ 
       .div_title{ position: relative; }
-        .p_title{ margin-top: 2vw; font-size: 1vh; } /*Cachi Fitness Center*/
+        .p_title{ margin-top: 2vw; } /*Cachi Fitness Center*/
 
     .navbar_items { height: 50%; width: 100%; bottom: 0; } 
         ul{ position: relative; left: 0; margin: auto; padding: 0px; }
