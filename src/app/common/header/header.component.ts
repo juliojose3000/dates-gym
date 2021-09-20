@@ -15,137 +15,96 @@ import { Utils } from '../../utils/utils';
 })
 export class HeaderComponent implements OnInit {
 
-  isAMobileScreen: boolean = false;
+  sessionText: string;
 
-  constructor(private router: Router, public dialog: MatDialog, public utils: Utils, public adminGuard: AdminGuard) {}
+  constructor(private router: Router, public dialog: MatDialog, public utils: Utils, public adminGuard: AdminGuard) { }
 
   ngOnInit(): void {
-    if(this.utils.getWidth()<=845) this.isAMobileScreen = true;
 
     const session = document.getElementById("a_session");
-    const login_user = document.getElementById("btn_session");
 
-    if(this.isAMobileScreen){
-      document.getElementById("div_services").setAttribute("class", "display_none");
-      document.getElementById("div_user").setAttribute("class", "display_none");
-    }
-      
-    
-    if(localStorage.getItem('token')!='null' && localStorage.getItem('token')!=null){//There is an active session
-      login_user.innerHTML = Strings.MY_ACCOUNT;
+    if (localStorage.getItem('token') != 'null' && localStorage.getItem('token') != null) {//There is an active session
+      this.sessionText = Strings.MY_ACCOUNT;
       session.innerHTML = Strings.LOGOUT;
-    }else{
-      document.getElementById("div_user").setAttribute("class", "display_none");
-      login_user.innerHTML = Strings.LOGIN;
+      document.getElementById("div_my_account_features").style.display = "block";
+    } else {
+      document.getElementById("div_my_account_features").style.display = "none";
+      this.sessionText = Strings.LOGIN;
     }
 
     //Check is the user is admin
-    if(localStorage.getItem('user_role') == null || localStorage.getItem('user_role') == UserRoleEnum.CUSTOMER.toString()){
-      document.getElementById("div_admin").setAttribute("class", "display_none");
-    }else if(localStorage.getItem('user_role') == UserRoleEnum.ADMIN.toString()){
-      document.getElementById("div_admin").setAttribute("class", "dropdown");
+    if (localStorage.getItem('user_role') == null || localStorage.getItem('user_role') != UserRoleEnum.ADMIN.toString()) {
+      document.getElementById("div_admin_features").style.display = "none";
+    } else if (localStorage.getItem('user_role') == UserRoleEnum.ADMIN.toString()) {
+      document.getElementById("div_admin_features").style.display = "block";
     }
+
+    //If user clicks outside of side menu, so it will be closed
+    document.body.addEventListener("click", function (event) {
+
+      if (!document.getElementById("wrapper").contains(event.target as Node) &&
+        (document.getElementById("show-menu") as HTMLInputElement).checked == true) {
+        (document.getElementById("show-menu") as HTMLInputElement).checked = false; //Hide menu options
+      }
+
+    });
+
+    //If user scrolling the page, the side menu will be closed
+    window.onscroll = function () {
+      if((document.getElementById("show-menu") as HTMLInputElement).checked == true)
+        (document.getElementById("show-menu") as HTMLInputElement).checked = false;
+    };
 
   }
 
-  session(){
-    if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN) return;//If there isn't a user session, so don't show anything
-
-    if(localStorage.getItem("token")!='null' && localStorage.getItem("token")!=null){//Show logout popup
-
-      //Invalid credentials
-      this.dialog.open(PopupComponent, {
-        data: {
-            title: Strings.LOGOUT,
-            message: Strings.LOGOUT_MESSAGE,
-            buttonLeftText: Strings.BUTTON_LEFT_LOGOUT,
-            buttonRightText: Strings.BUTTON_RIGHT_LOGOUT,
-            code: Codes.LOGOUT
-        }
-      }); 
-
-    }else{
-      document.getElementById("btn_session").innerHTML = Strings.LOGIN;
-      document.getElementById("div_user").setAttribute("class", "display_none");
-      this.router.navigate(['login']);
-    }
+  noscroll() {
+    window.scrollTo(0, 0);
   }
 
-  logout(){
+  logout() {
     this.dialog.open(PopupComponent, {
       data: {
-          title: Strings.LOGOUT,
-          message: Strings.LOGOUT_MESSAGE,
-          buttonLeftText: Strings.BUTTON_LEFT_LOGOUT,
-          buttonRightText: Strings.BUTTON_RIGHT_LOGOUT,
-          code: Codes.LOGOUT
+        title: Strings.LOGOUT,
+        message: Strings.LOGOUT_MESSAGE,
+        buttonLeftText: Strings.BUTTON_LEFT_LOGOUT,
+        buttonRightText: Strings.BUTTON_RIGHT_LOGOUT,
+        code: Codes.LOGOUT
       }
-    }); 
+    });
   }
 
-  services(){
-    document.getElementById("div_services").setAttribute("class", "dropdown-content");
-  }
+  onClickEvent(goTo: string) {
 
-  goToWeightRoom(){
-    document.getElementById("div_services").setAttribute("class", "display_none");
-    this.router.navigate(['gym_services/weight_room']);
-  }
+    let hideMenu = true;
 
-  goToHome(){
-    this.router.navigate(['home']);
-  }
-
-  goToUserProfile(){
-    this.router.navigate(['user_profile']);
-    document.getElementById("div_user").setAttribute("class", "display_none");
-  }
-
-  aboutUs(){
-    this.router.navigate(['about_us']);
-  }
-
-  seeWeightRoomReservations(){
-    this.router.navigate(['admin/schedule']);
-    document.getElementById("div_admin_items").setAttribute("class", "display_none");
-  }
-
-  seeUsers(){
-    this.router.navigate(['admin/users']);
-    document.getElementById("div_admin_items").setAttribute("class", "display_none");
-  }
-
-  mouseup(element: HTMLButtonElement){
-    switch(element.id){
-      case "btn_admin":
-        document.getElementById("div_admin_items").setAttribute("class", "dropdown-content");
+    switch (goTo) {
+      case 'home':
+        this.router.navigate(['home']);
         break;
-      case "btn_services":
-        document.getElementById("div_services").setAttribute("class", "dropdown-content");
+      case 'aboutUs':
+        this.router.navigate(['about_us']);
         break;
-      case "btn_session":
-        if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN)
-          document.getElementById("div_user").setAttribute("class", "dropdown-content");
-        else 
-          this.session();
+      case 'seeReservations':
+        this.router.navigate(['admin/schedule']);
+        break;
+      case 'seeUsers':
+        this.router.navigate(['admin/users']);
+        break;
+      case 'weightRoom':
+        this.router.navigate(['gym_services/weight_room']);
+        break;
+      case 'userProfile':
+        this.router.navigate(['user_profile']);
+        break;
+      case 'session':
+        if (document.getElementsByName("btn_session")[0].innerHTML == Strings.MY_ACCOUNT) {
+          hideMenu = false;
+        } else {
+          this.router.navigate(['login']);
+        }
         break;
     }
-
-  }
-
-  mouseover(element: HTMLButtonElement){
-    switch(element.id){
-      case "btn_admin":
-        document.getElementById("div_admin_items").setAttribute("class", "dropdown-content");
-        break;
-      case "btn_services":
-        document.getElementById("div_services").setAttribute("class", "dropdown-content");
-        break;
-      case "btn_session":
-        if(document.getElementById("btn_session").innerHTML!=Strings.LOGIN)
-          document.getElementById("div_user").setAttribute("class", "dropdown-content");
-        break;
-    }
+    (document.getElementById("show-menu") as HTMLInputElement).checked = !hideMenu; //Hide menu options
   }
 
 }
