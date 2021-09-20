@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.codigojs();
-    
+
   }
 
   codigojs() {
@@ -213,7 +213,7 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         console.log(error); //If user close the authentication window, it enters to catch
       });
-    
+
   }
 
   signInWithFB(): void {
@@ -226,7 +226,7 @@ export class LoginComponent implements OnInit {
       }).catch((error) => {
         console.log(error); //If user close the authentication window, it enters to catch
       });
-    
+
   }
 
   socialSignInStartService() {
@@ -260,7 +260,7 @@ export class LoginComponent implements OnInit {
           console.log(error.message);
           this.spinnerService.resetSpinner();
           this.utils.showErrorMessage();
-          if(this.detailRecivedSubscription != undefined)
+          if (this.detailRecivedSubscription != undefined)
             this.detailRecivedSubscription.unsubscribe();
         });
 
@@ -271,7 +271,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if(this.detailRecivedSubscription != undefined)
+    if (this.detailRecivedSubscription != undefined)
       this.detailRecivedSubscription.unsubscribe();
   }
 
@@ -331,10 +331,13 @@ export class LoginComponent implements OnInit {
     this.utils.saveUserSessionData(mResponse, isSocialLogin);
     this.router.navigate(['home']);
     document.getElementById("a_session").innerHTML = Strings.LOGOUT;
-    document.getElementById("btn_session").innerHTML = Strings.MY_ACCOUNT;
+    Array.from(document.getElementsByClassName("btn_session")).forEach(element => {
+      element.innerHTML = Strings.MY_ACCOUNT
+    });
+    document.getElementById("div_my_account_features").style.display = "block";
 
-    if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString()){
-      document.getElementById("div_admin").setAttribute("class", "dropdown");
+    if (localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString()) {
+      document.getElementById("div_admin_features").style.display = "block";
     }
   }
 
