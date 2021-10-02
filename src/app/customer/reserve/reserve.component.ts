@@ -50,8 +50,8 @@ export class ReserveComponent implements OnInit {
         this.schedule = mResponse.data as Schedule;
         this.startDateFormatted = utils.dateFormat(new Date(this.schedule.startDate));
         this.endDateFormatted = utils.dateFormat(new Date(this.schedule.endDate));
-        var pWeekDescription = `Reservaciones disponibles del ${this.startDateFormatted} al ${this.endDateFormatted}`;
-        document.getElementById("pWeekDescription").innerHTML = pWeekDescription;
+        var pWeekDescription = `◉ Reservaciones del ${this.startDateFormatted} al ${this.endDateFormatted}`;
+        document.getElementById("weekRange").innerHTML = pWeekDescription;
 
         this.arrayShiefts = this.schedule.shifts;
         this.arrayShiefts.forEach(function (shifts) {
@@ -63,13 +63,16 @@ export class ReserveComponent implements OnInit {
             }
           });
 
-          //Busco si algun espacio ha sido reservado por el usuario actual
+          //Busco si algun espacio ha sido reservado por el usuario actual o si tiene 0 espacios
           shifts.forEach(function(shift){
             shift.clients.forEach(function(client){
               if(String(client.id) == localStorage.getItem('user_id')){
                 shift.cssClass = "cell_reserved"; 
               }
             });
+            if(shift.availableSpace == 0){
+              shift.cssClass = "expired_cell"; 
+            }
           });
         });//end busqueda
       }//else

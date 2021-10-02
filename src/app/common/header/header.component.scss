@@ -30,7 +30,7 @@ nav .content {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0 50px;
+    padding: 0 3vw;
 }
 nav .content .links {
     margin-left: 80px;
@@ -246,9 +246,6 @@ nav .content .links {
     .wrapper nav {
         padding: 0 10px;
     }
-    .content .logo a {
-        font-size: 27px;
-    }
     .wrapper .search-box {
         max-width: calc(100% - 70px);
     }
@@ -258,5 +255,8 @@ nav .content .links {
     }
     .wrapper .search-box input {
         padding-right: 30px;
+    }
+    .img_imagen_logo{
+        display: none;
     }
 }

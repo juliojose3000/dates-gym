@@ -15,7 +15,7 @@
     margin-right: auto;
     border-radius: 15px;
     width: 80%;
-    background-color: rgba(14, 14, 78, 0.548);
+    background-color: rgba(0, 0, 0, 0.815);
   }
 
     .h1_title{
@@ -56,22 +56,3 @@
     
 
   //-------------------------------------------------------------//@at-root
-
-  //PC SCREENS
-@media (min-width: 1200px) {
-  .button{ font-size: 1.5vw; }
-}
-
-@media only screen and (max-width: 400px){
-  .p_weight_room_description{ font-size: 10px; }
-  .second_div{ min-width: 300px; }
-  .button{ height: 50px; }
-  .h1_title{ font-size: 20px; }
-}
-
-//MOBILE SCREENS
-@media (max-width: 845px) {
-  .p_weight_room_description{margin-left: 2%;}
-  .second_div{top:40%}
-  .divButton{top:85%}
-}

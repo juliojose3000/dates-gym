@@ -111,12 +111,19 @@
         flex-direction: column;
         align-items: center;
     }
-    .div_info_details{
+    .div_info_details {
         align-items: center;
+        padding: 0 20px;
     }
-    .div_general_info{
+    .div_general_info {
         padding-left: 0;
         padding-right: 0;
+    }
+    .p_info {
+        text-align: center;
+    }
+    .blocktext {
+        width: 16em;
     }
 }
 
