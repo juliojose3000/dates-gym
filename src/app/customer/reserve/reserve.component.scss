@@ -30,17 +30,17 @@ td{//centro el texto de las casillas
 
 .cell{
     font-size: 80%;
-    background-color: rgba(54, 43, 5, 0.8);
+    background-color: rgb(94, 75, 9);
 }
 
 .expired_cell{
     font-size: 80%;
-    background-color: rgba(95, 95, 95, 0.8);
+    background-color: rgb(95, 95, 95);
 }
 
 .cell_reserved{
     font-size: 80%;
-    background-color: rgba(230, 164, 34, 0.8);
+    background-color: rgb(230, 164, 34);
 }
 
 .cell_reserved:hover{
@@ -90,7 +90,7 @@ table, th, td {
 }
 
 .divTextContainer{
-    background-color: rgba(0, 0, 0, 0.747);
+    background-color: #14181f;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;

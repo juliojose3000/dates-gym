@@ -1,8 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { min-height: 1100px; height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html,
+body {
+    min-height: 1100px;
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Avoid blue hightlighting when user click in some elements on a mobile device */
 .noSelect {
@@ -16,4 +22,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .noSelect:focus {
     outline: none !important;
+}
+
+:root {
+    --primeryColor: #14181f;
+    --secondaryColor: #1b2029;
+    --thirdColor: 100%;
 }
