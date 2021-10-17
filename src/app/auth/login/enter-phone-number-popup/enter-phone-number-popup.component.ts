@@ -27,9 +27,7 @@ export class EnterPhoneNumberPopupComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EnterPhoneNumberPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private reserveService: ReserveService,
     private spinnerService: SpinnerService,
-    private utils: Utils,
     public datepipe: DatePipe) {
     dialogRef.disableClose = true; //This line disable close dialog when user clicks dialog outside
   }
@@ -43,7 +41,7 @@ export class EnterPhoneNumberPopupComponent implements OnInit {
     if (!this.isValidNumber) return;
     this.spinnerService.resetSpinner();
     this.dialogRef.close({
-      phoneNumber: this.phone
+      phoneNumber: this.phone.toString()
     });
   }
 
@@ -51,30 +49,6 @@ export class EnterPhoneNumberPopupComponent implements OnInit {
   dimissDialog() {
     this.phone = undefined;
     this.dialogRef.close();
-  }
-
-  keyupEvent(el: HTMLInputElement) {
-    var element = el.name;
-    var value = el.value;
-
-    switch (element) {
-
-      case "phone":
-        if (this.utils.isAValidPhoneNumber(this.phone)) {
-          document.getElementById("phone_point_popup").setAttribute("src", "../../assets/img/right_input.png");
-          this.isValidNumber = true;
-        }
-        else if (value == "") {
-          document.getElementById("phone_point_popup").setAttribute("src", "../../assets/img/point_gray.png");
-          this.isValidNumber = false;
-        } else {
-          document.getElementById("phone_point_popup").setAttribute("src", "../../assets/img/bad_input.png");
-          this.isValidNumber = false;
-        }
-        break;
-
-    }
-
   }
 
 }

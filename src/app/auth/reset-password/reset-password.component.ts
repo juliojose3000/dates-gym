@@ -22,6 +22,8 @@ export class ResetPasswordComponent implements OnInit {
   passwordConfirmed: string;
   code: string;
   isThePasswordStreght: boolean = false;
+  public hidePassword: boolean = true;
+  public hideConfirmedPassword: boolean = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -43,7 +45,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword(): void {
 
-    if (this.email==undefined || this.password==undefined || this.passwordConfirmed==undefined) {
+    if (this.utils.isEmpty(this.email) || this.utils.isEmpty(this.password) || this.utils.isEmpty(this.passwordConfirmed)) {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
@@ -63,7 +65,7 @@ export class ResetPasswordComponent implements OnInit {
       return;
     }
 
-    if(!this.isThePasswordStreght){
+    if (!this.isThePasswordStreght) {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
@@ -104,37 +106,13 @@ export class ResetPasswordComponent implements OnInit {
 
   }
 
-  keyupEvent(el: HTMLInputElement) {
-
-    var element = el.name;
-    var value = el.value;
-
-    switch (element) {
-
-      case "email":
-        if (this.utils.validateEmail(this.email))
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/right_input.png");
-        else if (value == "")
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/point_gray.png");
-        else
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/bad_input.png");
-        break;
-
-      case "passwordConfirmed":
-      case "password":
-        this.isThePasswordStreght = this.utils.checkPasswordStrength(this.password, "password_point");
-        if (this.password == this.passwordConfirmed)
-        document.getElementById("confirmed_password_point").setAttribute("src", "../../assets/img/right_input.png");
-      else
-        document.getElementById("confirmed_password_point").setAttribute("src", "../../assets/img/bad_input.png");
-        break;
-
-    }
-
+  hidePasswordFunction() {
+    this.hidePassword = !this.hidePassword;
   }
 
-  showPassword(inputId: string, eyeIconId: string){
-    this.utils.showPassword(inputId, eyeIconId);   
+  hideConfirmedPasswordFunction() {
+    this.hideConfirmedPassword = !this.hideConfirmedPassword;
   }
+
 
 }

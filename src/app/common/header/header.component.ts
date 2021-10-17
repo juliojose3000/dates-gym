@@ -6,6 +6,7 @@ import { UserRoleEnum } from '../../model/enums/user-role.enum';
 import { PopupComponent } from '../popup/popup.component';
 import { Codes, Strings } from '../../utils/resources';
 import { Utils } from '../../utils/utils';
+import { SocialAuthService } from 'angularx-social-login';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   sessionText: string;
 
-  constructor(private router: Router, public dialog: MatDialog, public utils: Utils, public adminGuard: AdminGuard) { }
+  constructor(private router: Router, public dialog: MatDialog, public utils: Utils, public adminGuard: AdminGuard, private socialAuthService: SocialAuthService) { }
 
   ngOnInit(): void {
 
@@ -39,21 +40,51 @@ export class HeaderComponent implements OnInit {
       document.getElementById("div_admin_features").style.display = "block";
     }
 
+    const self = this;
+
     //If user clicks outside of side menu, so it will be closed
     document.body.addEventListener("click", function (event) {
-
-      if (!document.getElementById("wrapper").contains(event.target as Node) &&
-        (document.getElementById("show-menu") as HTMLInputElement).checked == true) {
-        (document.getElementById("show-menu") as HTMLInputElement).checked = false; //Hide menu options
+      if (!document.getElementById("wrapper").contains(event.target as Node) && self.isSideMenuDisplaying()) {
+        self.setSideMenuStatus(false); //Hide menu options
       }
-
     });
 
     //If user scrolling the page, the side menu will be closed
     window.onscroll = function () {
-      if((document.getElementById("show-menu") as HTMLInputElement).checked == true)
-        (document.getElementById("show-menu") as HTMLInputElement).checked = false;
+      if (self.isSideMenuDisplaying())
+        self.setSideMenuStatus(false);
     };
+
+    document.getElementById("show-menu").addEventListener("click", () => { this.setTopPropertyValueInSideMenu(); });
+
+    document.addEventListener('touchstart', (env) => this.utils.handleTouchStart(env), false);
+    document.addEventListener('touchmove', (env) => {
+      this.setTopPropertyValueInSideMenu()
+      this.utils.handleTouchMove(env, this.setSideMenuStatus)
+    }, false);
+
+  }
+
+  setTopPropertyValueInSideMenu() {
+    if (!this.isSideMenuDisplaying()) return; //If the user hide the menu, it is not necessary to set the top value
+    const top = this.utils.getVisibleHeight("wrapper");
+    document.getElementById("links").style.top = `${top}px`;
+  }
+
+
+  isSideMenuDisplaying(): boolean {
+    return (document.getElementById("show-menu") as HTMLInputElement).checked;
+  }
+
+  /**
+   * 
+   * @param display false = close side menu; true = show side menu
+   * @returns 
+   */
+  setSideMenuStatus(display: boolean) {
+    let isSideMenuDisplaying = (document.getElementById("show-menu") as HTMLInputElement).checked;
+    if (isSideMenuDisplaying != display) //If the state is the same, so do nothing
+      (document.getElementById("show-menu") as HTMLInputElement).checked = display;
 
   }
 
@@ -68,7 +99,19 @@ export class HeaderComponent implements OnInit {
         message: Strings.LOGOUT_MESSAGE,
         buttonLeftText: Strings.BUTTON_LEFT_LOGOUT,
         buttonRightText: Strings.BUTTON_RIGHT_LOGOUT,
-        code: Codes.LOGOUT
+        callBack: () => {
+          Array.from(document.getElementsByClassName("btn_session")).forEach(element => {
+            element.innerHTML = Strings.LOGIN
+          });
+          document.getElementById("div_my_account_features").style.display = "none";
+          if (localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString())
+            document.getElementById("div_admin_features").style.display = "none";
+          if (localStorage.getItem("is_social_login") == "true")
+            this.socialAuthService.signOut();
+          this.router.navigate(['login']);
+          localStorage.clear();//clean the local storage
+          this.dialog.closeAll();
+        }
       }
     });
   }

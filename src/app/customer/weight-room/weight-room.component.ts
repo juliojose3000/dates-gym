@@ -18,9 +18,7 @@ export class WeightRoomComponent implements OnInit {
   }
 
   showSchedule(){
-
     if(!this.utils.isThereALoggedUser()) return;
-
     this.router.navigate(['reserve']);
   }
 

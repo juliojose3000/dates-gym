@@ -4,10 +4,13 @@ export const Codes = {
     LOGOUT: 981001,
     USER_CREATED_SUCCESSFUL: 981045,
     SOCIAL_USER_CREATED_SUCCESSFUL: 981047,
-    USER_EMAIL_DOES_NOT_EXISTS: 981150
+    USER_EMAIL_DOES_NOT_EXISTS: 981150,
+    GO_TO_LOGIN: 981155
   };
 
 export const Strings={
+  ACCEPT: "Aceptar",
+  CANCEL: "Cancelar",
   RESERVATE_SPACE:"Está seguro que desea reservar este espacio",
   CANCEL_RESERVATION: "Está seguro que desea cancelar la reservación",
   ERROR:"Error",
@@ -20,13 +23,13 @@ export const Strings={
   MAKE_LOGIN: "Necesitas iniciar sesión para poder reservar espacios en la sala de pesas",
   BUTTON_LEFT_LOGOUT: "Si, cerrar sesión",
   BUTTON_RIGHT_LOGOUT: "Cancelar",
-  SIGN_IN_NULL_SPACES: "Debe rellenar los campos para iniciar sesión",
-  SIGN_UP_NULL_SPACES: "Debe rellenar los campos para poder registrarse",
+  SIGN_IN_NULL_SPACES: "Debe rellenar todos los campos para iniciar sesión",
+  SIGN_UP_NULL_SPACES: "Debe rellenar todos los campos para poder registrarse",
   IT_IS_NOT_A_STRONG_PASSWORD: "La contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
   PASSWORD_NEEDED: "Necesitas ingresar tu contraseña actual para que los cambios sean aplicados.",
   IT_IS_NOT_A_STRONG_NEW_PASSWORD: "La nueva contraseña no es lo suficientemente segura, por favor asegurese que incluye minúsculas, mayúsculas y números como mínimo",
-  IT_IS_NOT_A_VALID_EMAIL: "El correo ingresado no es un correo válido. Por favor ingrese un correo válido",
-  IT_IS_NOT_A_VALID_PHONE: "El número de teléfono ingresado no es un válido. Por favor ingrese un número válido",
+  IT_IS_NOT_A_VALID_EMAIL: "Por favor ingrese un correo válido",
+  IT_IS_NOT_A_VALID_PHONE: "Por favor ingrese un número de teléfono válido",
   ENTERS_AN_EMAIL: "Por favor, ingrese un correo electrónico para proceder",
   ENTERS_A_VALID_EMAIL: "El correo ingresado no es un correo válido",
   PASSWORDS_NEED_TO_BE_EQUALS: "Las contraseñas tienen que ser las mismas",

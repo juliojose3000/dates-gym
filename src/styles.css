@@ -2,30 +2,78 @@
 
 html,
 body {
-    min-height: 1100px;
-    height: 100%;
+  min-height: 1100px;
+  height: 100%;
 }
 body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 /* Avoid blue hightlighting when user click in some elements on a mobile device */
 .noSelect {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .noSelect:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 :root {
-    --primeryColor: #14181f;
-    --secondaryColor: #1b2029;
-    --thirdColor: 100%;
+  --primeryColor: #14181f; /* Header and footer background */
+  --secondaryColor: #1b2029; /* Body background */
+  --thirdColor: #323a49; /* Text containers */
+  --buttonColor: #f4511e; /* Main button color */
+}
+
+.mainButton {
+	border-radius: 10px;
+	position: relative;
+	background-color: #f4511e;
+	border: none;
+	font-size: 14px;
+	color: #FFFFFF;
+	padding: 15px 20px;
+	width: 100%;
+	text-align: center;
+	transition-duration: 0.4s;
+	text-decoration: none;
+	cursor: pointer;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-top: 25px;
+}
+
+.mainButton:active {
+  transform: scale(0.95);
+}
+
+.mainButton:focus {
+  outline: none;
+}
+
+.mainButton.ghost {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+
+.mainButton:hover {
+  cursor: pointer;
+  background-color: #ee3b1b;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
