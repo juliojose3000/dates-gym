@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   //For Sign Up
   public name: string;
-  public phone: string;
+  public phone: number;
   public email: string;
   public password: string;
 
@@ -198,7 +198,7 @@ export class LoginComponent implements OnInit {
         return false;
     } else if (action == "sign_up") {
       if (this.utils.isNotEmpty(this.email) && this.utils.isNotEmpty(this.password) &&
-        this.utils.isNotEmpty(this.phone) && this.utils.isNotEmpty(this.name))
+        this.utils.isNotEmpty(this.phone.toString()) && this.utils.isNotEmpty(this.name))
         return true;
       else
         return false;

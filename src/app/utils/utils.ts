@@ -178,8 +178,8 @@ export class Utils {
 
     }
 
-    isAValidPhoneNumber(phone: string): boolean {
-        return new String(phone).length == 8 && /^\d+$/.test(phone);
+    isAValidPhoneNumber(phone: number): boolean {
+        return new String(phone).length == 8 && /^\d+$/.test(phone.toString());
     }
 
     getUserId(): number {
@@ -258,7 +258,7 @@ export class Utils {
         return value == null || value == undefined || value == "";
     }
 
-    isNotEmpty(value) {
+    isNotEmpty(value: string) {
         return value != null && value != undefined && value != "";
     }
 

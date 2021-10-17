@@ -1,21 +1,25 @@
-button{
+.divModalParent {
+    max-width: 350px;
+}
+
+button {
     margin-top: 50px;
-    margin:0 auto;
-    display:block;
+    margin: 0 auto;
+    display: block;
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-.div_input_sign_up{
-	display: flex;
-	align-items: center; //center vertical
-	justify-content: center; //center horizontal
-	width: 100%;
-	//background-color: chartreuse;
+.div_input_sign_up {
+    display: flex;
+    align-items: center; //center vertical
+    justify-content: center; //center horizontal
+    width: 100%;
+    //background-color: chartreuse;
 }
 
-p{
-    text-align: center;
+p {
+    text-justify: justify;
 }

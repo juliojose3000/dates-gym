@@ -19,7 +19,7 @@ import { stringify } from 'querystring';
 export class UserProfileComponent implements OnInit {
 
   public name: string;
-  public phone: string;
+  public phone: number;
   public email: string;
   public password: string;
   public newPassword: string;
@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
     if (localStorage.getItem("user_phoneNumber") == "Not Registered") {
       document.getElementById("phone_input").setAttribute("placeholder", "No registrado");
     } else {
-      this.phone = localStorage.getItem("user_phoneNumber");
+      this.phone = parseInt(localStorage.getItem("user_phoneNumber"));
     }
 
   }
@@ -101,8 +101,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   haveUserFillTheInputs(): boolean {
-    if (this.email != undefined && this.phone != undefined && this.name != undefined &&
-      this.email != "" && this.phone != "" && this.name != "")
+    if (this.utils.isNotEmpty(this.email) && this.utils.isNotEmpty(this.phone.toString()) && this.utils.isNotEmpty(this.name))
       return true;
     else
       return false;
