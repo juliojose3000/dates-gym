@@ -39,14 +39,13 @@ export class LoginComponent implements OnInit {
   //For Sign In
   public login_email: string;
   public login_password: string;
-
-
+  public hidePassword: boolean = true;
 
   private auth: Authentication;
   private user: User;
+  private social_user: SocialUser;
+  private detailRecivedSubscription: Subscription;
 
-  social_user: SocialUser;
-  detailRecivedSubscription: Subscription;
 
 
   constructor(
@@ -102,6 +101,10 @@ export class LoginComponent implements OnInit {
 
   }
 
+  hidePasswordFunction() {
+    this.hidePassword = !this.hidePassword;
+  }
+
 
   login() {
     console.log("LoginComponent - Login Method starts...");
@@ -147,7 +150,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    if (!this.utils.checkPasswordStrength(this.password, "password_point")) {
+    if (!this.utils.checkPasswordStrength(this.password)) {
       this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_PASSWORD } });
       return;
     }
@@ -162,7 +165,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.user = new User(0, this.email, this.name, this.phone, this.password, false, UserRoleEnum.CUSTOMER);
+    this.user = new User(0, this.email, this.name, this.phone.toString(), this.password, false, UserRoleEnum.CUSTOMER);
 
     this.spinnerService.requestStarted();
     this.userService.create(this.user).subscribe((mResponse: MyResponse) => {
@@ -189,12 +192,13 @@ export class LoginComponent implements OnInit {
 
   haveUserFillTheInputs(action: string) {
     if (action == "sign_in") {
-      if (this.login_email != undefined && this.login_password != undefined)
+      if (this.utils.isNotEmpty(this.login_email) && this.utils.isNotEmpty(this.login_password))
         return true;
       else
         return false;
     } else if (action == "sign_up") {
-      if (this.email != undefined && this.password != undefined && this.phone != undefined && this.name != undefined)
+      if (this.utils.isNotEmpty(this.email) && this.utils.isNotEmpty(this.password) &&
+        this.utils.isNotEmpty(this.phone) && this.utils.isNotEmpty(this.name))
         return true;
       else
         return false;
@@ -339,49 +343,6 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString()) {
       document.getElementById("div_admin_features").style.display = "block";
     }
-  }
-
-
-  keyupEvent(el: HTMLInputElement) {
-
-    var element = el.name;
-    var value = el.value;
-
-    switch (element) {
-
-      case "name":
-        if (value != "")
-          document.getElementById("name_point").setAttribute("src", "../../assets/img/right_input.png");
-        else
-          document.getElementById("name_point").setAttribute("src", "../../assets/img/point_gray.png");
-        break;
-
-      case "email":
-        if (this.utils.validateEmail(this.email))
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/right_input.png");
-        else if (value == "")
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/point_gray.png");
-        else
-          document.getElementById("email_point").setAttribute("src", "../../assets/img/bad_input.png");
-        break;
-
-
-      case "password":
-        this.utils.checkPasswordStrength(value, "password_point");
-        break;
-
-
-      case "phone":
-        if (this.utils.isAValidPhoneNumber(this.phone))
-          document.getElementById("phone_point").setAttribute("src", "../../assets/img/right_input.png");
-        else if (value == "")
-          document.getElementById("phone_point").setAttribute("src", "../../assets/img/point_gray.png");
-        else
-          document.getElementById("phone_point").setAttribute("src", "../../assets/img/bad_input.png");
-        break;
-
-    }
-
   }
 
   goToPasswordForgotten() {

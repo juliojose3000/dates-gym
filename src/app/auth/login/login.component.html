@@ -5,19 +5,38 @@
         <div class="form-container sign-in-container" id="login_container">
             <form action="#">
                 <h1>Iniciar sesión</h1>
-                <div class="social-container">
-                    <a (click)="signInWithFB()" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a (click)="signInWithGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
+
+                <div class="divInputs" style="margin-top: 20px; width: 100%;">
+                    <input [(ngModel)]="login_email" name="login_email" type="email" placeholder="Correo" />
+
+                    <div style="position: relative; height: 60px;">
+                        <input style="float: left; position: absolute; left: 0;" [(ngModel)]="login_password"
+                            type="password" id="inputPassword" name="password"
+                            [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña">
+                        <mat-icon
+                            style="z-index: 90; position: absolute; right: 0; margin-right: 5px; margin-top: 16px;"
+                            class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ?
+                            'visibility_off' : 'visibility'}}
+                        </mat-icon>
+                    </div>
                 </div>
-                <span>O usa tu cuenta</span>
-                <input [(ngModel)]="login_email" name="login_email" type="email" placeholder="Correo" />
-                <div class="div_password">
-                    <input [(ngModel)]="login_password" id="loginPassword" name="login_password" type="password" placeholder="Contraseña" />
-                    <div id="div_eye" (click)="showPassword('loginPassword', 'eyeIconPassword')" class="div_eye"><span class="input-group-text"><i id="eyeIconPassword" class="fa fa-eye-slash"></i></span></div>
+
+                <div style="width: 100%; display: flex;">
+                    <a (click)="goToPasswordForgotten()" style="margin-left: auto;">¿Olvidaste tu contraseña?</a>
                 </div>
-                <a (click)="goToPasswordForgotten()" class="passwordForgotten" >¿Olvidaste tu contraseña?</a>
-                <button (click)="login()">Iniciar sesión</button>
-                <p id="pSignUp" class="p_sign">O regístrate aquí</p>
+
+                <button class="mainButton" (click)="login()">Iniciar sesión</button>
+                <a id="pSignUp" class="aChangeMode" style="margin-bottom: 30px;">O
+                    regístrate aquí</a>
+
+                <hr class="my-4" style="width: 80%;">
+
+                <button (click)="signInWithGoogle()" class="btn btn-lg btn-google mainButton" type="submit"><i
+                        class="fab fa-google mr-2"></i> Ingresar con Google</button>
+                <button (click)="signInWithFB()" class="btn btn-lg btn-facebook mainButton" type="submit">
+                    <i class="fab fa-facebook-f mr-2"></i> Ingresar con Facebook</button>
+
+
             </form>
         </div>
 
@@ -25,37 +44,36 @@
         <div class="form-container sign-up-container" id="sign_up_container">
             <form action="#">
                 <h1 class="h1_new_account">Crear nueva cuenta</h1>
-                <div class="social-container">
-                    <a (click)="signInWithFB()" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a (click)="signInWithGoogle()" class="social"><i class="fab fa-google-plus-g"></i></a>
-                </div>
-                <span>O usa tu correo para registrarte</span>
 
-                <div class="div_input_sign_up">
-                    <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" (input)="keyupEvent($event.target)"/>
-                    <img id="name_point" class="default_point" src="../../assets/img/point_gray.png">
-                </div>
+                <input [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />
 
-                <div class="div_input_sign_up">
-                    <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" (input)="keyupEvent($event.target)"/>
-                    <img id="email_point" class="default_point" src="../../assets/img/point_gray.png">
-                </div>  
+                <input [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
 
-                <div class="div_input_sign_up">
-                    <div class="div_password">
-                        <input [(ngModel)]="password" id="signUpPassword" name="password" type="password" placeholder="Contraseña" (input)="keyupEvent($event.target)"/>
-                        <div (click)="showPassword('signUpPassword', 'eyeIconSignUpPassword')" class="div_eye"><span class="input-group-text"><i id="eyeIconSignUpPassword" class="fa fa-eye-slash"></i></span></div>
-                    </div>  
-                    <img id="password_point" class="default_point" src="../../assets/img/point_gray.png">
+                <div class="div_password" style="width: 100%; position: relative;">
+                    <input [(ngModel)]="password" id="signUpPassword" name="password" type="password"
+                        placeholder="Contraseña" [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña" />
+                    <mat-icon style="z-index: 90; position: absolute; right: 0; margin-right: 5px; margin-top: 16px;"
+                        class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ?
+                        'visibility_off' : 'visibility'}}
+                    </mat-icon>
                 </div>
 
-                <div class="div_input_sign_up">
-                    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)"/>
-                    <img id="phone_point" class="default_point" src="../../assets/img/point_gray.png">
-                </div>
+                <input [(ngModel)]="phone" name="phone" placeholder="Teléfono"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type="number" maxlength="8" />
 
-                <button (click)="signUp()">Registrarse</button>
-                <p id="pSignIn" class="p_sign">O inicia sesión aquí</p>
+                <button class="mainButton" (click)="signUp()">Registrarse</button>
+                <a id="pSignIn" class="aChangeMode">O
+                    inicia sesión
+                    aquí</a>
+
+                <hr class="my-4" style="width: 80%;">
+
+                <button (click)="signInWithGoogle()" class="btn btn-lg btn-google mainButton" type="submit"><i
+                        class="fab fa-google mr-2"></i> Ingresar con Google</button>
+                <button (click)="signInWithFB()" class="btn btn-lg btn-facebook mainButton" type="submit">
+                    <i class="fab fa-facebook-f mr-2"></i> Ingresar con Facebook</button>
+
             </form>
         </div>
 
@@ -66,12 +84,15 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Bienvenido de nuevo!</h1>
                     <p>Si ya tienes una cuenta, inicia sesión para disfrutar de nuestros servicios</p>
-                    <button class="ghost" id="signIn">Iniciar Sesión</button>
+                    <button class="mainButton" style="border: 1px solid white; background-color: transparent;"
+                        id="signIn">Iniciar Sesión</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hola, amante del fitness</h1>
-                    <p>Si aún no tienes una cuenta con nosotros, que esperas para registrarte y cumplir todas tus metas!</p>
-                    <button class="ghost" id="signUp">Registrarse</button>
+                    <p>Si aún no tienes una cuenta con nosotros, que esperas para registrarte y cumplir todas tus metas!
+                    </p>
+                    <button class="mainButton" style="border: 1px solid white; background-color: transparent;"
+                        id="signUp">Registrarse</button>
                 </div>
             </div>
         </div>

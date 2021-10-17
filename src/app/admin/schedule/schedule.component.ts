@@ -51,6 +51,8 @@ export class ScheduleComponent implements OnInit {
 
         this.arrayShiefts = this.schedule.shifts;
 
+        document.getElementById("divWeekDescription").style.display = "block";
+
       }//else
     },
       (error: HttpErrorResponse) => {//Error callback

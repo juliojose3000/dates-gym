@@ -5,8 +5,8 @@
     contigo en caso de ser necesario.</p>
   
   <div class="div_input_sign_up">
-    <input [(ngModel)]="phone" name="phone" type="text" placeholder="Teléfono" (input)="keyupEvent($event.target)" maxlength="8"/>    
-    <img id="phone_point_popup" class="phone_point" src="../../assets/img/point_gray.png">
+    <input [(ngModel)]="phone" name="phone" placeholder="Teléfono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+    type="number" maxlength="8"/>
   </div>
 
 </div>

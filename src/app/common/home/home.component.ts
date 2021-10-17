@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   public slideIndex: number = 1;
 
-  constructor() { }
+  constructor(public utils: Utils, private router: Router) { }
 
   ngOnInit(): void {
     //It forces the first image will be shown when page starts
@@ -48,6 +49,11 @@ export class HomeComponent implements OnInit {
       this.sliderTimer();
     }
 
+  }
+
+  showSchedule(){
+    if(!this.utils.isThereALoggedUser()) return;
+    this.router.navigate(['reserve']);
   }
 
 }

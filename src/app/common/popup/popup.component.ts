@@ -2,16 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Codes, Strings } from '../../utils/resources';
-import { SocialAuthService } from 'angularx-social-login';
-import { Utils } from '../../utils/utils';
-import { UserRoleEnum } from '../../model/enums/user-role.enum';
 
 @Component({
   selector: 'popup-component',
   templateUrl: './popup.component.html',
-  styleUrls: ['./popup.component.css']
+  styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
 
@@ -20,39 +15,18 @@ export class PopupComponent implements OnInit {
     buttonLeftText: string;
     buttonRightText: string;
     code: number;
+    callBack: Function;
 
     constructor(
         public dialogRef: MatDialogRef<PopupComponent>, 
-        @Inject(MAT_DIALOG_DATA) public data: any, 
-        private router: Router, 
-        private socialAuthService: SocialAuthService,
-        public utils: Utils) {}
+        @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     ngOnInit(): void {
         this.title = this.data.title;
         this.message = this.data.message;
         this.buttonLeftText = this.data.buttonLeftText;
         this.buttonRightText = this.data.buttonRightText;
-        this.code = this.data.code;
-    }
-
-    submit(){
-        switch(this.code){
-            case Codes.LOGOUT:
-                Array.from(document.getElementsByClassName("btn_session")).forEach(element => {
-                    element.innerHTML = Strings.LOGIN
-                });
-                document.getElementById("div_my_account_features").style.display = "none";
-                if(localStorage.getItem("user_role") == UserRoleEnum.ADMIN.toString())
-                    document.getElementById("div_admin_features").style.display = "none";
-                if(localStorage.getItem("is_social_login") == "true")
-                    this.socialAuthService.signOut();
-                this.router.navigate(['login']);
-                this.dimissDialog();
-                localStorage.clear();//clean the local storage
-                break;
-        }
-
+        this.callBack = this.data.callBack;
     }
 
     dimissDialog(){

@@ -4,10 +4,12 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MessageComponent } from '../common/message/message.component';
+import { PopupComponent } from '../common/popup/popup.component';
 import { MyResponse } from '../model/myresponse.model';
 import { Shift } from '../model/shift.model';
 import { User } from '../model/user.model';
 import { DAYS_NAME, MONTHS_NAME, Strings } from './resources';
+import * as $ from "jquery";  //in the component
 
 @Injectable()
 export class Utils {
@@ -68,10 +70,16 @@ export class Utils {
 
     isThereALoggedUser(): boolean {
         if (localStorage.getItem("token") == 'null' || localStorage.getItem("token") == null) {
-            this.dialog.open(MessageComponent, {
+            this.dialog.open(PopupComponent, {
                 data: {
                     title: Strings.LOGIN,
-                    message: Strings.MAKE_LOGIN
+                    message: Strings.MAKE_LOGIN,
+                    buttonLeftText: Strings.ACCEPT,
+                    buttonRightText: Strings.CANCEL,
+                    callBack: () => {
+                        this.router.navigate(['login']);
+                        this.dialog.closeAll();
+                    }
                 }
             });
             return false;
@@ -113,10 +121,9 @@ export class Utils {
         return re.test(String(email).toLowerCase());
     }
 
-    checkPasswordStrength(password: string, passwordPointId: string): boolean {
+    checkPasswordStrength(password: string): boolean {
         //if textBox is empty
         if (password == "") {
-            document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/point_gray.png");
             return;
         }
 
@@ -150,7 +157,6 @@ export class Utils {
                 passwordStrength = "Password is Weak.";
                 this.isAStrongPassword = false;
                 color = "Red";
-                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/bad_input.png");
                 break;
 
             case 2:
@@ -158,7 +164,6 @@ export class Utils {
                 passwordStrength = "Password is Good.";
                 this.isAStrongPassword = true;
                 color = "yellow";
-                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/point_yellow.png");
                 break;
 
             case 4:
@@ -166,7 +171,6 @@ export class Utils {
                 this.isAStrongPassword = true;
                 passwordStrength = "Password is Strong.";
                 color = "Green";
-                document.getElementById(passwordPointId).setAttribute("src", "../../assets/img/right_input.png");
                 break;
         }
 
@@ -175,65 +179,65 @@ export class Utils {
     }
 
     isAValidPhoneNumber(phone: string): boolean {
-        return phone.length == 8 && /^\d+$/.test(phone);
+        return new String(phone).length == 8 && /^\d+$/.test(phone);
     }
 
-    getUserId(): number{
+    getUserId(): number {
         return (localStorage.getItem('user_id') as unknown) as number;
     }
 
-    getUserEmail(): string{
+    getUserEmail(): string {
         return localStorage.getItem('email');
     }
 
-    getUserRole(): number{
+    getUserRole(): number {
         return parseInt(localStorage.getItem('user_role'));
     }
 
-    isUserEnabled(): boolean{
-        return localStorage.getItem('is_enable')=="true"?true:false;
+    isUserEnabled(): boolean {
+        return localStorage.getItem('is_enable') == "true" ? true : false;
     }
 
-    saveUserSessionData(mResponse: MyResponse, isSocialLogin: boolean){
+    saveUserSessionData(mResponse: MyResponse, isSocialLogin: boolean) {
         const user = mResponse.data as User;
         console.log(user);
-        localStorage.setItem("token", "Bearer "+mResponse.token);
+        localStorage.setItem("token", "Bearer " + mResponse.token);
         localStorage.setItem("email", user.email);
-        localStorage.setItem("user_id", ""+user.id);
-        localStorage.setItem("user_name", ""+user.name);
-        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-",""));
+        localStorage.setItem("user_id", "" + user.id);
+        localStorage.setItem("user_name", "" + user.name);
+        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-", ""));
         localStorage.setItem("user_role", user.role.toString());
-        localStorage.setItem("is_enabled", user.isEnabled?"true":"false");
-        localStorage.setItem("is_social_login", isSocialLogin?"true":"false");
+        localStorage.setItem("is_enabled", user.isEnabled ? "true" : "false");
+        localStorage.setItem("is_social_login", isSocialLogin ? "true" : "false");
     }
 
-    updateUserSessionData(mResponse: MyResponse){
+    updateUserSessionData(mResponse: MyResponse) {
         const user = mResponse.data as User;
         console.log(user);
         localStorage.setItem("email", user.email);
-        localStorage.setItem("user_id", ""+user.id);
-        localStorage.setItem("user_name", ""+user.name);
-        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-",""));
+        localStorage.setItem("user_id", "" + user.id);
+        localStorage.setItem("user_name", "" + user.name);
+        localStorage.setItem("user_phoneNumber", user.phoneNumber.replace("-", ""));
         localStorage.setItem("user_role", user.role.toString());
-        localStorage.setItem("is_enabled", user.isEnabled?"true":"false");
+        localStorage.setItem("is_enabled", user.isEnabled ? "true" : "false");
     }
 
-    showPassword(inputId: string, eyeIconId: string){
-    
+    showPassword(inputId: string, eyeIconId: string) {
+
         var inputType = document.getElementById(inputId).getAttribute("type");
         var eyeClass;
-    
-        if(inputType=="password"){
-          document.getElementById(inputId).setAttribute("type","text");
-          eyeClass = "fa fa-eye";
-        } else{
-          document.getElementById(inputId).setAttribute("type","password");
-          eyeClass = "fa fa-eye-slash";
+
+        if (inputType == "password") {
+            document.getElementById(inputId).setAttribute("type", "text");
+            eyeClass = "fa fa-eye";
+        } else {
+            document.getElementById(inputId).setAttribute("type", "password");
+            eyeClass = "fa fa-eye-slash";
         }
-    
+
         document.getElementById(eyeIconId).setAttribute("class", eyeClass);
-          
-      }
+
+    }
 
 
     formatAMPM(time) {
@@ -246,9 +250,78 @@ export class Utils {
         return strTime;
     }
 
-    getHttpHeader(){
+    getHttpHeader() {
         return new HttpHeaders().set("Authorization", localStorage.getItem("token"));
     }
-    
+
+    isEmpty(value) {
+        return value == null || value == undefined || value == "";
+    }
+
+    isNotEmpty(value) {
+        return value != null && value != undefined && value != "";
+    }
+
+    /* Este método retorna la altura de la porsión que está siendo mostrada de un elemento específico 
+    tomado de: https://stackoverflow.com/questions/24768795/get-the-visible-height-of-a-div-with-jquery
+    */
+    getVisibleHeight(elementId): number {
+        var elementHeight = $(`#${elementId}`).outerHeight(),
+            screenHeight = $(window).height(),
+            r = $(`#${elementId}`)[0].getBoundingClientRect(), t = r.top, b = r.bottom;
+        let heightVisible = Math.max(0, t > 0 ? Math.min(elementHeight, screenHeight - t) : Math.min(b, screenHeight));
+        return heightVisible;
+    }
+
+    //-------------------------------- SWIPE EVENT SENCTION ---------------------------//
+
+    xDown = null;
+    yDown = null;
+
+    getTouches(evt) {
+        return evt.touches ||             // browser API
+            evt.originalEvent.touches; // jQuery
+    }
+
+    handleTouchStart(evt) {
+        const firstTouch = this.getTouches(evt)[0];
+        this.xDown = firstTouch.clientX;
+        this.yDown = firstTouch.clientY;
+    };
+
+    handleTouchMove(evt, setSideMenuStatus: Function) {
+        if (!this.xDown || !this.yDown) {
+            return;
+        }
+
+        var xUp = evt.touches[0].clientX;
+        var yUp = evt.touches[0].clientY;
+
+        var xDiff = this.xDown - xUp;
+        var yDiff = this.yDown - yUp;
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+            if (xDiff > 0) {
+                /* right swipe | Hide side menu */
+                //console.log("right swipe");
+                setSideMenuStatus(false);
+            } else {
+                /* left swipe | Show side menu */
+                //console.log("left swipe");
+                setSideMenuStatus(true);
+            }
+        } else {
+            if (yDiff > 0) {
+                /* down swipe */
+            } else {
+                /* up swipe */
+            }
+        }
+        /* reset values */
+        this.xDown = null;
+        this.yDown = null;
+    };
+
+    //-------------------------------------------------------------------//
 
 }
