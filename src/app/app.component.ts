@@ -11,14 +11,19 @@ export class AppComponent {
   title = 'dates-gym';
 
   // Inject Page
-  /*constructor(private router: Router) {
+  constructor(private router: Router) {
     router.events
       .subscribe((event: NavigationStart) => {
         if (event.navigationTrigger === 'popstate') {
-          this.router.navigate(['home']);
+          //this.router.navigate(['home']);
+          let isSideMenuDisplaying = (document.getElementById("show-menu") as HTMLInputElement).checked;
+          if (isSideMenuDisplaying == true) {
+            (document.getElementById("show-menu") as HTMLInputElement).checked = false;
+
+          }
         }
       });
-  }*/
+  }
 
 
 

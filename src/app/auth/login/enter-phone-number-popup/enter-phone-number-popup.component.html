@@ -1,16 +1,19 @@
-<h1 mat-dialog-title>Ingrese su número de teléfono</h1>
-<div mat-dialog-content>
-  <p>Para finalizar el registro, ingrese su número de teléfono.<br>
-    Esto permitirá al administrador comunicarte<br>
-    contigo en caso de ser necesario.</p>
-  
-  <div class="div_input_sign_up">
-    <input [(ngModel)]="phone" name="phone" placeholder="Teléfono" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-    type="number" maxlength="8"/>
-  </div>
+<div class="divModalParent">
+  <h1 mat-dialog-title>Ingrese su número de teléfono</h1>
+  <div mat-dialog-content>
+    <p>Para finalizar el registro, ingrese su número de teléfono. Esto permitirá al administrador comunicarte
+      contigo en caso de ser necesario.</p>
 
-</div>
-<div mat-dialog-actions>
+    <div class="div_input_sign_up">
+      <input [(ngModel)]="phone" name="phone" placeholder="Teléfono"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+        type="number" maxlength="8" />
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
     <button id="acceptButton" mat-raised-button color="primary" (click)="submit()">Aceptar</button>
     <button id="acceptButton" mat-raised-button (click)="dimissDialog()">Cancelar</button>
+  </div>
+
 </div>
