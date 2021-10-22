@@ -15,8 +15,8 @@
                             [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña">
                         <mat-icon
                             style="z-index: 90; position: absolute; right: 0; margin-right: 5px; margin-top: 16px;"
-                            class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ?
-                            'visibility_off' : 'visibility'}}
+                            class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ? 'visibility_off' :
+                            'visibility'}}
                         </mat-icon>
                     </div>
                 </div>
@@ -26,8 +26,7 @@
                 </div>
 
                 <button class="mainButton" (click)="login()">Iniciar sesión</button>
-                <a id="pSignUp" class="aChangeMode" style="margin-bottom: 30px;">O
-                    regístrate aquí</a>
+                <a id="pSignUp" class="aChangeMode" style="margin-bottom: 20px; margin-top: 20px;">O regístrate aquí</a>
 
                 <hr class="my-4" style="width: 80%;">
 
@@ -63,9 +62,8 @@
                     type="number" maxlength="8" />
 
                 <button class="mainButton" (click)="signUp()">Registrarse</button>
-                <a id="pSignIn" class="aChangeMode">O
-                    inicia sesión
-                    aquí</a>
+
+                <a id="pSignIn" class="aChangeMode">O inicia sesión aquí</a>
 
                 <hr class="my-4" style="width: 80%;">
 
@@ -75,6 +73,8 @@
                     <i class="fab fa-facebook-f mr-2"></i> Ingresar con Facebook</button>
 
             </form>
+
+
         </div>
 
 

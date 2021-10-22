@@ -1,8 +1,10 @@
-<h1 mat-dialog-title>{{title}}</h1>
-<div mat-dialog-content>
-  <p>{{message}}</p>
-</div>
-<div mat-dialog-actions>
+<div class="divModalParent">
+  <h1 mat-dialog-title>{{title}}</h1>
+  <div mat-dialog-content>
+    <p>{{message}}</p>
+  </div>
+  <div mat-dialog-actions>
     <button id="buttonLeft" mat-raised-button color="primary" (click)="callBack()">{{buttonLeftText}}</button>
     <button id="buttonRight" mat-raised-button (click)="dimissDialog()">{{buttonRightText}}</button>
+  </div>
 </div>

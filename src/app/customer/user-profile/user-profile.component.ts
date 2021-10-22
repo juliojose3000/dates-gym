@@ -63,23 +63,23 @@ export class UserProfileComponent implements OnInit {
       return;
     }
 
-    if(this.utils.isNotEmpty(this.newPassword) && !this.utils.checkPasswordStrength(this.newPassword)){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_NEW_PASSWORD } }); 
+    if (this.utils.isNotEmpty(this.newPassword) && !this.utils.checkPasswordStrength(this.newPassword)) {
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_STRONG_NEW_PASSWORD } });
       return;
     }
 
-    if(this.utils.isEmpty(this.password)){
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.PASSWORD_NEEDED } }); 
+    if (this.utils.isEmpty(this.password)) {
+      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.PASSWORD_NEEDED } });
       return;
     }
 
-    debugger;
     this.user = new User(this.utils.getUserId(), this.email, this.name, this.phone.toString(), this.password, this.utils.isUserEnabled(), this.utils.getUserRole());
 
     this.spinnerService.requestStarted();
     this.userService.updateProfile(this.user, this.newPassword).subscribe((mResponse: MyResponse) => {
       this.spinnerService.resetSpinner();
-      this.utils.updateUserSessionData(mResponse);
+      if (mResponse.isSuccessful)
+        this.utils.updateUserSessionData(mResponse);
       this.dialog.open(MessageComponent, {
         data: {
           title: mResponse.title,

@@ -248,10 +248,7 @@ button {
 	.container.right-panel-active .sign-up-container {
 		transform: translateX(100%);
 	}
-	#pSignUp {
-		visibility: hidden;
-	}
-	#pSignIn {
+	.aChangeMode {
 		visibility: hidden;
 	}
 	.logindiv {
@@ -273,10 +270,7 @@ button {
 		width: 40%;
 		min-width: 350px;
 	}
-	#pSignUp {
-		visibility: visible;
-	}
-	#pSignIn {
+	.aChangeMode {
 		visibility: visible;
 	}
 	.sign-in-container {
