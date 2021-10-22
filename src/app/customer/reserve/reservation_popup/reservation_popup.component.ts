@@ -14,9 +14,9 @@ import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'reservation_popup-component',
-  templateUrl: './reservation_popup.component.html',
-  styleUrls: ['./reservation_popup.component.scss']
+    selector: 'reservation_popup-component',
+    templateUrl: './reservation_popup.component.html',
+    styleUrls: ['./reservation_popup.component.scss']
 })
 export class ReservationPopupComponent implements OnInit {
 
@@ -29,8 +29,8 @@ export class ReservationPopupComponent implements OnInit {
     dateToShow: string;
     buttonLeftText: string;
     buttonRightText: string;
-    method:string;
-    message:string;
+    method: string;
+    message: string;
 
 
     constructor(
@@ -49,8 +49,6 @@ export class ReservationPopupComponent implements OnInit {
 
         this.date = new Date(this.data.date);
         this.dateToShow = this.utils.dateFormat(this.date);
-        /*if(environment.production)
-            this.date.setDate(this.date.getDate()+1);//For a strange reason, when I assign this.data.date to the variable this.date, the date loses one day. So in this line I add one day*/
         this.dateString = this.datepipe.transform(this.date, 'yyyy-MM-dd');
 
         this.startHour = this.data.startHour;
@@ -64,32 +62,32 @@ export class ReservationPopupComponent implements OnInit {
     onNoClick(): void {
         this.dialogRef.close();
     }
-    
-    submit(){
+
+    submit() {
         this.reservation = new Reservation(this.dateString, this.startHour, this.endHour);
         this.spinnerService.requestStarted();
         console.log(this.reservation.toString());
-        if(this.method=="reservate")
-            this.reserveService.make(this.reservation, localStorage.getItem('token'), this.utils.getUserId()).toPromise().then((mResponse: MyResponse)=>{
+        if (this.method == "reservate")
+            this.reserveService.make(this.reservation, localStorage.getItem('token'), this.utils.getUserId()).toPromise().then((mResponse: MyResponse) => {
                 this.closeDialog(mResponse);
-            },() => {this.onError();});
+            }, () => { this.onError(); });
 
-        else if(this.method=="cancel")
-            this.reserveService.cancel(this.reservation, localStorage.getItem('token'), this.utils.getUserId()).toPromise().then((mResponse: MyResponse)=>{
+        else if (this.method == "cancel")
+            this.reserveService.cancel(this.reservation, localStorage.getItem('token'), this.utils.getUserId()).toPromise().then((mResponse: MyResponse) => {
                 this.closeDialog(mResponse);
-            },() => {this.onError();});
+            }, () => { this.onError(); });
 
     }
 
-    onError(){
+    onError() {
         this.spinnerService.resetSpinner();//hide loader
         this.utils.showErrorMessage();//show error message
         this.dimissDialog();//close popup
     }
-      
-    closeDialog(mResponse: MyResponse){
+
+    closeDialog(mResponse: MyResponse) {
         this.spinnerService.resetSpinner();
-        this.dialogRef.close({ 
+        this.dialogRef.close({
             code: mResponse.code,
             isSuccessful: mResponse.isSuccessful,
             title: mResponse.title,
@@ -97,9 +95,9 @@ export class ReservationPopupComponent implements OnInit {
         });
     }
 
-    dimissDialog(){
+    dimissDialog() {
         this.dialogRef.close();
     }
-    
+
 
 }

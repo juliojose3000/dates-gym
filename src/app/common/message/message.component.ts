@@ -11,7 +11,7 @@ import { MyResponse } from '../../model/myresponse.model';
 @Component({
   selector: 'message-component',
   templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
 

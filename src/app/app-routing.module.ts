@@ -8,7 +8,6 @@ import { AboutusComponent } from './common/aboutus/aboutus.component';
 import { PasswordForgottenComponent } from './auth/password-forgotten/password-forgotten.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { UserProfileComponent } from './customer/user-profile/user-profile.component';
-import { EnableUserAccountComponent } from './admin/enable-user-account/enable-user-account.component';
 import { AdminGuard } from './guards/admin.guard';
 import { UserRoleEnum } from './model/enums/user-role.enum';
 
@@ -24,19 +23,19 @@ const routes: Routes = [
   {
     path: "reserve",
     canActivate: [AdminGuard],
-    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.TRAINER, UserRoleEnum.CUSTOMER] },
+    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.ASSISTANT, UserRoleEnum.CUSTOMER] },
     component: ReserveComponent
   },
   {
     path: "user_profile",
     canActivate: [AdminGuard],
-    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.TRAINER, UserRoleEnum.CUSTOMER] },
+    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.ASSISTANT, UserRoleEnum.CUSTOMER] },
     component: UserProfileComponent
   },
   {
     path: 'admin',
     canActivate: [AdminGuard],
-    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.TRAINER] },
+    data: { allowedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.ASSISTANT] },
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) //Lazy load admin module
   },
   { path:'**', component: HomeComponent }, //If the route not exists, so redirect to home

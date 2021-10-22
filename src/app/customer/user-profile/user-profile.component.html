@@ -4,43 +4,47 @@
 
         <h1 class="h1_title">Mi Perfil</h1>
 
-        <span class="span_text">Nombre: </span>
-        <input id="name_input" [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />
+        <form>
 
-        <span class="span_text">Correo: </span>
-        <input id="email_input" [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
+            <span class="span_text">Nombre: </span>
+            <input id="name_input" [(ngModel)]="name" name="name" type="text" placeholder="Nombre" />
 
-        <span class="span_text">Teléfono: </span>
-        <input id="phone_input" [(ngModel)]="phone" name="phone" placeholder="Teléfono"
-            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            type="number" maxlength="8" />
+            <span class="span_text">Correo: </span>
+            <input id="email_input" [(ngModel)]="email" name="email" type="email" placeholder="Correo" />
 
-        <span class="span_text">Nueva contraseña: </span>
-        <div class="div_password" style="width: 100%; position: relative;">
-            <input [(ngModel)]="newPassword" id="inputNewPassword" name="new_password" type="password"
-                placeholder="Contraseña" [type]="hideNewPassword ? 'password' : 'text'"
-                placeholder="Nueva Contraseña" />
-            <mat-icon style="z-index: 90; position: absolute; right: 0; margin-right: 5px; margin-top: 16px;"
-                class="placeholder" (click)="hideNewPasswordFunction()">{{hideNewPassword ?
-                'visibility_off' : 'visibility'}}
-            </mat-icon>
-        </div>
+            <span class="span_text">Teléfono: </span>
+            <input id="phone_input" [(ngModel)]="phone" name="phone" placeholder="Teléfono"
+                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type="number" maxlength="8" />
+
+            <span class="span_text">Nueva contraseña: </span>
+            <div class="div_password" style="width: 100%; position: relative;">
+                <input [(ngModel)]="newPassword" id="inputNewPassword" name="new_password" type="password"
+                    placeholder="Contraseña" [type]="hideNewPassword ? 'password' : 'text'"
+                    placeholder="Nueva Contraseña" />
+                <mat-icon style="z-index: 90; position: absolute; right: 0; margin-right: 5px; margin-top: 16px;"
+                    class="placeholder" (click)="hideNewPasswordFunction()">{{hideNewPassword ?
+                    'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </div>
 
 
-        <span class="span_text">Contraseña actual: </span>
-        <div class="div_password" style="width: 100%; position: relative;">
-            <input [(ngModel)]="password" id="inputPassword" name="password" type="password" placeholder="Contraseña"
-                [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña" />
-            <mat-icon style="z-index: 90; position: absolute; right: 0; margin-right: 5px;  margin-top: 16px;"
-                class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ?
-                'visibility_off' : 'visibility'}}
-            </mat-icon>
-        </div>
+            <span class="span_text">Contraseña actual: </span>
+            <div class="div_password" style="width: 100%; position: relative;">
+                <input [(ngModel)]="password" id="inputPassword" name="password" type="password"
+                    placeholder="Contraseña" [type]="hidePassword ? 'password' : 'text'" placeholder="Contraseña" />
+                <mat-icon style="z-index: 90; position: absolute; right: 0; margin-right: 5px;  margin-top: 16px;"
+                    class="placeholder" (click)="hidePasswordFunction()">{{hidePassword ?
+                    'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </div>
 
-        <div class="divButton">
-            <button class="mainButton" style="vertical-align:middle" (click)="updateUserProfile()"><span>Actualizar
-                    datos </span></button>
-        </div>
+            <div class="divButton">
+                <button class="mainButton" style="vertical-align:middle" (click)="updateUserProfile()"><span>Actualizar
+                        datos </span></button>
+            </div>
+
+        </form>
 
     </div>
 
