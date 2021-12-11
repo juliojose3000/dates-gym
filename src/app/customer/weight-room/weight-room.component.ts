@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { MessageComponent } from '../../common/message/message.component';
-import { Strings } from '../../utils/resources';
 import { Utils } from '../../utils/utils';
 
 @Component({

@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessageComponent } from '../../common/message/message.component';
 import { MyResponse } from '../../model/myresponse.model';
 import { PopupComponent } from '../../common/popup/popup.component';
-import { Strings } from '../../utils/resources';
+import { ASSETS, Strings } from '../../utils/resources';
 import { UserService } from '../../service/user.service';
 import { SpinnerService } from '../../common/spinner/spinner.service';
 import { Utils } from '../../utils/utils';
@@ -29,7 +29,8 @@ export class PasswordForgottenComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.ENTERS_AN_EMAIL
+          message: Strings.ENTERS_AN_EMAIL,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;
@@ -39,7 +40,8 @@ export class PasswordForgottenComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.ENTERS_A_VALID_EMAIL
+          message: Strings.ENTERS_A_VALID_EMAIL,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;

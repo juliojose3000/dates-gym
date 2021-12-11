@@ -8,16 +8,12 @@
         <input type="checkbox" id="show-menu">
         <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
         <div class="content">
-            <img src="../../assets/img/body-icon.png" alt="Body" class="img_imagen_logo">
+            <img src="../../assets/img/body-icon.png" alt="GymLogo" class="img_imagen_logo">
             <div class="logo"><a> CACHÍ FITNESS CENTER </a></div>
             <ul class="links" id="links">
 
                 <li><a (click)="onClickEvent('home')">Inicio</a></li>
-
-
                 <li><a (click)="onClickEvent('aboutUs')">Nosotros</a></li>
-
-
                 <li id="div_admin_features">
                     <a class="desktop-link" id="btn_admin">Administración</a>
                     <input type="checkbox" id="show-features">
@@ -27,8 +23,6 @@
                         <li><a (click)="onClickEvent('seeUsers')">Ver usuarios</a></li>
                     </ul>
                 </li>
-
-
                 <li>
                     <a id="btn_services" class="desktop-link">Servicios</a>
                     <input type="checkbox" id="show-services">
@@ -37,8 +31,6 @@
                         <li><a (click)="onClickEvent('weightRoom')">Sala de Pesas</a></li>
                     </ul>
                 </li>
-
-
                 <li>
                     <a (click)="onClickEvent('session')" class="desktop-link btn_session" name="btn_session">{{sessionText}}</a>
                     <input type="checkbox" id="show-account-features">
@@ -48,8 +40,6 @@
                         <li><a (click)="logout()" id="a_session"></a></li>
                     </ul>
                 </li>
-
-
             </ul>
         </div>
     </nav>

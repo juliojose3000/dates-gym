@@ -7,7 +7,7 @@ import { ReserveService } from '../../../service/reserve.service';
 import { User } from '../../../model/user.model';
 import { Reservation } from '../../../model/reservation.model';
 import { MyResponse } from '../../../model/myresponse.model';
-import { DAYS_NAME, MONTHS_NAME, Strings } from '../../../utils/resources';
+import { ASSETS, DAYS_NAME, MONTHS_NAME, Strings } from '../../../utils/resources';
 import { SpinnerService } from '../../../common/spinner/spinner.service';
 import { Utils } from '../../../utils/utils';
 import { DatePipe } from '@angular/common';
@@ -17,10 +17,9 @@ import { MessageComponent } from 'src/app/common/message/message.component';
 @Component({
   selector: 'enter-phone-number-popup.component',
   templateUrl: './enter-phone-number-popup.component.html',
-  styleUrls: ['./enter-phone-number-popup.component.scss']
+  styleUrls: ['./enter-phone-number-popup.component.scss'],
 })
 export class EnterPhoneNumberPopupComponent implements OnInit {
-
   phone: number;
 
   constructor(
@@ -29,33 +28,33 @@ export class EnterPhoneNumberPopupComponent implements OnInit {
     private spinnerService: SpinnerService,
     public datepipe: DatePipe,
     private utils: Utils,
-    public dialog: MatDialog,
-    ) {
+    public dialog: MatDialog
+  ) {
     dialogRef.disableClose = true; //This line disable close dialog when user clicks dialog outside
   }
 
-  ngOnInit(): void {
-
-
-  }
+  ngOnInit(): void {}
 
   submit() {
-    
     if (!this.utils.isAValidPhoneNumber(this.phone)) {
-      this.dialog.open(MessageComponent, { data: { title: Strings.ERROR, message: Strings.IT_IS_NOT_A_VALID_PHONE } });
+      this.dialog.open(MessageComponent, {
+        data: {
+          title: Strings.ERROR,
+          message: Strings.IT_IS_NOT_A_VALID_PHONE,
+          showIcon: ASSETS.FAILED_ICON,
+        },
+      });
       return;
     }
 
     this.spinnerService.resetSpinner();
     this.dialogRef.close({
-      phoneNumber: this.phone.toString()
+      phoneNumber: this.phone.toString(),
     });
   }
-
 
   dimissDialog() {
     this.phone = undefined;
     this.dialogRef.close();
   }
-
 }
