@@ -8,11 +8,22 @@ h1{
     text-align: center;
 }
 
-.pRegister{
-    align-items: center;
-    text-align: center;
-}
 
 .pClass{
     text-align: center;
+}
+
+.divModalParent{
+    max-width: 500px;
+}
+
+.divImg{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.image{
+    height: 50px;
+    width: 50px;
 }

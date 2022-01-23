@@ -1,7 +1,10 @@
 <div class="divModalParent">
+  <div class = "divImg">
+    <img id = "imgIcon" alt="image" class="image">
+  </div>
   <h1 mat-dialog-title>{{title}}</h1>
   <div mat-dialog-content>
-    <p class="{{class}}">{{message}}</p>
+    <p class="pClass">{{message}}</p>
   </div>
   <div mat-dialog-actions>
     <button mat-raised-button color="primary" (click)="closeDialog()">Aceptar</button>

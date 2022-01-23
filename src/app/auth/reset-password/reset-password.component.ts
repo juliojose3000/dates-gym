@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageComponent } from '../../common/message/message.component';
 import { MyResponse } from '../../model/myresponse.model';
 import { ResetPassword } from '../../model/reset-password.model';
-import { Strings } from '../../utils/resources';
+import { ASSETS, Strings } from '../../utils/resources';
 import { AuthenticationService } from '../../service/authentication.service';
 import { UserService } from '../../service/user.service';
 import { SpinnerService } from '../../common/spinner/spinner.service';
@@ -49,7 +49,8 @@ export class ResetPasswordComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.FILL_INPUTS
+          message: Strings.FILL_INPUTS,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;
@@ -59,7 +60,8 @@ export class ResetPasswordComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.ENTERS_A_VALID_EMAIL
+          message: Strings.ENTERS_A_VALID_EMAIL,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;
@@ -69,7 +71,8 @@ export class ResetPasswordComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.IT_IS_NOT_A_STRONG_PASSWORD
+          message: Strings.IT_IS_NOT_A_STRONG_PASSWORD,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;
@@ -79,7 +82,8 @@ export class ResetPasswordComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: Strings.ERROR,
-          message: Strings.PASSWORDS_NEED_TO_BE_EQUALS
+          message: Strings.PASSWORDS_NEED_TO_BE_EQUALS,
+          showIcon: ASSETS.FAILED_ICON,
         }
       });
       return;
@@ -93,7 +97,10 @@ export class ResetPasswordComponent implements OnInit {
       this.dialog.open(MessageComponent, {
         data: {
           title: mResponse.title,
-          message: mResponse.description
+          message: mResponse.description,
+          showIcon: mResponse.isSuccessful
+            ? ASSETS.SUCCESS_ICON
+            : ASSETS.FAILED_ICON,
         }
       }).afterClosed().subscribe(result => {
         this.router.navigate(['login']);

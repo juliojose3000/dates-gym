@@ -1,26 +1,28 @@
-.mainDiv{
+.mainDiv {
     padding-top: 50px;
 }
 
-h1{
-    color:white;
+h1 {
+    color: white;
     text-align: center;
 }
 
-table{
+table {
     border-collapse: collapse;
 }
 
-th{//centro el texto de los encabezados
+th {
+    //centro el texto de los encabezados
     text-align: center;
     width: 5%;
 }
 
-td{//centro el texto de las casillas
+td {
+    //centro el texto de las casillas
     text-align: center;
 }
 
-.headers{
+.headers {
     font-size: min(max(13px, 2vw), 15px);
     //background-color: rgba(77, 54, 8, 0.8);
     background-color: rgb(77, 54, 8);
@@ -28,37 +30,45 @@ td{//centro el texto de las casillas
     height: 6vh;
 }
 
-.cell{
+.cell {
     font-size: 80%;
     background-color: rgb(94, 75, 9);
 }
 
-.expired_cell{
+.expired_cell {
     font-size: 80%;
     background-color: rgb(95, 95, 95);
 }
 
-.cell_reserved{
+.cell_reserved {
     font-size: 80%;
     background-color: rgb(230, 164, 34);
 }
 
-.cell_reserved:hover{
+.cell_reserved:hover {
     cursor: pointer;
 }
 
-.cell:hover{
+.expired_cell:hover {
+    //background-color: rgba(182, 144, 21, 0.6);
+    background-color: rgb(146, 146, 146);
+    cursor: pointer;
+}
+
+.cell:hover {
     //background-color: rgba(182, 144, 21, 0.6);
     background-color: rgb(182, 144, 21);
     cursor: pointer;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid white;
     color: white;
 }
 
-.mainDiv{
+.mainDiv {
     position: relative;
     width: 100%;
     height: 80%;
@@ -66,30 +76,28 @@ table, th, td {
     //background-color: red;
 }
 
-
-.p_available_space_text{
+.p_available_space_text {
     margin-top: 5px;
     margin-bottom: 0px;
 }
 
-
-.p_available_space{ 
+.p_available_space {
     margin: 0px;
-    font-size: 16px; 
+    font-size: 16px;
 }
 
-#p_range_hours{
+#p_range_hours {
     margin: 12px 0px;
 }
 
-.top_headers{
+.top_headers {
     background-color: rgb(77, 54, 8);
     height: 50px;
     font-size: min(max(16px, 1vw), 20px);
     text-align: center;
 }
 
-.divTextContainer{
+.divTextContainer {
     background-color: #14181f;
     padding: 10px;
     border-radius: 5px;
@@ -99,15 +107,14 @@ table, th, td {
     margin-right: auto;
 }
 
-.p_description{
+.p_description {
     color: white;
     font-size: min(max(17px, 1vw), 17px);
     width: 100%;
     margin: 15px 0;
 }
 
-
-.p_note{
+.p_note {
     color: white;
     margin-top: 2%;
     font-size: 12px;
@@ -115,40 +122,64 @@ table, th, td {
     text-align: center;
 }
 
+#amountOfAvailableSpacesLabel {
+    display: none;
+}
 
 //-----------------------------------------QUERIES---------------------------------------//
 
 //MOBILE SCREENS
 @media (max-width: 1200px) {
-    .p_available_space_text { display: none; }
+    .p_available_space_text {
+        display: none;
+    }
+    #amountOfAvailableSpacesLabel {
+        display: table-row;
+    }
 }
-   
+
 //PC SCREENS
 @media (min-width: 845px) {
-    .mainDiv{ width: 80%; left: 10%; }
-    
+    .mainDiv {
+        width: 80%;
+        left: 10%;
+    }
 }
-  
+
 //MOBILE SCREENS
 @media (max-width: 845px) {
-    .mainDiv{ width: 95%; left: 2.5%; }
+    .mainDiv {
+        width: 95%;
+        left: 2.5%;
+    }
 }
 
-
 //SMALL MOBILES (VERTICAL VIEW)
-@media only screen and (max-width: 400px){
-    .headers { height: 45px; }
-    .p_description{ margin-top: 3%; }
+@media only screen and (max-width: 400px) {
+    .headers {
+        height: 45px;
+    }
+    .p_description {
+        margin-top: 3%;
+    }
 }
 
 //Horizontal Movil View
-@media screen and (orientation: landscape) and (max-height: 640px){
-    .p_description{ margin-top: 5%; }
-    .headers{ height: 50px; }
-    .mainDiv{ height: 75%; }
+@media screen and (orientation: landscape) and (max-height: 640px) {
+    .p_description {
+        margin-top: 5%;
+    }
+    .headers {
+        height: 50px;
+    }
+    .mainDiv {
+        height: 75%;
+    }
 }
 
 //Horizontal Small Movil View
-@media screen and (orientation: landscape) and (max-height: 400px){
-    .p_description{ margin-top: 10%; }
+@media screen and (orientation: landscape) and (max-height: 400px) {
+    .p_description {
+        margin-top: 10%;
+    }
 }
