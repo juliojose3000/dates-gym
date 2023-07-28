@@ -1,0 +1,10 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.loaiza.software.whitescreenapp",
+      "sha256_cert_fingerprints":
+      ["F1:4C:61:59:21:40:D9:43:89:3A:41:B3:39:46:7E:0E:09:58:81:C8:9B:9D:0D:C5:A6:80:3E:CB:63:5C:AF:1D"]
+    }
+  }]
+  
